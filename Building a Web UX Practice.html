@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Building a Web UX Practice — Case Study · David Cho</title>
+  <meta name="description" content="Case study — shaping a Web UX practice across marketing, product, and growth: remit, operating model, mentorship, and design-system governance." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;1,8..60,300;1,8..60,400;1,8..60,500&family=Space+Grotesk:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="shell nav__inner">
+      <a href="index.html" class="brand" aria-label="David Cho — home">
+        <span><span class="brand__name">David Cho</span></span>
+        <span class="brand__role">UX&nbsp;Designer&nbsp;/&nbsp;Manager</span>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="index.html"  class="nav__link">Index</a>
+        <a href="work.html"   class="nav__link is-active">Work</a>
+        <a href="about.html"  class="nav__link">About</a>
+        <a href="resume.html" class="nav__link">Resume</a>
+        <a href="contact.html" class="nav__link">Contact</a>
+        <a href="contact.html" class="btn btn--primary btn--sm nav__cta">Get in touch
+          <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </nav>
+      <button class="nav__menu-btn" aria-label="Open menu"><span></span></button>
+    </div>
+    <div class="nav__panel">
+      <a href="index.html">Index</a><a href="work.html">Work</a><a href="about.html">About</a><a href="resume.html">Resume</a><a href="contact.html">Contact</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="cs-hero">
+      <div class="shell">
+        <a class="cs-hero__breadcrumb" href="work.html">
+          <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          All work
+        </a>
+        <div class="cs-hero__eyebrow">Case Study · 07 / 07 · Leadership</div>
+        <h1 class="cs-hero__title">Building a <em>Web UX</em> practice across marketing, product &amp; growth.</h1>
+        <p class="cs-hero__sub">Shaping the team, the remit, and the operating model for the interactive layer between logged-out marketing and product-led growth — and staying close enough to the craft to mentor the next designers into it.</p>
+
+        <div class="cs-hero__tags">
+          <span class="tag tag--accent">Leadership</span>
+          <span class="tag">Web UX</span>
+          <span class="tag">Design Management</span>
+          <span class="tag">Growth</span>
+          <span class="tag">Design Systems</span>
+          <span class="tag">CMS</span>
+          <span class="tag">Team Practice</span>
+        </div>
+
+        <dl class="cs-summary">
+          <div><dt>Role</dt><dd>UX Web Designer &amp; Manager · team lead · mentor</dd></div>
+          <div><dt>Team</dt><dd>Web UX designers · 7 partner disciplines</dd></div>
+          <div><dt>Timeline</dt><dd>2022 — 2025 · multi-year practice</dd></div>
+          <div><dt>Surface</dt><dd>Marketing site · growth web · CMS &amp; system governance</dd></div>
+        </dl>
+
+        <!-- Cover plate (image placeholder) -->
+        <div class="cs-cover">
+          <span class="placeholder">Figure 00 — Web UX operating model · connective tissue view · 1920 × 1080</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ READING LAYOUT ============ -->
+    <div class="shell">
+      <div class="cs-layout">
+
+        <!-- TOC -->
+        <aside class="cs-toc" aria-label="Contents">
+          <div class="cs-toc__label">Contents</div>
+          <ol>
+            <li><a href="#overview" data-toc>Overview</a></li>
+            <li><a href="#context" data-toc>Context</a></li>
+            <li><a href="#problem" data-toc>Problem</a></li>
+            <li><a href="#role" data-toc>My Role</a></li>
+            <li><a href="#strategy" data-toc>Strategy</a></li>
+            <li><a href="#process" data-toc>Process</a></li>
+            <li><a href="#decisions" data-toc>Key Decisions</a></li>
+            <li><a href="#solution" data-toc>System &amp; UX Solution</a></li>
+            <li><a href="#collab" data-toc>Collaboration</a></li>
+            <li><a href="#impact" data-toc>Impact</a></li>
+            <li><a href="#learned" data-toc>What I Learned</a></li>
+          </ol>
+        </aside>
+
+        <!-- BODY -->
+        <article class="cs-body">
+
+          <!-- 01 OVERVIEW -->
+          <section id="overview" class="cs-section">
+            <div class="cs-section__num">01 — Overview</div>
+            <h2 class="cs-section__title">Leadership through <em>clarity</em>, not volume.</h2>
+            <p class="cs-section__lede">A multi-year effort to shape Web UX into a team with a clear remit, a written operating model, and a real seat at the table for marketing, product, and growth.</p>
+            <p>Web UX at SurveyMonkey operates across marketing, product, growth, content, engineering, research, and brand. The team's work focuses on the interactive layer between logged-out marketing experiences and product-led growth — the seam where the company's story meets its product. This case study is less about a single launch and more about the practice itself: how the team's remit was defined, how the operating model was built, how junior designers were mentored into it, and how Web UX came to be read as a strategic partner rather than a production function. Specific initiatives like CMS modernization and the Framer experiences live in their own case studies; this one is about the surface that made them possible.</p>
+          </section>
+
+          <!-- 02 CONTEXT -->
+          <section id="context" class="cs-section">
+            <div class="cs-section__num">02 — Context</div>
+            <h2 class="cs-section__title">A web surface owned by <em>everyone</em>.</h2>
+            <p>The marketing site is the seam between the company's story and its product. Marketing owns the narrative and the funnel. Product owns the experience after sign-up. Growth runs experiments across the boundary. Brand owns the visual language across both. Content owns the words. Engineering owns the platform. Research owns the evidence. Every one of those teams has a legitimate claim on parts of the web surface — which is why, without a clear practice, web work tended to live in whichever team was loudest in any given quarter.</p>
+            <p>By the time I stepped into the management seat, the inputs were strong but the seam was thin. The team had talented designers and committed partners on every side; what it didn't have was a written remit, a shared operating model, or a clear story about what Web UX as a discipline actually <em>did</em> beyond shipping individual pages. The work in this case study is the work of building that surface.</p>
+
+            <div class="cs-callout">
+              <div class="cs-callout__label">Background</div>
+              <p class="cs-callout__body">Web UX sat between <em>seven partner disciplines</em>. Each had a legitimate claim on the marketing site. None of them, alone, defined the team — and the team didn't yet define itself.</p>
+            </div>
+          </section>
+
+          <!-- 03 PROBLEM -->
+          <section id="problem" class="cs-section">
+            <div class="cs-section__num">03 — Problem</div>
+            <h2 class="cs-section__title">A team without a <em>written remit</em>.</h2>
+            <p>The organization needed clearer ownership around web UX work. Marketing, product, brand, content, and engineering all had overlapping needs, but the team itself needed a clearer remit, a stronger operating model, and better ways to show impact. Without that surface, every project re-negotiated scope, every junior designer absorbed conflicting signals about what good looked like, and the team's contribution got read as production volume rather than the connective work that actually held the surface together.</p>
+
+            <div class="cs-twocol">
+              <div>
+                <h4>What I heard internally</h4>
+                <ul>
+                  <li>"What does <em>good</em> look like here?" — in nearly every 1:1.</li>
+                  <li>"I don't know whose call this is — design's, brand's, or growth's."</li>
+                  <li>"Reviews keep turning into preference debates."</li>
+                  <li>"Stakeholders learn each designer, not the team."</li>
+                </ul>
+              </div>
+              <div>
+                <h4>What partners were asking</h4>
+                <ul>
+                  <li>Marketing wanted a single way to brief Web UX.</li>
+                  <li>Engineering wanted PRDs and tickets to arrive with the design.</li>
+                  <li>Growth wanted to know when to partner versus route elsewhere.</li>
+                  <li>Leadership wanted a story they could tell about the team's work.</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- 04 MY ROLE -->
+          <section id="role" class="cs-section">
+            <div class="cs-section__num">04 — My Role</div>
+            <h2 class="cs-section__title">Manager, mentor &amp; <em>still on the keyboard</em>.</h2>
+            <p>I held a deliberate split: roughly half management and practice-building, half hands-on design and systems contribution. The split was the point — managing without making would have left the team's craft unmoored from its leadership; making without managing would have left the practice unbuilt. I managed and mentored junior designers, helped define the team's responsibilities, project workflows, documentation practices, and design-system governance, and continued to contribute on systems, CMS modernization, and growth-led web work.</p>
+
+            <dl class="cs-role">
+              <div><dt>What I led</dt><dd>Web UX remit · operating model · review &amp; intake practice · documentation conventions · mentorship</dd></div>
+              <div><dt>What I shipped personally</dt><dd>Team remit doc · PRD &amp; intake templates · design review format · systems &amp; CMS governance contributions</dd></div>
+              <div><dt>What I delegated</dt><dd>Project-level design ownership for junior designers (with framing &amp; feedback support)</dd></div>
+              <div><dt>What I didn't own</dt><dd>Brand visual identity · product UX · marketing copy · platform engineering</dd></div>
+            </dl>
+          </section>
+
+          <!-- 05 STRATEGY -->
+          <section id="strategy" class="cs-section">
+            <div class="cs-section__num">05 — Strategy</div>
+            <h2 class="cs-section__title">Web UX as <em>connective tissue</em>.</h2>
+            <p class="cs-section__lede">Not a production function. Not a brand outpost. The team between the teams — the layer that makes marketing, product, growth, and brand cohere on the web.</p>
+
+            <p>The strategy had three commitments. First: <strong>frame Web UX as connective tissue</strong>, not a slice of marketing or product. Connective tissue is a real role — it's how marketing's story stays continuous with product's experience, how brand's language survives campaign cycles, how growth's experiments don't break the site. Naming that role gave the team a remit bigger than "the people who ship marketing pages" and smaller than "everyone who touches the web."</p>
+            <p>Second: <strong>practice as a deliverable</strong>. PRDs, Jira workflows, design review narratives, documentation, mentorship rituals — these are the artifacts that make a discipline legible. If the team only produced screens, it would keep getting read as production capacity. Third: <strong>manage and make</strong>. Stay close enough to the craft to mentor with specifics; stay far enough back to let designers carry their own work.</p>
+
+            <div class="cs-callout cs-callout--decision">
+              <div class="cs-callout__label">Strategic bet</div>
+              <p class="cs-callout__body">A team with a <em>written remit</em> and a small, deliberate set of practices would do more for velocity, clarity, and quality than any single launch ever could.</p>
+            </div>
+          </section>
+
+          <!-- 06 PROCESS -->
+          <section id="process" class="cs-section">
+            <div class="cs-section__num">06 — Process</div>
+            <h2 class="cs-section__title">From <em>ambient</em> to <em>articulated</em>.</h2>
+
+            <div class="cs-figure">
+              <div class="cs-figure__frame"><span class="cs-figure__placeholder">Figure 01 — Practice-building arc · listen → frame → operationalize → apply → mature</span></div>
+              <div class="cs-figure__caption"><span class="num">Fig 01</span><span>Five phases. Some sequential, most parallel — the practice and the projects had to be built at the same time.</span></div>
+            </div>
+
+            <p>The first phase was almost entirely listening: 1:1s with every designer and partner, mapping overlapping asks, conflicting expectations, and the moments the team's contribution was hard to read. The audit, not the answer, came first. From there I wrote the Web UX remit, the operating model, and the partner-relationship map — then tested the framing in partner reviews until stakeholders could repeat it back unprompted.</p>
+            <p>Operationalizing meant building intake, PRD templates, Jira workflows, design review formats, and documentation conventions — making "how we work" something you could read, not something you had to overhear. From there the practice earned its keep on live projects (CMS modernization, Framer experiences, navigation, growth surfaces), not in slideware. The final phase was maturation: mentoring designers into more ownership, codifying what worked, retiring what didn't, and rewriting the documents as the team grew.</p>
+
+            <div class="cs-figure">
+              <div class="cs-figure__frame"><span class="cs-figure__placeholder">Figure 02 — Project framing template · PRD + design intake</span></div>
+              <div class="cs-figure__caption"><span class="num">Fig 02</span><span>The intake artifact. Problem, audience, success criteria, scope boundaries, partners — filled in before design starts, not after.</span></div>
+            </div>
+          </section>
+
+          <!-- 07 KEY DECISIONS -->
+          <section id="decisions" class="cs-section">
+            <div class="cs-section__num">07 — Key Decisions</div>
+            <h2 class="cs-section__title">Five <em>forks</em> that shaped the practice.</h2>
+
+            <ol class="cs-decisions">
+              <li>
+                <span class="cs-decisions__num">D · 01</span>
+                <div>
+                  <h3 class="cs-decisions__title">Lead with the <em>remit</em>, not the roadmap</h3>
+                  <p class="cs-decisions__rationale">The pull was to demonstrate value through volume — ship more, faster, louder. The longer-leverage move was to write what Web UX is <em>for</em> first, then let projects flow from that. Teams without a remit are judged by quarterly outputs forever.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Kept</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">D · 02</span>
+                <div>
+                  <h3 class="cs-decisions__title">Keep managing while continuing to make</h3>
+                  <p class="cs-decisions__rationale">Staying close to the craft — on CMS modernization, Framer, systems work — meant feedback to junior designers carried specifics, conversations with engineering stayed credible, and the leadership stayed grounded in what shipping actually feels like.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Kept</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">D · 03</span>
+                <div>
+                  <h3 class="cs-decisions__title">Treat WDS and the marketing CMS as <em>one</em> system</h3>
+                  <p class="cs-decisions__rationale">Design-system governance and CMS implementation tend to drift into separate conversations. Holding them as one — same tokens, same components, same intent — was the only way to stop the two surfaces from quietly diverging.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Kept</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">D · 04</span>
+                <div>
+                  <h3 class="cs-decisions__title">Mentor through <em>ownership</em>, not approval</h3>
+                  <p class="cs-decisions__rationale">Junior designers learn faster when they own the call than when they wait for it. Feedback became about reducing ambiguity and naming the rubric, then stepping back — so the work showed the designer leading it, not the manager validating it.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Kept</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">D · 05</span>
+                <div>
+                  <h3 class="cs-decisions__title">Make the practice visible to executives</h3>
+                  <p class="cs-decisions__rationale">Initially treated storytelling as a by-product. Revised to treat exec-ready framing as part of the work itself — connective contributions hide easily, and unwritten work is unfunded work.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--rev">Revised</span>
+              </li>
+            </ol>
+          </section>
+
+          <!-- 08 SOLUTION -->
+          <section id="solution" class="cs-section">
+            <div class="cs-section__num">08 — System &amp; UX Solution</div>
+            <h2 class="cs-section__title">A team you can <em>read</em>.</h2>
+            <p class="cs-section__lede">Four pieces holding the practice together: a written remit, an operating model, a documentation &amp; review rhythm, and a mentorship loop.</p>
+
+            <div class="cs-figure cs-figure--wide">
+              <div class="cs-figure__frame"><span class="cs-figure__placeholder">Figure 03 — The connective-tissue view · Web UX in the seam between disciplines</span></div>
+              <div class="cs-figure__caption"><span class="num">Fig 03</span><span>The frame the rest of the practice hangs from. Marketing on one side, product on the other; Web UX as the seam where brand, content, growth, engineering, and research meet.</span></div>
+            </div>
+
+            <p>At the base sits the <strong>remit</strong>: a short written description of what Web UX is for, what it owns, and where it hands off. Above that, the <strong>operating model</strong> — intake, framing, review cadence, hand-off conventions, and partner contracts. Above that, the <strong>documentation &amp; review rhythm</strong> — PRDs, Jira workflows, narrative-led reviews, and exec-ready storytelling. At the top sits the <strong>mentorship loop</strong>: frame, feedback, ownership, repeat.</p>
+
+            <div class="cs-callout cs-callout--dark">
+              <div class="cs-callout__label">Principle</div>
+              <p class="cs-callout__body">If the team only ships screens, it's read as production capacity. If it ships <em>screens and practice</em>, it's read as a strategic partner.</p>
+            </div>
+
+            <div class="cs-figure cs-figure--wide">
+              <div class="cs-figure__frame"><span class="cs-figure__placeholder">Figure 04 — Project framing examples · intake brief, review narrative, partner contract</span></div>
+              <div class="cs-figure__caption"><span class="num">Fig 04</span><span>The three artifacts that turned vague requests into named problems, named partners, and named success criteria — before design started.</span></div>
+            </div>
+
+            <div class="cs-twocol">
+              <div>
+                <h4>Leadership principles</h4>
+                <ul>
+                  <li>Define the seam, not the silo.</li>
+                  <li>Practice is a design deliverable.</li>
+                  <li>Manage <em>and</em> make.</li>
+                  <li>Systems before screens.</li>
+                  <li>Mentor toward ownership, not approval.</li>
+                </ul>
+              </div>
+              <div>
+                <h4>Project types the team supports</h4>
+                <ul>
+                  <li>Surface &amp; structure — navigation, IA, conversion paths.</li>
+                  <li>Systems &amp; components — CMS modernization, WDS alignment.</li>
+                  <li>Editorial &amp; campaigns — Trends, Framer experiences.</li>
+                  <li>Growth &amp; experimentation — analytics partnership, test surfaces.</li>
+                  <li>Product-led seams — onboarding entry, signed-in/out continuity.</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- 09 COLLABORATION -->
+          <section id="collab" class="cs-section">
+            <div class="cs-section__num">09 — Collaboration</div>
+            <h2 class="cs-section__title">Seven partners, <em>one seam</em>.</h2>
+            <p>Web UX only works through other teams. Most of the leadership job was translating between priorities — and making sure the translations were faithful in both directions. Marketing owned story and funnel. Product owned the logged-in experience. Brand owned the visual language. Content owned the words. Engineering owned the platform. Growth owned the experiments. Research owned the evidence. The working pattern wasn't one team room; it was a set of overlapping rooms, each with a named owner on the Web UX side and a short written description of what we owed each other.</p>
+
+            <div class="cs-twocol">
+              <div>
+                <h4>How we worked</h4>
+                <ul>
+                  <li>Named partner owners on the Web UX side</li>
+                  <li>Weekly or bi-weekly cadence per partner</li>
+                  <li>Short written contracts — what we owe each other</li>
+                  <li>PRD-shaped intake before design starts</li>
+                  <li>Narrative-led design reviews, not screen tours</li>
+                </ul>
+              </div>
+              <div>
+                <h4>How we made decisions</h4>
+                <ul>
+                  <li>Frame the problem before debating solutions</li>
+                  <li>Reversible calls: ship and revisit in cycle</li>
+                  <li>One-way doors: write a memo and defend it</li>
+                  <li>Brand &amp; engineering vetoes documented and dated</li>
+                  <li>Junior designers carry their own decisions</li>
+                </ul>
+              </div>
+            </div>
+
+            <blockquote class="pull" style="margin: 32px 0 0;">
+              "The work was great. We just couldn't always tell anyone what kind of work it was."
+              <span class="pull__attr">— Design partner, mid-tenure retro</span>
+            </blockquote>
+          </section>
+
+          <!-- 10 IMPACT -->
+          <section id="impact" class="cs-section">
+            <div class="cs-section__num">10 — Impact</div>
+            <h2 class="cs-section__title">A team that's <em>legible</em>.</h2>
+            <p class="cs-section__lede">Qualitative impact. The point of this work was the practice itself; what's reported below is what the practice changed about how the team is seen and how it operates.</p>
+
+            <div class="cs-impact">
+              <div>
+                <div class="cs-impact__label">Ownership</div>
+                <h3 class="cs-impact__title">Clearer Web UX remit.</h3>
+                <p class="cs-impact__body">What the team is for — and what it isn't — became something partners could state in a sentence. Projects stopped re-litigating scope at the start of every brief.</p>
+              </div>
+              <div>
+                <div class="cs-impact__label">Mentorship</div>
+                <h3 class="cs-impact__title">Designers with structure.</h3>
+                <p class="cs-impact__body">Clearer rubrics, more specific feedback, and explicit ownership boundaries let junior designers carry more of their work end-to-end — and tell whether they were doing it well.</p>
+              </div>
+              <div>
+                <div class="cs-impact__label">Framing</div>
+                <h3 class="cs-impact__title">Briefs that mean something.</h3>
+                <p class="cs-impact__body">PRDs, Jira workflows, and design review formats turned vague requests into named problems, named partners, and named success criteria — before design started.</p>
+              </div>
+              <div>
+                <div class="cs-impact__label">Consistency</div>
+                <h3 class="cs-impact__title">CMS and system in sync.</h3>
+                <p class="cs-impact__body">Treating WDS and the marketing CMS as one system reduced drift between product and marketing. Growth work and editorial work began to share the same primitives, not compete for them.</p>
+              </div>
+              <div>
+                <div class="cs-impact__label">Positioning</div>
+                <h3 class="cs-impact__title">Strategic partner, not production.</h3>
+                <p class="cs-impact__body">Web UX began to be invited into earlier conversations — strategy, brand, growth bets — instead of being briefed after the decision had already been made.</p>
+              </div>
+              <div>
+                <div class="cs-impact__label">For me</div>
+                <h3 class="cs-impact__title">Manager who still ships.</h3>
+                <p class="cs-impact__body">I stayed close enough to the craft to mentor with specifics — and far enough back to let designers carry the work. The hardest part of the role; also the one I most wanted to get right.</p>
+              </div>
+            </div>
+
+            <p style="margin-top: 8px;">The honest summary: this work didn't produce a single launch you can screenshot. It produced a team more of the org can work with, practices that survive when the next manager arrives, and designers further along in their careers than they would have been without the structure. That's the kind of impact I most want to be evaluated on.</p>
+          </section>
+
+          <!-- 11 WHAT I LEARNED -->
+          <section id="learned" class="cs-section">
+            <div class="cs-section__num">11 — What I Learned</div>
+            <h2 class="cs-section__title">Five notes I'd <em>do the same</em> &amp; one I'd change.</h2>
+
+            <ol class="cs-decisions">
+              <li>
+                <span class="cs-decisions__num">L · 01</span>
+                <div>
+                  <h3 class="cs-decisions__title">The <em>team</em> is the surface.</h3>
+                  <p class="cs-decisions__rationale">I stepped into the manager seat thinking the work would be projects with a team attached. It's the other way around. The team is the surface; projects are how the surface gets used.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Keep</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">L · 02</span>
+                <div>
+                  <h3 class="cs-decisions__title">Staying on the keyboard wasn't optional</h3>
+                  <p class="cs-decisions__rationale">Hands on the craft kept my feedback specific, my engineering conversations credible, and my decisions grounded in what shipping actually feels like. The risk wasn't bandwidth; it was credibility — and the credibility paid for the bandwidth.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Keep</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">L · 03</span>
+                <div>
+                  <h3 class="cs-decisions__title">Mentor for <em>ownership</em>, not approval</h3>
+                  <p class="cs-decisions__rationale">The fastest way to slow a junior designer down is to be the gate they have to pass through. The slower, better way is to name the rubric, give specific feedback, and step back. Designers grow into the room you leave for them.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Keep</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">L · 04</span>
+                <div>
+                  <h3 class="cs-decisions__title">Write things down before you think you need to</h3>
+                  <p class="cs-decisions__rationale">The remit, the operating model, the partner contracts, the principles — all of it felt obvious when I started. Writing it down turned it into something the team could carry without me. The unwritten version is the version that doesn't outlast my tenure.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Keep</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">L · 05</span>
+                <div>
+                  <h3 class="cs-decisions__title">Connective work needs <em>storytelling</em></h3>
+                  <p class="cs-decisions__rationale">Web UX's contribution lives in coherence, re-use, and friction that didn't happen — none of which screenshot well. Writing the story of the work isn't extra. It's how the connective work stays visible enough to be funded, defended, and grown.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Keep</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">L · 06</span>
+                <div>
+                  <h3 class="cs-decisions__title">I waited too long to write the <em>remit</em></h3>
+                  <p class="cs-decisions__rationale">I spent the first stretch demonstrating value through projects, assuming the remit would emerge from the work. It didn't. Next time, the written remit comes in week one — not month six.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--rev">Change</span>
+              </li>
+            </ol>
+          </section>
+
+          <!-- Next -->
+          <nav class="cs-next" aria-label="Case study navigation">
+            <a href="work.html">
+              <span class="cs-next__label">← All work</span>
+              <h4 class="cs-next__title">Back to the <em>index</em></h4>
+            </a>
+            <a href="SurveyMonkey CMS Modernization.html">
+              <span class="cs-next__label">Related case · CMS</span>
+              <h4 class="cs-next__title">Modernizing the <em>marketing CMS</em> →</h4>
+            </a>
+          </nav>
+
+        </article>
+      </div>
+    </div>
+
+    <!-- ============ CTA ============ -->
+    <section class="section section--flush">
+      <div class="shell">
+        <div class="cta">
+          <div>
+            <div class="cta__eyebrow">Working together</div>
+            <h2 class="cta__title">Building or growing a <em>web practice</em>?</h2>
+          </div>
+          <div class="cta__side">
+            <p class="cta__lede">Remit, operating model, mentorship, and design-system governance — happy to talk through how this shape translates to your team.</p>
+            <div style="display:flex; gap:12px; flex-wrap:wrap;">
+              <a href="contact.html" class="btn btn--accent">Start a conversation
+                <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a href="work.html" class="btn btn--ghost">See more work</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell">
+      <div class="footer__grid">
+        <div class="footer__brand-col">
+          <h2 class="footer__brand" style="font-weight: 500">David <em style="font-weight: 500">Cho</em></h2>
+          <p class="footer__tagline">Designing the systems behind high-performing web experiences.</p>
+        </div>
+        <div class="footer__col"><h4>Site</h4><ul><li><a href="index.html">Index</a></li><li><a href="work.html">Work</a></li><li><a href="about.html">About</a></li><li><a href="resume.html">Resume</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+        <div class="footer__col"><h4>Elsewhere</h4><ul><li><a href="#">LinkedIn ↗</a></li><li><a href="#">Read.cv ↗</a></li><li><a href="#">Are.na ↗</a></li><li><a href="#">Dribbble ↗</a></li></ul></div>
+        <div class="footer__col"><h4>Contact</h4><ul><li><a href="mailto:hi@davidcho.design">hi@davidcho.design</a></li><li><a href="contact.html">Project brief</a></li><li><a href="#">+1 (415) 555&#8209;0118</a></li></ul></div>
+      </div>
+      <div class="footer__bar">
+        <span>© <span data-year></span> &nbsp;David Cho · Toronto</span>
+        <span>Set in Source Serif 4 &amp; Space Grotesk</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/site.js"></script>
+  <script>
+    // TOC current-section highlight via IntersectionObserver
+    (function () {
+      const links = document.querySelectorAll('.cs-toc a[data-toc]');
+      const map = new Map();
+      links.forEach(a => map.set(a.getAttribute('href').slice(1), a));
+      const sections = document.querySelectorAll('.cs-section[id]');
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            links.forEach(a => a.classList.remove('is-current'));
+            const a = map.get(e.target.id);
+            if (a) a.classList.add('is-current');
+          }
+        });
+      }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+      sections.forEach(s => io.observe(s));
+
+      links.forEach(a => {
+        a.addEventListener('click', (e) => {
+          const id = a.getAttribute('href').slice(1);
+          const target = document.getElementById(id);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            history.replaceState(null, '', '#' + id);
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

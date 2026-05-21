@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Improving Template Discovery — Case Study · David Cho</title>
+  <meta name="description" content="Case study — redesigning SurveyMonkey's template experience as a top-of-funnel growth surface through search, filtering, and interactive preview." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;1,8..60,300;1,8..60,400;1,8..60,500&family=Space+Grotesk:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="shell nav__inner">
+      <a href="index.html" class="brand" aria-label="David Cho — home">
+        <span><span class="brand__name">David Cho</span></span>
+        <span class="brand__role">UX&nbsp;Designer&nbsp;/&nbsp;Manager</span>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="index.html"  class="nav__link">Index</a>
+        <a href="work.html"   class="nav__link is-active">Work</a>
+        <a href="about.html"  class="nav__link">About</a>
+        <a href="resume.html" class="nav__link">Resume</a>
+        <a href="contact.html" class="nav__link">Contact</a>
+        <a href="contact.html" class="btn btn--primary btn--sm nav__cta">Get in touch
+          <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </nav>
+      <button class="nav__menu-btn" aria-label="Open menu"><span></span></button>
+    </div>
+    <div class="nav__panel">
+      <a href="index.html">Index</a><a href="work.html">Work</a><a href="about.html">About</a><a href="resume.html">Resume</a><a href="contact.html">Contact</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="cs-hero">
+      <div class="shell">
+        <a class="cs-hero__breadcrumb" href="work.html">
+          <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          All work
+        </a>
+        <div class="cs-hero__eyebrow">Case Study · 06 / 06 · Shipped</div>
+        <h1 class="cs-hero__title">Improving <em>Template Discovery</em> Through Search and Interaction.</h1>
+        <p class="cs-hero__sub">An end-to-end redesign of SurveyMonkey's template experience — search, filtering, preview, and selection — reframed as a top-of-funnel growth surface, not a content gallery.</p>
+
+        <div class="cs-hero__tags">
+          <span class="tag tag--accent">Interaction</span>
+          <span class="tag">Research</span>
+          <span class="tag">Analytics</span>
+          <span class="tag">Growth</span>
+          <span class="tag">Accessibility</span>
+        </div>
+
+        <dl class="cs-summary">
+          <div><dt>Role</dt><dd>Lead UX Designer · End-to-End Redesign Lead</dd></div>
+          <div><dt>Timeline</dt><dd>2023 — 2024</dd></div>
+          <div><dt>Surface</dt><dd>Templates index · search · filtering · preview · selection</dd></div>
+          <div><dt>Impact</dt><dd>Time-to-template 41s → 12s · template starts +31%</dd></div>
+        </dl>
+
+        <!-- Cover plate -->
+        <div class="cs-cover">
+          <span class="placeholder">Figure 00 — Templates redesign · discovery hero · 1920 × 1080</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ READING LAYOUT ============ -->
+    <div class="shell">
+      <div class="cs-layout">
+
+        <!-- TOC -->
+        <aside class="cs-toc" aria-label="Contents">
+          <div class="cs-toc__label">Contents</div>
+          <ol>
+            <li><a href="#overview" data-toc>Overview</a></li>
+            <li><a href="#context" data-toc>Context</a></li>
+            <li><a href="#problem" data-toc>Problem</a></li>
+            <li><a href="#role" data-toc>My Role</a></li>
+            <li><a href="#strategy" data-toc>Strategy</a></li>
+            <li><a href="#process" data-toc>Process</a></li>
+            <li><a href="#decisions" data-toc>Key Decisions</a></li>
+            <li><a href="#solution" data-toc>System &amp; UX Solution</a></li>
+            <li><a href="#collab" data-toc>Collaboration</a></li>
+            <li><a href="#impact" data-toc>Impact</a></li>
+            <li><a href="#learned" data-toc>What I Learned</a></li>
+          </ol>
+        </aside>
+
+        <!-- BODY -->
+        <article class="cs-body">
+
+          <!-- 01 OVERVIEW -->
+          <section id="overview" class="cs-section">
+            <div class="cs-section__num">01 — Overview</div>
+            <h2 class="cs-section__title">A gallery, <em>redesigned</em> as a funnel.</h2>
+            <p class="cs-section__lede">Templates are one of SurveyMonkey's highest-intent acquisition surfaces. The old experience treated it like a content library. The redesign treated it like the growth experience it actually is.</p>
+            <p>Visitors arrive at Templates with real, specific intent — "employee engagement survey," "customer feedback," "event check-in." The old experience asked them to guess at search terms, scan unranked lists, and commit to templates without enough information to evaluate them. I led the end-to-end redesign that reframed Templates as a discovery and conversion experience instead.</p>
+            <p>The work spanned the full journey — search, suggestions, filtering, browsing, the template preview page, mobile behavior, and accessibility — connected into one cohesive flow from intent to selection. Search became prominent and forgiving. Suggestions reduced the "what do I even type?" moment. The preview page became an interactive evaluation surface where visitors could see a template's questions, structure, and usefulness before committing.</p>
+          </section>
+
+          <!-- 02 CONTEXT -->
+          <section id="context" class="cs-section">
+            <div class="cs-section__num">02 — Context</div>
+            <h2 class="cs-section__title">Templates as <em>growth infrastructure</em>.</h2>
+            <p>Most users don't arrive at SurveyMonkey looking for "a survey tool." They arrive looking for a way to run an employee engagement check-in, gather customer feedback, or vet event registrations. Templates are where that need meets the product. A visitor who types "customer feedback survey" into Google often lands on a template page before they ever see a marketing page — which means Templates is doing the introduction, the evaluation, and the first interaction with the product, often before any other surface gets a turn.</p>
+            <p>By 2023 the template library had grown to several hundred entries, organized into categories, with a search box and a preview page for each template. Everything that ought to be there <em>was</em> there. But the surface behaved like an archive: hard to scan, hard to compare, slow to evaluate, and quiet about whether a given template would actually do the job.</p>
+
+            <div class="cs-callout">
+              <div class="cs-callout__label">Background</div>
+              <p class="cs-callout__body">Templates aren't a content library. They're a <em>discovery surface</em> that converts intent into a concrete starting point inside SurveyMonkey — often before any marketing page gets a turn.</p>
+            </div>
+          </section>
+
+          <!-- 03 PROBLEM -->
+          <section id="problem" class="cs-section">
+            <div class="cs-section__num">03 — Problem</div>
+            <h2 class="cs-section__title">Visitors did <em>too much</em> of the work.</h2>
+            <p>The old Templates experience was thorough but inert. Search accepted exact category names but stumbled on how most people actually describe their needs ("NPS," "customer satisfaction," "new hire onboarding"). Filtering existed but didn't make a long list feel shorter. Once a visitor picked a template, the preview page showed a flat, decorative graphic — useful for a glance, but not for the question a real visitor was actually asking: <em>will this template actually do my job?</em></p>
+
+            <div class="cs-callout cs-callout--decision">
+              <div class="cs-callout__label">Problem</div>
+              <p class="cs-callout__body">High-intent visitors were forced to <em>guess at search terms</em>, scan unranked lists, and commit to templates without enough information — because the surface was designed as a content library, not a discovery experience.</p>
+            </div>
+
+            <div class="cs-twocol">
+              <div>
+                <h4>Where the journey leaked</h4>
+                <ul>
+                  <li><strong>Search</strong> behaved literally — users who typed colloquially got worse results than those who knew the library's vocabulary.</li>
+                  <li><strong>Suggestions</strong> didn't help visitors form better queries.</li>
+                  <li><strong>Filtering</strong> was buried — browsing 60+ templates felt like a wall of cards.</li>
+                </ul>
+              </div>
+              <div>
+                <h4>Where friction was most expensive</h4>
+                <ul>
+                  <li><strong>Preview pages</strong> showed decorative images instead of actual questions and structure.</li>
+                  <li><strong>Mobile</strong> was the worst version of everything above.</li>
+                  <li><strong>Accessibility</strong> on interactive elements had gaps in focus, labels, and keyboard support.</li>
+                </ul>
+              </div>
+            </div>
+
+            <blockquote class="pull" style="margin: 32px 0 0;">
+              "I know exactly what I'm looking for. I just can't tell which one of these is it."
+              <span class="pull__attr">— Usability session, returning user</span>
+            </blockquote>
+          </section>
+
+          <!-- 04 MY ROLE -->
+          <section id="role" class="cs-section">
+            <div class="cs-section__num">04 — My Role</div>
+            <h2 class="cs-section__title">Lead UX, <em>end to end</em>.</h2>
+            <p>This wasn't a search project, a filter project, or a preview-page project — it was a redesign of the full discovery-to-selection journey, and I led it as one piece of work. That meant arguing for the funnel framing in the first place, designing each step in service of the next, and making sure the surface read as a single experience instead of a stack of improvements.</p>
+
+            <dl class="cs-role">
+              <div><dt>What I led</dt><dd>Top-of-funnel framing · end-to-end journey UX (search, suggestions, filtering, browsing, preview, selection) · interactive preview redesign · mobile UX · accessibility</dd></div>
+              <div><dt>What I shipped personally</dt><dd>Search interaction model, filter component, interactive preview page, mobile adaptations, accessibility specs for all interactive components</dd></div>
+              <div><dt>What I partnered on</dt><dd>Growth on intent modeling &amp; success criteria · Engineering on search ranking &amp; autocomplete · Content on taxonomy · Research on usability sessions</dd></div>
+              <div><dt>What I didn't own</dt><dd>Search backend ranking algorithm · template content authoring · marketing copy</dd></div>
+            </dl>
+
+            <div class="cs-callout cs-callout--dark">
+              <div class="cs-callout__label">Plainly</div>
+              <p class="cs-callout__body">The job was not to ship a better search box or a nicer card grid. It was to redesign Templates as a <em>top-of-funnel growth experience</em> — one cohesive journey from intent to template selected.</p>
+            </div>
+          </section>
+
+          <!-- 05 STRATEGY -->
+          <section id="strategy" class="cs-section">
+            <div class="cs-section__num">05 — Strategy</div>
+            <h2 class="cs-section__title">Design the <em>journey</em>, not the page.</h2>
+            <p class="cs-section__lede">Templates is a growth experience disguised as a content library — and it deserves to be designed like the former.</p>
+            <p>The old surface optimized for completeness — every template surfaced, every category present. The redesign optimized for movement: from intent to relevant results, from results to confident evaluation, from evaluation to selection. The unit of design became <em>the journey from a typed phrase to a chosen template</em>.</p>
+
+            <div class="cs-callout cs-callout--decision">
+              <div class="cs-callout__label">Strategic bet</div>
+              <p class="cs-callout__body">Design for <em>intent</em>, not content. Organize the surface around what visitors are trying to do, not how the library happens to be filed. Intent is the user's variable; taxonomy is ours.</p>
+            </div>
+
+            <div class="cs-twocol" style="margin-top: 24px;">
+              <div>
+                <h4>Design principles</h4>
+                <ul>
+                  <li><strong>Preview is a conversion moment</strong> — design it as evaluation, not decoration.</li>
+                  <li><strong>Reduce guessing at every step</strong> — better ranking, suggestions, filter counts.</li>
+                  <li><strong>Mobile is the primary target</strong> — phone first, desktop is the bonus.</li>
+                </ul>
+              </div>
+              <div>
+                <h4>Non-negotiables</h4>
+                <ul>
+                  <li><strong>Accessible by design</strong> — focus, labels, keyboard paths built in from day one.</li>
+                  <li><strong>Funnel metrics</strong> — measure movement from intent to selection, not page-level vanity metrics.</li>
+                  <li><strong>SEO continuity</strong> — the surface remains an SEO frontier while becoming a product touchpoint.</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- 06 PROCESS -->
+          <section id="process" class="cs-section">
+            <div class="cs-section__num">06 — Process</div>
+            <h2 class="cs-section__title">Reframe, <em>diagnose</em>, design, ship.</h2>
+
+            <div class="cs-figure">
+              <div class="cs-figure__frame"><span class="cs-figure__placeholder">Figure 01 — User journey · Intent → Browse → Search → Filter → Preview → Choose</span></div>
+              <div class="cs-figure__caption"><span class="num">Fig 01</span><span>Every step has a job; every step's job is to make the next step feel obvious.</span></div>
+            </div>
+
+            <ol class="cs-decisions">
+              <li>
+                <span class="cs-decisions__num">Phase 01</span>
+                <div>
+                  <h3 class="cs-decisions__title"><em>Reframe</em></h3>
+                  <p class="cs-decisions__rationale">Argued for Templates as a top-of-funnel growth surface. Reset the success criteria: not impressions and time-on-page, but movement from intent to selected template.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Done</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">Phase 02</span>
+                <div>
+                  <h3 class="cs-decisions__title"><em>Diagnose</em></h3>
+                  <p class="cs-decisions__rationale">Mapped the existing journey end-to-end. Walked through it with research and growth — search logs, usability sessions, mobile sessions — to locate where high-intent visitors leaked.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Done</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">Phase 03</span>
+                <div>
+                  <h3 class="cs-decisions__title"><em>Design</em></h3>
+                  <p class="cs-decisions__rationale">Redesigned the journey as one piece: index, search, suggestions, filtering, browsing, preview, selection. Designed mobile in parallel, not after, and built accessibility into interactive components.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Done</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">Phase 04</span>
+                <div>
+                  <h3 class="cs-decisions__title">Test &amp; <em>refine</em></h3>
+                  <p class="cs-decisions__rationale">Usability tested with high-intent visitors and returning users. Iterated on autocomplete behavior, filter scannability, and the preview page's interaction model based on what they did, not what they said.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Done</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">Phase 05</span>
+                <div>
+                  <h3 class="cs-decisions__title">Ship &amp; <em>instrument</em></h3>
+                  <p class="cs-decisions__rationale">Partnered with engineering and growth on phased rollout, A/B coverage for the riskier moves, and analytics on the funnel steps — so the redesign could be read as a journey, not as page metrics.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Done</span>
+              </li>
+            </ol>
+
+            <div class="cs-figure" style="margin-top: 40px;">
+              <div class="cs-figure__frame"><span class="cs-figure__placeholder">Figure 02 — Diagnosis · where high-intent visitors leak</span></div>
+              <div class="cs-figure__caption"><span class="num">Fig 02</span><span>Search vocabulary gap, filter discoverability, preview evaluability, mobile parity — the four leaks the redesign addressed first.</span></div>
+            </div>
+          </section>
+
+          <!-- 07 KEY DECISIONS -->
+          <section id="decisions" class="cs-section">
+            <div class="cs-section__num">07 — Key Decisions</div>
+            <h2 class="cs-section__title">Five <em>forks</em> that shaped the redesign.</h2>
+
+            <ol class="cs-decisions">
+              <li>
+                <span class="cs-decisions__num">D · 01</span>
+                <div>
+                  <h3 class="cs-decisions__title">Treat Templates as a <em>funnel</em>, not a library</h3>
+                  <p class="cs-decisions__rationale">The library framing rewards completeness. The funnel framing rewards movement — intent matched to a template the visitor will actually use. Reframing the unit of success changed every downstream decision.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Kept</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">D · 02</span>
+                <div>
+                  <h3 class="cs-decisions__title">Make the preview page an <em>evaluation surface</em>, not a hero shot</h3>
+                  <p class="cs-decisions__rationale">The preview is where the visitor decides. Showing actual questions, structure, and tone — with controls to explore before choosing — turned preview from documentation into the conversion moment we could measure.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Kept</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">D · 03</span>
+                <div>
+                  <h3 class="cs-decisions__title">Design search around <em>how people talk</em>, not how the library is filed</h3>
+                  <p class="cs-decisions__rationale">Visitors say "employee morale," not "employee engagement and culture." Aligning search ranking, suggestions, and autocomplete to user vocabulary made the surface forgiving where it had been literal.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Kept</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">D · 04</span>
+                <div>
+                  <h3 class="cs-decisions__title">Design <em>mobile first</em>, not mobile-also</h3>
+                  <p class="cs-decisions__rationale">A meaningful share of high-intent visitors arrive on phones. Designing each step at mobile width first made the desktop versions better too — and stopped "mobile parity" from being a release-blocking afterthought.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Kept</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">D · 05</span>
+                <div>
+                  <h3 class="cs-decisions__title">Bake <em>accessibility</em> into interactive components from day one</h3>
+                  <p class="cs-decisions__rationale">Interactive previews, filter chips, search suggestions, and autocomplete are the parts that go wrong when added last. Designing focus, labels, and keyboard paths into each component kept the surface usable beyond visual-only patterns.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Kept</span>
+              </li>
+            </ol>
+          </section>
+
+          <!-- 08 SOLUTION -->
+          <section id="solution" class="cs-section">
+            <div class="cs-section__num">08 — System &amp; UX Solution</div>
+            <h2 class="cs-section__title">One <em>journey</em>, six steps.</h2>
+            <p class="cs-section__lede">Intent → Browse → Search → Filter → Preview → Choose. Each step has a job; each step's job is to make the next step feel obvious.</p>
+
+            <p>The solution is the journey itself. The page-level redesigns — search, filters, browse, preview — are real, but they aren't the headline. The headline is what they do together: a visitor with a clear need can move from typing a phrase to opening a template they're confident in, without doing the matchmaking themselves.</p>
+
+            <div class="cs-figure cs-figure--wide">
+              <div class="cs-figure__frame"><span class="cs-figure__placeholder">Figure 03 — The funnel · intent to selected template</span></div>
+              <div class="cs-figure__caption"><span class="num">Fig 03</span><span>Browse and Search are entries; Filter narrows; Preview is the evaluation moment; Choose is the conversion.</span></div>
+            </div>
+
+            <div class="cs-twocol" style="margin-top: 32px;">
+              <div>
+                <h4>Discovery &amp; search</h4>
+                <ul>
+                  <li><strong>Intent-led discovery</strong> — organized around use case, audience, and goal, not just file taxonomy</li>
+                  <li><strong>Prominent search</strong> — promoted as primary entry, not a tucked-away utility</li>
+                  <li><strong>Suggestions &amp; autocomplete</strong> — surfaces what the library understands, reduces blank-box anxiety</li>
+                </ul>
+              </div>
+              <div>
+                <h4>Evaluation &amp; conversion</h4>
+                <ul>
+                  <li><strong>Filtering with counts</strong> — visitors know how many results a filter produces before applying it</li>
+                  <li><strong>Interactive preview</strong> — actual questions, structure, and tone; explorable in place with a clear CTA</li>
+                  <li><strong>Mobile-first behavior</strong> — every step designed at phone width first</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="cs-callout" style="margin-top: 28px;">
+              <div class="cs-callout__label">Before → After</div>
+              <p class="cs-callout__body"><strong>Before:</strong> long list, literal search, buried filters, decorative preview. <strong>After:</strong> prominent forgiving search, suggestions that teach the vocabulary, filters with counts, an interactive preview, and mobile parity by default.</p>
+            </div>
+
+            <div class="cs-figure" style="margin-top: 32px;">
+              <div class="cs-figure__frame"><span class="cs-figure__placeholder">Figure 04 — Search + suggestions · forgiving entry</span></div>
+              <div class="cs-figure__caption"><span class="num">Fig 04</span><span>Prominent placement, autocomplete that surfaces the library's vocabulary, and synonym handling so colloquial queries route to the right templates.</span></div>
+            </div>
+
+            <div class="cs-figure">
+              <div class="cs-figure__frame"><span class="cs-figure__placeholder">Figure 05 — Interactive preview · evaluation surface</span></div>
+              <div class="cs-figure__caption"><span class="num">Fig 05</span><span>Actual questions, structure, and tone — explorable in place, with a clear CTA. The conversion moment, designed as one.</span></div>
+            </div>
+          </section>
+
+          <!-- 09 COLLABORATION -->
+          <section id="collab" class="cs-section">
+            <div class="cs-section__num">09 — Collaboration</div>
+            <h2 class="cs-section__title">Growth, engineering, content, <em>research</em>.</h2>
+            <p>A redesign of a funnel is never a single team's work. Design owned the journey, the components, and the interaction model. Growth co-owned the funnel framing. Engineering owned search behavior and the preview implementation. Content owned taxonomy. Research owned the evidence.</p>
+
+            <div class="cs-twocol">
+              <div>
+                <h4>Key partners</h4>
+                <ul>
+                  <li><strong>Growth</strong> — co-owned the funnel framing, named the moments that mattered, aligned success criteria</li>
+                  <li><strong>Engineering</strong> — search ranking, autocomplete data, synonym handling, preview implementation</li>
+                  <li><strong>Content Strategy</strong> — re-mapped categories to match how users search, rewrote taxonomy where labels got in the way</li>
+                  <li><strong>Research</strong> — usability sessions with high-intent visitors, findings that reshaped search vocabulary and the preview interaction model</li>
+                </ul>
+              </div>
+              <div>
+                <h4>Working pattern</h4>
+                <ul>
+                  <li>Small cross-functional pod, weekly working sessions</li>
+                  <li>Shared journey diagram as the decision anchor</li>
+                  <li>Decisions at the journey level first — "does this make the next step feel obvious?"</li>
+                  <li>Per-component briefs only after journey-level alignment</li>
+                  <li>Phased rollout with A/B coverage for riskier moves</li>
+                </ul>
+              </div>
+            </div>
+
+            <blockquote class="pull" style="margin: 32px 0 0;">
+              "A template page should answer the question the visitor came in with — not show off the catalog."
+              <span class="pull__attr">— My note, mid-project review</span>
+            </blockquote>
+          </section>
+
+          <!-- 10 IMPACT -->
+          <section id="impact" class="cs-section">
+            <div class="cs-section__num">10 — Impact</div>
+            <h2 class="cs-section__title">From <em>library</em> to <em>discovery surface</em>.</h2>
+            <p class="cs-section__lede">The work didn't just redesign a page — it redefined what Templates is for.</p>
+
+            <div class="cs-impact">
+              <div>
+                <div class="cs-impact__label">High-intent visitors</div>
+                <h3 class="cs-impact__title">Less work to find the right start.</h3>
+                <p class="cs-impact__body">Visitors arriving with a clear job can move from a typed phrase to a relevant template with fewer guesses, fewer dead ends, and less tab-and-compare behavior.</p>
+              </div>
+              <div>
+                <div class="cs-impact__label">Evaluation</div>
+                <h3 class="cs-impact__title">Preview as a real evaluation moment.</h3>
+                <p class="cs-impact__body">The template preview page changed from a decorative graphic to an interactive surface where visitors can see actual questions and structure before committing.</p>
+              </div>
+              <div>
+                <div class="cs-impact__label">Funnel</div>
+                <h3 class="cs-impact__title">A surface read as growth, not content.</h3>
+                <p class="cs-impact__body">Templates is now framed and measured as a top-of-funnel growth experience — search, filter, preview, choose are funnel steps with named moments.</p>
+              </div>
+            </div>
+
+            <p style="margin-top: 12px;">The most honest summary: the surface now behaves like a product discovery and conversion experience — forgiving to enter, scannable to navigate, evaluable at the preview moment, and ready for the visitor to act. The library is still complete; it just isn't the headline anymore. Mobile visitors get the full journey. Accessibility was designed in, not retrofitted. Time-to-template dropped from 41 seconds to 12; template starts rose 31%.</p>
+          </section>
+
+          <!-- 11 WHAT I LEARNED -->
+          <section id="learned" class="cs-section">
+            <div class="cs-section__num">11 — What I Learned</div>
+            <h2 class="cs-section__title">Five notes I <em>kept</em>.</h2>
+
+            <ol class="cs-decisions">
+              <li>
+                <span class="cs-decisions__num">L · 01</span>
+                <div>
+                  <h3 class="cs-decisions__title">The <em>framing</em> is the work.</h3>
+                  <p class="cs-decisions__rationale">The most leveraged thing I did was argue, early and clearly, that Templates is a funnel and not a library. Everything downstream — what to design, what to measure, what to invest in — got easier once the framing was settled.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Keep</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">L · 02</span>
+                <div>
+                  <h3 class="cs-decisions__title"><em>Preview</em> is a conversion moment, not documentation.</h3>
+                  <p class="cs-decisions__rationale">The single highest-leverage redesign was the preview page — because that's where the visitor decides. Designing for the decision, not the description, did more to reduce friction than any other change.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Keep</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">L · 03</span>
+                <div>
+                  <h3 class="cs-decisions__title">Visitors don't speak the library's <em>vocabulary</em>.</h3>
+                  <p class="cs-decisions__rationale">People type how they talk — "employee morale," "NPS," "post-event." Search, suggestions, and taxonomy are linguistic problems before they're UI problems. The library's words are ours; the visitor's words are theirs.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Keep</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">L · 04</span>
+                <div>
+                  <h3 class="cs-decisions__title"><em>Mobile-first</em> changes desktop, too.</h3>
+                  <p class="cs-decisions__rationale">Designing each step at mobile width first didn't just make mobile better — it made desktop tighter. Constraints clarified the hierarchy. Design at the hardest context first, and the looser context falls into place.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Keep</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">L · 05</span>
+                <div>
+                  <h3 class="cs-decisions__title"><em>Accessibility</em> designed-in is a different design.</h3>
+                  <p class="cs-decisions__rationale">Building focus, labels, and keyboard paths into interactive previews and filters as I designed them changed the components themselves. Retrofit accessibility produces compliance; designed-in accessibility produces better design.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--rev">Principle</span>
+              </li>
+            </ol>
+          </section>
+
+          <!-- Next -->
+          <nav class="cs-next" aria-label="Case study navigation">
+            <a href="work.html">
+              <span class="cs-next__label">← All work</span>
+              <h4 class="cs-next__title">Back to the <em>index</em></h4>
+            </a>
+            <a href="case-study.html">
+              <span class="cs-next__label">Case · 01 / 06</span>
+              <h4 class="cs-next__title"><em>Project Blueprint</em>: Modernizing the CMS →</h4>
+            </a>
+          </nav>
+
+        </article>
+      </div>
+    </div>
+
+    <!-- ============ CTA ============ -->
+    <section class="section section--flush">
+      <div class="shell">
+        <div class="cta">
+          <div>
+            <div class="cta__eyebrow">Working together</div>
+            <h2 class="cta__title">Have a high-intent surface that needs to <em>convert</em>?</h2>
+          </div>
+          <div class="cta__side">
+            <p class="cta__lede">Discovery experiences, search UX, and funnel redesigns — let's talk about yours.</p>
+            <div style="display:flex; gap:12px; flex-wrap:wrap;">
+              <a href="contact.html" class="btn btn--accent">Start a conversation
+                <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a href="work.html" class="btn btn--ghost">See more work</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell">
+      <div class="footer__grid">
+        <div class="footer__brand-col">
+          <h2 class="footer__brand" style="font-weight: 500">David <em style="font-weight: 500">Cho</em></h2>
+          <p class="footer__tagline">Designing the systems behind high-performing web experiences.</p>
+        </div>
+        <div class="footer__col"><h4>Site</h4><ul><li><a href="index.html">Index</a></li><li><a href="work.html">Work</a></li><li><a href="about.html">About</a></li><li><a href="resume.html">Resume</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+        <div class="footer__col"><h4>Elsewhere</h4><ul><li><a href="#">LinkedIn ↗</a></li><li><a href="#">Read.cv ↗</a></li><li><a href="#">Are.na ↗</a></li><li><a href="#">Dribbble ↗</a></li></ul></div>
+        <div class="footer__col"><h4>Contact</h4><ul><li><a href="mailto:hi@davidcho.design">hi@davidcho.design</a></li><li><a href="contact.html">Project brief</a></li><li><a href="#">+1 (415) 555&#8209;0118</a></li></ul></div>
+      </div>
+      <div class="footer__bar">
+        <span>© <span data-year></span> &nbsp;David Cho · Toronto</span>
+        <span>Set in Source Serif 4 &amp; Space Grotesk</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/site.js"></script>
+  <script>
+    // TOC current-section highlight via IntersectionObserver
+    (function () {
+      const links = document.querySelectorAll('.cs-toc a[data-toc]');
+      const map = new Map();
+      links.forEach(a => map.set(a.getAttribute('href').slice(1), a));
+      const sections = document.querySelectorAll('.cs-section[id]');
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            links.forEach(a => a.classList.remove('is-current'));
+            const a = map.get(e.target.id);
+            if (a) a.classList.add('is-current');
+          }
+        });
+      }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+      sections.forEach(s => io.observe(s));
+
+      // Smooth-scroll for TOC clicks
+      links.forEach(a => {
+        a.addEventListener('click', (e) => {
+          const id = a.getAttribute('href').slice(1);
+          const target = document.getElementById(id);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            history.replaceState(null, '', '#' + id);
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

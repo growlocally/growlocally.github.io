@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Color Exploration — David Cho Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;1,8..60,300;1,8..60,400;1,8..60,500&family=Space+Grotesk:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #1a1a1a; height: 100%; }
+  </style>
+</head>
+<body>
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel">
+
+// ── Type (fixed across all palettes) ─────────────────────────────────────────
+const T = {
+  display: '"Source Serif 4", Georgia, serif',
+  sans:    '"Space Grotesk", system-ui, sans-serif',
+  mono:    '"IBM Plex Mono", ui-monospace, monospace',
+};
+
+// ── Palettes ──────────────────────────────────────────────────────────────────
+const PALETTES = [
+  {
+    id: 'current',
+    label: 'Current — Warm Cream',
+    note: 'Reference · clay vermilion accent',
+    p: {
+      bg:        '#F1ECE2',
+      bg2:       '#ECE6D9',
+      surface:   '#FAF6EC',
+      ink:       '#181513',
+      ink2:      '#2E2823',
+      muted:     '#6F6557',
+      muted2:    '#948A7B',
+      line:      '#DDD4C0',
+      line2:     '#C9BFA8',
+      accent:    '#C8451E',
+      accentInk: '#FAF6EC',
+      accentSoft:'#F1D9CC',
+      good:      '#5C7A3C',
+    },
+  },
+  {
+    id: 'blueprint',
+    label: 'Blueprint — Cool Stone',
+    note: 'Cooler neutrals · sapphire accent',
+    p: {
+      bg:        '#F0EFEB',
+      bg2:       '#E6E4DF',
+      surface:   '#F8F7F4',
+      ink:       '#161820',
+      ink2:      '#282B35',
+      muted:     '#676B76',
+      muted2:    '#979CAA',
+      line:      '#D8D6D0',
+      line2:     '#C4C1BA',
+      accent:    '#1B4FD8',
+      accentInk: '#F8F7F4',
+      accentSoft:'#DCE5F8',
+      good:      '#2E7D52',
+    },
+  },
+  {
+    id: 'ember',
+    label: 'Ember — Deep Warm',
+    note: 'Richer cream · burnt sienna accent',
+    p: {
+      bg:        '#F5EDE0',
+      bg2:       '#EDE2D1',
+      surface:   '#FBF5EA',
+      ink:       '#1A1108',
+      ink2:      '#2D2012',
+      muted:     '#7C6347',
+      muted2:    '#A08868',
+      line:      '#DCC9B0',
+      line2:     '#CBB498',
+      accent:    '#B83312',
+      accentInk: '#FBF5EA',
+      accentSoft:'#F0CFBF',
+      good:      '#4E6B2A',
+    },
+  },
+  {
+    id: 'dusk',
+    label: 'Dusk — Dark Mode',
+    note: 'Warm dark ground · bright vermilion',
+    p: {
+      bg:        '#1A1815',
+      bg2:       '#201E1A',
+      surface:   '#252320',
+      ink:       '#F0EAE0',
+      ink2:      '#D4CBBD',
+      muted:     '#8A7E72',
+      muted2:    '#635A51',
+      line:      '#2E2B27',
+      line2:     '#3A3630',
+      accent:    '#E04B20',
+      accentInk: '#F0EAE0',
+      accentSoft:'rgba(224,75,32,.18)',
+      good:      '#6BA047',
+    },
+  },
+  {
+    id: 'meadow',
+    label: 'Meadow — Sage',
+    note: 'Warm stone · forest green accent',
+    p: {
+      bg:        '#F2F0E8',
+      bg2:       '#E8E6DD',
+      surface:   '#F9F8F2',
+      ink:       '#171A14',
+      ink2:      '#272C22',
+      muted:     '#6A6F5E',
+      muted2:    '#969B87',
+      line:      '#D8D8CC',
+      line2:     '#C4C5B6',
+      accent:    '#3B6B44',
+      accentInk: '#F9F8F2',
+      accentSoft:'#D3E5D8',
+      good:      '#3B6B44',
+    },
+  },
+  {
+    id: 'chalk',
+    label: 'Chalk — Pure Neutral',
+    note: 'Near-white · warm violet accent',
+    p: {
+      bg:        '#F5F4F1',
+      bg2:       '#ECEAE6',
+      surface:   '#FAFAF8',
+      ink:       '#18181A',
+      ink2:      '#2C2C30',
+      muted:     '#70707A',
+      muted2:    '#9E9EA8',
+      line:      '#DCDBD8',
+      line2:     '#C8C7C3',
+      accent:    '#6B3FCB',
+      accentInk: '#FAFAF8',
+      accentSoft:'#E5DCF5',
+      good:      '#2E7A54',
+    },
+  },
+];
+
+// ── Swatch strip ──────────────────────────────────────────────────────────────
+function Swatches({ p }) {
+  const swatches = [
+    { color: p.bg,      label: 'BG' },
+    { color: p.surface, label: 'Surface' },
+    { color: p.ink,     label: 'Ink' },
+    { color: p.muted,   label: 'Muted' },
+    { color: p.line,    label: 'Line' },
+    { color: p.accent,  label: 'Accent' },
+    { color: p.accentSoft, label: 'Soft' },
+  ];
+  return (
+    <div style={{ display: 'flex', gap: 0, borderRadius: 8, overflow: 'hidden', border: `1px solid ${p.line}`, marginBottom: 28 }}>
+      {swatches.map(s => (
+        <div key={s.label} style={{ flex: 1, background: s.color, paddingTop: '28%', position: 'relative' }}>
+          <span style={{
+            position: 'absolute', bottom: 5, left: 0, right: 0,
+            textAlign: 'center', fontFamily: T.mono, fontSize: 9,
+            color: s.label === 'BG' || s.label === 'Surface' || s.label === 'Soft' ? p.muted : s.label === 'Ink' ? p.bg : p.ink,
+            letterSpacing: '.06em',
+          }}>{s.label}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// ── Portfolio mini-card ───────────────────────────────────────────────────────
+function PaletteCard({ p }) {
+  const mono = { fontFamily: T.mono };
+  const sans = { fontFamily: T.sans };
+  const disp = { fontFamily: T.display };
+
+  return (
+    <div style={{
+      background: p.bg, width: '100%', height: '100%',
+      padding: '32px 36px', display: 'flex', flexDirection: 'column',
+      overflowY: 'auto',
+    }}>
+      <Swatches p={p} />
+
+      {/* Nav */}
+      <div style={{
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        paddingBottom: 16, borderBottom: `1px solid ${p.line}`, marginBottom: 28,
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <span style={{
+            ...mono, fontSize: 10, fontWeight: 500,
+            border: `1px solid ${p.ink}`, borderRadius: 4,
+            padding: '3px 5px', background: p.surface, letterSpacing: '.02em', color: p.ink,
+          }}>DC</span>
+          <span style={{ ...disp, fontStyle: 'italic', fontSize: 16, color: p.ink }}>David Cho</span>
+          <span style={{ ...mono, fontSize: 10, color: p.muted, letterSpacing: '.1em', textTransform: 'uppercase', borderLeft: `1px solid ${p.line2}`, paddingLeft: 10, marginLeft: 4 }}>UX Web Designer</span>
+        </div>
+        <div style={{ display: 'flex', gap: 14, alignItems: 'center' }}>
+          {['Index','Work','About'].map(l => (
+            <span key={l} style={{ ...mono, fontSize: 11, textTransform: 'uppercase', letterSpacing: '.1em', color: p.muted2 }}>{l}</span>
+          ))}
+          <span style={{
+            ...sans, fontSize: 12, fontWeight: 500,
+            background: p.ink, color: p.surface,
+            padding: '7px 14px', borderRadius: 999,
+          }}>Get in touch</span>
+        </div>
+      </div>
+
+      {/* Eyebrow */}
+      <div style={{ ...mono, fontSize: 10, letterSpacing: '.14em', textTransform: 'uppercase', color: p.muted, marginBottom: 22 }}>
+        Portfolio / 2026 — San Francisco
+      </div>
+
+      {/* Headline */}
+      <h1 style={{
+        ...disp, fontWeight: 400, fontSize: 64, lineHeight: .96,
+        letterSpacing: '-.022em', margin: '0 0 24px', color: p.ink,
+        maxWidth: '16ch',
+      }}>
+        Designing the <em style={{ fontStyle: 'italic', color: p.accent }}>systems</em><br/>
+        behind <em style={{ fontStyle: 'italic', color: p.accent }}>high&#8209;performing</em><br/>
+        web experiences.
+      </h1>
+
+      {/* Lede + meta */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 32, alignItems: 'end', marginBottom: 28 }}>
+        <p style={{ ...sans, fontSize: 16, lineHeight: 1.5, color: p.ink2, margin: 0, maxWidth: '44ch' }}>
+          <strong style={{ fontWeight: 500, color: p.ink }}>I'm David Cho</strong>, a UX Web Designer focused on scalable web systems, CMS modernization, and growth experiences.
+        </p>
+        <div>
+          <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
+            <span style={{
+              ...sans, fontSize: 13, fontWeight: 500,
+              background: p.ink, color: p.surface,
+              padding: '10px 18px', borderRadius: 999,
+            }}>View Work →</span>
+            <span style={{
+              ...sans, fontSize: 13,
+              border: `1px solid ${p.line2}`, color: p.ink,
+              padding: '10px 18px', borderRadius: 999,
+            }}>Contact Me</span>
+          </div>
+          <dl style={{ ...mono, fontSize: 11, margin: 0, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px 14px', paddingTop: 14, borderTop: `1px solid ${p.line}`, color: p.muted }}>
+            <div>
+              <dt style={{ textTransform: 'uppercase', letterSpacing: '.1em', marginBottom: 3 }}>Currently</dt>
+              <dd style={{ ...sans, fontSize: 12, margin: 0, color: p.ink }}>UX Web Designer</dd>
+            </div>
+            <div>
+              <dt style={{ textTransform: 'uppercase', letterSpacing: '.1em', marginBottom: 3 }}>Practice</dt>
+              <dd style={{ ...sans, fontSize: 12, margin: 0, color: p.ink }}>Web systems · CMS</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      {/* Section head */}
+      <div style={{ borderTop: `1px solid ${p.line}`, paddingTop: 22, display: 'grid', gridTemplateColumns: '160px 1fr', gap: 32, alignItems: 'start' }}>
+        <span style={{ ...mono, fontSize: 11, letterSpacing: '.14em', textTransform: 'uppercase', color: p.muted, display: 'flex', alignItems: 'center', gap: 8 }}>
+          <span style={{ width: 7, height: 7, borderRadius: '50%', background: p.accent, display: 'inline-block', flexShrink: 0 }}></span>
+          01 — What I do
+        </span>
+        <div>
+          <h2 style={{ ...disp, fontWeight: 400, fontSize: 34, lineHeight: 1.04, letterSpacing: '-.012em', margin: '0 0 10px', color: p.ink }}>
+            Four practices, <em style={{ fontStyle: 'italic', color: p.accent }}>one operating model</em>.
+          </h2>
+          <p style={{ ...sans, fontSize: 14, lineHeight: 1.55, color: p.muted, margin: 0 }}>
+            Strategy meets systems — translating brand, product, and growth goals into web experiences that scale.
+          </p>
+        </div>
+      </div>
+
+      {/* Tags */}
+      <div style={{ display: 'flex', gap: 6, marginTop: 18, flexWrap: 'wrap' }}>
+        {['CMS','Patterns','IA','Tokens','Components'].map(t => (
+          <span key={t} style={{
+            ...mono, fontSize: 10, textTransform: 'uppercase', letterSpacing: '.08em',
+            padding: '4px 9px', borderRadius: 999, border: `1px solid ${p.line}`,
+            color: p.muted, background: p.surface,
+          }}>{t}</span>
+        ))}
+        <span style={{
+          ...mono, fontSize: 10, textTransform: 'uppercase', letterSpacing: '.08em',
+          padding: '4px 9px', borderRadius: 999,
+          color: p.accent, border: `1px solid ${p.accentSoft}`,
+          background: typeof p.accentSoft === 'string' && p.accentSoft.startsWith('rgba')
+            ? p.accentSoft : `color-mix(in oklab, ${p.accentSoft} 80%, ${p.surface})`,
+        }}>Design Systems</span>
+      </div>
+
+    </div>
+  );
+}
+
+// ── App ───────────────────────────────────────────────────────────────────────
+function App() {
+  return (
+    <DesignCanvas title="Color Exploration — David Cho Portfolio">
+      <DCSection id="palettes" title="Palette options — Source Serif 4 · Space Grotesk · IBM Plex Mono">
+        {PALETTES.map(pal => (
+          <DCArtboard key={pal.id} id={pal.id} label={`${pal.label}  ·  ${pal.note}`} width={860} height={680}>
+            <PaletteCard p={pal.p} />
+          </DCArtboard>
+        ))}
+      </DCSection>
+    </DesignCanvas>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+<div id="root"></div>
+</body>
+</html>

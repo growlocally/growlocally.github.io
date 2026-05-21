@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Modernizing CMS Components for Scale and Flexibility — Case Study · David Cho</title>
+  <meta name="description" content="Case study — a multi-year body of work modernizing the building blocks behind SurveyMonkey's marketing CMS into a flexible, composable component system." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;1,8..60,300;1,8..60,400;1,8..60,500&family=Space+Grotesk:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="shell nav__inner">
+      <a href="index.html" class="brand" aria-label="David Cho — home">
+        <span><span class="brand__name">David Cho</span></span>
+        <span class="brand__role">UX&nbsp;Designer&nbsp;/&nbsp;Manager</span>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="index.html"  class="nav__link">Index</a>
+        <a href="work.html"   class="nav__link is-active">Work</a>
+        <a href="about.html"  class="nav__link">About</a>
+        <a href="resume.html" class="nav__link">Resume</a>
+        <a href="contact.html" class="nav__link">Contact</a>
+        <a href="contact.html" class="btn btn--primary btn--sm nav__cta">Get in touch
+          <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </nav>
+      <button class="nav__menu-btn" aria-label="Open menu"><span></span></button>
+    </div>
+    <div class="nav__panel">
+      <a href="index.html">Index</a><a href="work.html">Work</a><a href="about.html">About</a><a href="resume.html">Resume</a><a href="contact.html">Contact</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="cs-hero">
+      <div class="shell">
+        <a class="cs-hero__breadcrumb" href="work.html">
+          <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          All work
+        </a>
+        <div class="cs-hero__eyebrow">Case Study · 03 / 06 · Shipped</div>
+        <h1 class="cs-hero__title">Modernizing <em>CMS Components</em> for Scale and Flexibility.</h1>
+        <p class="cs-hero__sub">A multi-year body of work on the building blocks behind the marketing site — making components more flexible, responsive, accessible, and easier for content creators to use, so the team could move faster without one-off design fixes.</p>
+
+        <div class="cs-hero__tags">
+          <span class="tag tag--accent">CMS</span>
+          <span class="tag">Components</span>
+          <span class="tag">Design Systems</span>
+          <span class="tag">Responsive</span>
+          <span class="tag">Accessibility</span>
+          <span class="tag">Authoring UX</span>
+        </div>
+
+        <dl class="cs-summary">
+          <div><dt>Role</dt><dd>UX designer · design manager · component strategist</dd></div>
+          <div><dt>Span</dt><dd>2022 — 2025 · component work in waves</dd></div>
+          <div><dt>Surface</dt><dd>SurveyMonkey marketing CMS · component library · authoring</dd></div>
+          <div><dt>Library</dt><dd>Columns · Quotes · Logos · Tabs · Tables · Banners · Calculator</dd></div>
+        </dl>
+
+        <!-- Cover plate -->
+        <div class="cs-cover">
+          <span class="placeholder">Figure 00 — Component library · primitives view · 1920 × 1080</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ READING LAYOUT ============ -->
+    <div class="shell">
+      <div class="cs-layout">
+
+        <!-- TOC -->
+        <aside class="cs-toc" aria-label="Contents">
+          <div class="cs-toc__label">Contents</div>
+          <ol>
+            <li><a href="#overview" data-toc>Overview</a></li>
+            <li><a href="#context" data-toc>Context</a></li>
+            <li><a href="#problem" data-toc>Problem</a></li>
+            <li><a href="#role" data-toc>My Role</a></li>
+            <li><a href="#strategy" data-toc>Strategy</a></li>
+            <li><a href="#process" data-toc>Process</a></li>
+            <li><a href="#decisions" data-toc>Key Decisions</a></li>
+            <li><a href="#solution" data-toc>System &amp; UX Solution</a></li>
+            <li><a href="#collab" data-toc>Collaboration</a></li>
+            <li><a href="#impact" data-toc>Impact</a></li>
+            <li><a href="#learned" data-toc>What I Learned</a></li>
+          </ol>
+        </aside>
+
+        <!-- BODY -->
+        <article class="cs-body">
+
+          <!-- 01 OVERVIEW -->
+          <section id="overview" class="cs-section">
+            <div class="cs-section__num">01 — Overview</div>
+            <h2 class="cs-section__title">The <em>building blocks</em>, modernized.</h2>
+            <p class="cs-section__lede">A multi-year thread of component work on the marketing CMS — read separately as UI updates, read together as one body of systems work on the library every page depends on.</p>
+            <p>Marketing sites move at the speed of their components. Over three years I worked on the building blocks behind SurveyMonkey's marketing site — columns, quote cards, logo walls, vertical tabs, SEO tables, announcement banners, calculators — turning a set of rigid, accreted components into flexible primitives that designers and content creators could compose without filing a request for every new shape.</p>
+            <p>The thread connecting them is a frame I held throughout: <em>components are the operational infrastructure of a marketing site</em>. Get them right and the team's velocity, consistency, and quality all rise together.</p>
+          </section>
+
+          <!-- 02 CONTEXT -->
+          <section id="context" class="cs-section">
+            <div class="cs-section__num">02 — Context</div>
+            <h2 class="cs-section__title">Components as <em>operational infrastructure</em>.</h2>
+            <p>SurveyMonkey's marketing site runs on a CMS-backed component library — columns, quotes, logo walls, tabs, banners, calculators, and the dozens of smaller pieces those compose into. Content creators pick components, fill them with content, and ship pages. Designers contribute new pages by composing existing components first and reaching for engineering tickets second. The library is the operational infrastructure: every page that ships passes through it.</p>
+            <p>By 2022 the library had grown by accretion. Components had been added project by project, often shaped for the page in front of the team at the time. Many had become rigid — limited widths, fixed image positions, prescriptive content slots — so that what looked like "a small new layout idea" usually required a new component instead of a new arrangement. The library had quietly stopped being a system and become a catalog.</p>
+
+            <div class="cs-callout">
+              <div class="cs-callout__label">From catalog to system</div>
+              <p class="cs-callout__body">The brief wasn't "refresh the components." It was to turn the building blocks into <em>flexible, composable primitives</em> — so the team could solve new page needs by combining existing components instead of designing new ones. That reframing is what made every project below feel like one body of work.</p>
+            </div>
+          </section>
+
+          <!-- 03 PROBLEM -->
+          <section id="problem" class="cs-section">
+            <div class="cs-section__num">03 — Problem</div>
+            <h2 class="cs-section__title">A catalog, not a <em>system</em>.</h2>
+            <p class="cs-section__lede">Individual components weren't ugly — they were inflexible. Every new page need produced a new component, and the library grew without getting more useful.</p>
+
+            <p>The visible symptoms were what you'd expect: a one-column module that didn't quite hold the width a section needed, a logo wall that stacked awkwardly on mobile, a quote card that worked for one kind of testimonial and not the next, a tab component that felt heavy on phones, an announcement banner that fought with cookie banners and other site chrome. None of these were emergencies. Each one was the kind of small drag that, accumulated across dozens of pages, made every new page slower and less consistent than it had to be.</p>
+
+            <p>The underlying problem was structural. The library had been built with components that tried to anticipate specific pages instead of providing flexible primitives. When a new page need showed up that the existing components couldn't quite express, the path of least resistance was to add a new component. Over time that created a catalog: lots of options, narrow flexibility, easy to file in but hard to compose from.</p>
+
+            <div class="cs-twocol">
+              <div>
+                <h4>Where the library was rigid</h4>
+                <ul>
+                  <li><strong>Layout components</strong> had rigid widths, content slots, and image placements — small layout ideas needed new components instead of new arrangements.</li>
+                  <li><strong>Quote components</strong> couldn't flex across the range of social proof patterns the marketing team actually needed.</li>
+                  <li><strong>Logo walls</strong> broke down on phones — fixed grids meant logos got too small or too few.</li>
+                </ul>
+              </div>
+              <div>
+                <h4>Where the library was wrong-shaped</h4>
+                <ul>
+                  <li><strong>Vertical tabs</strong> worked on desktop but felt heavy on mobile; microinteractions were missing.</li>
+                  <li><strong>SEO surfaces</strong> (tables, calculators) were high-traffic but treated as content rather than tools — usability fought search.</li>
+                  <li><strong>The announcement banner</strong> sat at the bottom, fought with cookie banners, and underperformed iteration after iteration.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="cs-callout">
+              <div class="cs-callout__label">Problem statement</div>
+              <p class="cs-callout__body">The CMS needed <em>stronger, more flexible building blocks</em> — not just visual refreshes. Without them, every new page need produced a new component request, the library grew without getting more useful, and the team paid a steady tax in inconsistency, slow publishing, and one-off design fixes.</p>
+            </div>
+
+            <blockquote class="pull" style="margin: 32px 0 0;">
+              "We don't need a new component — we need the one we have to bend a little more."
+              <span class="pull__attr">— Content creator, intake conversation</span>
+            </blockquote>
+          </section>
+
+          <!-- 04 MY ROLE -->
+          <section id="role" class="cs-section">
+            <div class="cs-section__num">04 — My Role</div>
+            <h2 class="cs-section__title">Component <em>strategist</em>, often hands-on.</h2>
+            <p>The role split in two directions. On the systems side, I held the frame across the whole thread — pushing each component project to be a chance to add flexibility, not to add another item to the catalog. On the hands-on side, I designed many of the individual components: redesigning the one-column module's flexibility, building out the quote ecosystem, leading the logo wall and carousel work, the vertical tab redesign, the SEO table and calculator updates, and the announcement banner replacement.</p>
+
+            <dl class="cs-role">
+              <div><dt>What I led</dt><dd>The flexibility frame across the thread · column components · the social proof ecosystem (Quote Card, Marquee Quote) · logo walls + scrolling carousel · vertical tab redesign · SEO table &amp; calculator · announcement banner replacement</dd></div>
+              <div><dt>What I partnered on</dt><dd>Engineering on component APIs and the configurable-vs-forkable boundary · content on authoring slots, defaults, fallbacks · brand on type scale and rhythm · growth &amp; SEO on high-traffic surfaces · accessibility on focus, labels, keyboard</dd></div>
+              <div><dt>What I shipped personally</dt><dd>Component audits, system maps, ecosystem groupings, the dual front-end + authoring designs, responsive behavior specs, accessibility contracts</dd></div>
+              <div><dt>What I didn't own</dt><dd>The underlying CMS platform, brand visual identity, growth experimentation infrastructure</dd></div>
+            </dl>
+
+            <div class="cs-callout">
+              <div class="cs-callout__label">Plainly</div>
+              <p class="cs-callout__body">The deliverable was the library, not any single component. The components in §8 are the parts I designed or led; the value is in what they let the team do next.</p>
+            </div>
+          </section>
+
+          <!-- 05 STRATEGY -->
+          <section id="strategy" class="cs-section">
+            <div class="cs-section__num">05 — Strategy</div>
+            <h2 class="cs-section__title">Flexibility, <em>not</em> more components.</h2>
+            <p class="cs-section__lede">Every project was a chance to add composability to the library — not a chance to add another entry to the catalog.</p>
+
+            <p>The bet on one line: <em>solve new page needs by making existing components more flexible, not by adding new components.</em> A library grows by getting bigger; a system grows by getting better at composing. The same instinct shows up in every project below — when a new page need arrived, the first move was to ask whether an existing component could bend to it, and only if the answer was a clean no would a new component get proposed.</p>
+
+            <p>Treating components as operational infrastructure also meant designing for two audiences at once. End users see the front-end experience — layout, polish, responsive behavior, accessibility. Content creators see the authoring experience — slot structure, defaults, fallback states, and how predictable the component is once it's filled with real content. Most of the unforced errors in CMS work come from optimizing only one of those audiences.</p>
+
+            <div class="cs-callout cs-callout--decision">
+              <div class="cs-callout__label">Strategic bet</div>
+              <p class="cs-callout__body">Make existing components <em>bend</em>, not add new ones. Flexibility is cheaper than catalog growth — only fork into a new component when the new use case is structurally different, not just stylistically.</p>
+            </div>
+
+            <ol class="cs-decisions">
+              <li>
+                <span class="cs-decisions__num">S · 01</span>
+                <div>
+                  <h3 class="cs-decisions__title">Make existing components <em>bend</em>, not add new ones.</h3>
+                  <p class="cs-decisions__rationale">Flexibility is cheaper than catalog growth. Every new page need is a candidate to extend an existing component's range — only fork when the use case is structurally different.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Principle</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">S · 02</span>
+                <div>
+                  <h3 class="cs-decisions__title">Design for the <em>author</em>, too.</h3>
+                  <p class="cs-decisions__rationale">A component is a UX artifact for two users — the visitor and the author. Slot structure, defaults, fallback behavior, and the predictability of the result count as design.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Principle</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">S · 03</span>
+                <div>
+                  <h3 class="cs-decisions__title">Group components into <em>ecosystems</em>.</h3>
+                  <p class="cs-decisions__rationale">Quotes aren't a single component — they're a social proof ecosystem. Logo walls and carousels are a credibility pattern. Designing the ecosystem prevents drift between pieces.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Principle</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">S · 04</span>
+                <div>
+                  <h3 class="cs-decisions__title">Responsive is <em>part of</em> the component.</h3>
+                  <p class="cs-decisions__rationale">Mobile behavior isn't a downstream concern — it's a constraint that shapes the design. Components that don't have a mobile shape don't exist yet.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Principle</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">S · 05</span>
+                <div>
+                  <h3 class="cs-decisions__title">Accessible by <em>design</em>.</h3>
+                  <p class="cs-decisions__rationale">Focus, labels, keyboard paths, and screen-reader behavior are part of the component, not a retrofit — especially on interactive primitives like tabs, carousels, and banners.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Principle</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">S · 06</span>
+                <div>
+                  <h3 class="cs-decisions__title">Brand, SEO, and CMS are <em>co-equal</em>.</h3>
+                  <p class="cs-decisions__rationale">A marketing component lives at the intersection of brand expression, search performance, and CMS authoring. Treat all three as primary; single-axis optimizations don't ship clean.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Principle</span>
+              </li>
+            </ol>
+          </section>
+
+          <!-- 06 PROCESS -->
+          <section id="process" class="cs-section">
+            <div class="cs-section__num">06 — Process</div>
+            <h2 class="cs-section__title">Same five phases, <em>component by component</em>.</h2>
+            <p class="cs-section__lede">A repeatable shape I used across every component project — so the work compounded into a library instead of into a stack of disconnected redesigns.</p>
+
+            <div class="cs-figure">
+              <div class="cs-figure__frame"><span class="cs-figure__placeholder">Figure 01 — Component audit · library map with overlap and one-offs flagged</span></div>
+              <div class="cs-figure__caption"><span class="num">Fig 01</span><span>The audit view. Library laid out by ecosystem, with overlapping components and one-off forks flagged — the map that decided where flex-extension was the right move.</span></div>
+            </div>
+
+            <ol class="cs-decisions">
+              <li>
+                <span class="cs-decisions__num">P · 01</span>
+                <div>
+                  <h3 class="cs-decisions__title">Audit</h3>
+                  <p class="cs-decisions__rationale">Looked at where the component was being used, what it was being asked to do, where it broke down, and which page needs had spawned related one-offs. The audit usually named the right scope.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Phase</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">P · 02</span>
+                <div>
+                  <h3 class="cs-decisions__title">Frame</h3>
+                  <p class="cs-decisions__rationale">Decided whether the project was a flex-extension (stretch the existing component), a redesign (rebuild the same role), or a replacement (the old pattern wasn't worth iterating). Most projects were flex-extensions.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Phase</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">P · 03</span>
+                <div>
+                  <h3 class="cs-decisions__title">Design</h3>
+                  <p class="cs-decisions__rationale">Designed the front-end and the authoring experience together — slot structure, responsive behavior, accessibility, and visual polish in one pass. Mobile was a primary surface, not a follow-on.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Phase</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">P · 04</span>
+                <div>
+                  <h3 class="cs-decisions__title">Implement</h3>
+                  <p class="cs-decisions__rationale">Paired with engineering on the API, the props, and the responsive logic. Closed contracts in writing so the component's flexibility was real, not theoretical.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Phase</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">P · 05</span>
+                <div>
+                  <h3 class="cs-decisions__title">Adopt</h3>
+                  <p class="cs-decisions__rationale">Walked the component through content and design partners. Documented the use cases, the defaults, and the boundaries. A component without adoption is a fork waiting to happen.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Phase</span>
+              </li>
+            </ol>
+
+            <div class="cs-figure">
+              <div class="cs-figure__frame"><span class="cs-figure__placeholder">Figure 02 — Front-end + authoring, designed together · responsive states drawn alongside desktop</span></div>
+              <div class="cs-figure__caption"><span class="num">Fig 02</span><span>The dual surface every component project produced — visitor-facing layout, CMS authoring interface, and responsive states designed in one pass.</span></div>
+            </div>
+          </section>
+
+          <!-- 07 KEY DECISIONS -->
+          <section id="decisions" class="cs-section">
+            <div class="cs-section__num">07 — Key Decisions</div>
+            <h2 class="cs-section__title">Five <em>system decisions</em> that held across projects.</h2>
+            <p class="cs-section__lede">Each had a reasonable opposite. Each one kept the work from becoming a stack of disconnected component redesigns.</p>
+
+            <ol class="cs-decisions">
+              <li>
+                <span class="cs-decisions__num">D · 01</span>
+                <div>
+                  <h3 class="cs-decisions__title">Default to <em>flex-extension</em>. Only add new components when forced.</h3>
+                  <p class="cs-decisions__rationale">Catalog growth is the trap a marketing CMS falls into one project at a time. Defaulting to flex-extension on each request kept the library converging toward a system instead of diverging into a catalog.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Kept</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">D · 02</span>
+                <div>
+                  <h3 class="cs-decisions__title">Design the <em>authoring</em> experience as design work.</h3>
+                  <p class="cs-decisions__rationale">If a component is beautiful on the front-end but punishing in the CMS, content creators stop reaching for it — and design quietly starts filing one-off requests on their behalf. Slot structure, defaults, and fallback states are design surfaces.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Kept</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">D · 03</span>
+                <div>
+                  <h3 class="cs-decisions__title">Group related components into <em>ecosystems</em>.</h3>
+                  <p class="cs-decisions__rationale">A single quote card couldn't carry every social-proof shape. Designing Quote Card and Marquee Quote together — as a social proof ecosystem — clarified what each piece was for and stopped sibling drift. Same move for logos and columns.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Kept</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">D · 04</span>
+                <div>
+                  <h3 class="cs-decisions__title"><em>Replace</em>, don't iterate, when the pattern is wrong.</h3>
+                  <p class="cs-decisions__rationale">The bottom-anchored announcement banner was being iterated on every quarter and underperforming through each iteration. The right move wasn't a better version; it was a different pattern.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Kept</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">D · 05</span>
+                <div>
+                  <h3 class="cs-decisions__title">Hold brand, SEO, and CMS as <em>co-equal</em> constraints.</h3>
+                  <p class="cs-decisions__rationale">SEO tables and the calculator lived at the intersection of brand expression, search performance, and CMS authoring. Designing for one would have undercut the other two — triangulation made the components better than any single-axis optimization would have produced.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Kept</span>
+              </li>
+            </ol>
+          </section>
+
+          <!-- 08 SOLUTION -->
+          <section id="solution" class="cs-section">
+            <div class="cs-section__num">08 — System &amp; UX Solution</div>
+            <h2 class="cs-section__title">Six <em>themes</em>, one library.</h2>
+            <p class="cs-section__lede">Grouping the work by theme — not by component name — is how it reads as a system instead of a list. Each theme is a place where the library got more flexible, more consistent, or more usable in a way that compounds.</p>
+
+            <div class="cs-figure cs-figure--wide">
+              <div class="cs-figure__frame"><span class="cs-figure__placeholder">Figure 03 — Themed library map · layout · social proof · interactive · SEO · banners · authoring</span></div>
+              <div class="cs-figure__caption"><span class="num">Fig 03</span><span>The library viewed by theme. The components below cluster into six groups; each cluster is a place where the system became more useful.</span></div>
+            </div>
+
+            <h3>Theme I · Layout flexibility</h3>
+            <p>The columns are the most-used components in the library — almost every marketing page composes from them. Making them more flexible was the highest-leverage move in the whole thread.</p>
+
+            <dl class="cs-role">
+              <div><dt>One-Column</dt><dd>Added flexibility around width, content alignment, and image placement. Modernized long-form page sections and improved visual rhythm without forking into specialized components.</dd></div>
+              <div><dt>Two-Column</dt><dd>Improved ratio options, responsive stacking, and content-slot flexibility — supporting more adaptable storytelling without needing a new component for every layout idea.</dd></div>
+              <div><dt>Three-Column</dt><dd>Reworked density, reflow behavior, and content alignment so three-column sections held together at mobile widths instead of dissolving into a stack.</dd></div>
+            </dl>
+
+            <div class="cs-callout">
+              <div class="cs-callout__label">System decision · Layout</div>
+              <p class="cs-callout__body">Columns are <em>primitives</em>, not templates. Each gained more configurability — widths, ratios, slot defaults, alignment — so designers and content creators could compose a wider range of pages from the same three components. The number of layout components went down; the layouts the team can ship went up.</p>
+            </div>
+
+            <h3 style="margin-top:48px;">Theme II · Social proof ecosystem</h3>
+            <p>Social proof wasn't one component — it was a family. Designing Quote Card and Marquee Quote together let the ecosystem cover the full range, with each piece having a clear job.</p>
+
+            <dl class="cs-role">
+              <div><dt>Quote Card</dt><dd>A flexible quote pattern that works as a hero testimonial, a sidebar pull, or part of a grid. Attribution, avatar, and brand mark slots flex per use case.</dd></div>
+              <div><dt>Marquee Quote</dt><dd>A bigger, more editorial moment — for the testimonials that should anchor a page, not just decorate it. Designed to be the page's voice, not just a quote on it.</dd></div>
+              <div><dt>Logo Wall</dt><dd>Optimized for mobile presentation and logo density. The grid finally held shape at smaller widths, and the visual weight of the wall matched the intent of the page.</dd></div>
+              <div><dt>Logo Carousel</dt><dd>Added a scrolling logo carousel for more dynamic credibility moments — accessible, pause-on-hover, reduced motion respected. Where the wall is structure, the carousel is motion.</dd></div>
+            </dl>
+
+            <div class="cs-callout">
+              <div class="cs-callout__label">System decision · Social proof</div>
+              <p class="cs-callout__body">Designed as an <em>ecosystem</em>, not as four separate components. The team can now reach for the right shape of social proof for the page — a featured quote, an oversized editorial moment, a static wall of logos, or a scrolling carousel — without having to invent a new pattern each time.</p>
+            </div>
+
+            <h3 style="margin-top:48px;">Theme III · Interactive content</h3>
+            <p>Interactive components are where authoring, accessibility, and mobile behavior all collide. Getting them right pays back across every page that uses them.</p>
+
+            <dl class="cs-role">
+              <div><dt>Vertical Tabs</dt><dd>Redesigned for large content sets, with clearer microinteractions, a better mobile pattern, and keyboard-accessible tab behavior built in.</dd></div>
+              <div><dt>SEO Calculator</dt><dd>SEO landing page calculator redesigned to feel like a tool, not a content block. Inputs simplified, results made scannable, CTA paths clarified — and SEO needs held alongside, not against, usability.</dd></div>
+            </dl>
+
+            <div class="cs-figure">
+              <div class="cs-figure__frame"><span class="cs-figure__placeholder">Figure 04 — Vertical tabs · desktop &amp; mobile · microinteractions and active state</span></div>
+              <div class="cs-figure__caption"><span class="num">Fig 04</span><span>The redesigned vertical tab pattern. Microinteractions clarified the active state; mobile got a usable shape instead of a scaled-down desktop one.</span></div>
+            </div>
+
+            <h3 style="margin-top:48px;">Theme IV · SEO and utility patterns</h3>
+            <p>High-traffic SEO surfaces are some of the most-visited pages on the site. Treating them as products instead of content blocks made them more useful — and didn't cost search performance.</p>
+
+            <dl class="cs-role">
+              <div><dt>SEO Table</dt><dd>Optimized for readability and scannability at scale. Dense tabular content stayed accessible to search while becoming easier to read, sort, and act on for real visitors.</dd></div>
+              <div><dt>SEO Calculator</dt><dd>Redesigned as an interactive tool rather than an SEO content shell. Visitors actually use it; SEO still gets the surrounding context it needs.</dd></div>
+            </dl>
+
+            <h3 style="margin-top:48px;">Theme V · Banners &amp; announcements</h3>
+            <p>Banners are easy to underestimate — they live around the page, not in it. But the wrong banner pattern fights with everything else on the site.</p>
+
+            <p>The announcement banner replaced an underperforming bottom-banner pattern with a more visible, brand-aligned design that cohabits cleanly with cookie banners and other site chrome. Built to be dismissed without losing its job.</p>
+
+            <div class="cs-callout cs-callout--dark">
+              <div class="cs-callout__label">System decision · Banners</div>
+              <p class="cs-callout__body">Iterating on a pattern that's fighting the rest of the site is throwing good design after bad. The announcement banner got <em>replaced</em>, not refreshed — a different shape that did the job and didn't pick a fight with cookie banners or other chrome.</p>
+            </div>
+
+            <h3 style="margin-top:48px;">Theme VI · Authoring &amp; responsive behavior</h3>
+            <p>Two cross-cutting themes that touched every component above — and the part of the library that's hardest to see in screenshots.</p>
+
+            <div class="cs-twocol">
+              <div>
+                <h4>Authoring efficiency</h4>
+                <p style="margin:0">Slot structure, defaults, and fallback states designed so content creators land on a good result quickly. Components that look like options on a tray instead of forms to fill out. Predictability over configurability where the two compete.</p>
+              </div>
+              <div>
+                <h4>Responsive behavior</h4>
+                <p style="margin:0">Every component designed with mobile as a primary surface. Logo walls hold density; tabs become a usable mobile pattern; quotes stay legible; tables remain scannable on small screens.</p>
+              </div>
+              <div>
+                <h4>Accessibility</h4>
+                <p style="margin:0">Focus, labels, keyboard paths, and screen-reader behavior baked into interactive primitives — tabs, calculators, banners, carousels. Designed in during component work, not bolted on after.</p>
+              </div>
+              <div>
+                <h4>Brand · SEO · CMS triangulation</h4>
+                <p style="margin:0">Every component had to pass all three checks: brand expression, search performance, CMS authoring. Single-axis optimization isn't a library; it's a forking ground.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- 09 COLLABORATION -->
+          <section id="collab" class="cs-section">
+            <div class="cs-section__num">09 — Collaboration</div>
+            <h2 class="cs-section__title">A library held by <em>many hands</em>.</h2>
+            <p class="cs-section__lede">A component library only stays a library if every team that touches it sees its work in the result. The role was as much weaving as it was making.</p>
+
+            <p>Design owned the components' front-end shape and the authoring experience. Engineering owned the implementation, the prop API, and the maintenance cost. Content owned how components were authored in real life — what defaults made sense, what slots were used, what fallback states were needed. Brand owned visual treatment, type scale, and the rhythm components inherited from. Growth and SEO owned the high-traffic surfaces where component decisions had measurable consequences. Accessibility partners owned the bar; my job was to design to it from the start.</p>
+
+            <dl class="cs-role">
+              <div><dt>Engineering</dt><dd>Owned the implementation surface — prop API, responsive logic, maintenance. We paired on contracts so each component's flexibility was real in code, not just in mocks.</dd></div>
+              <div><dt>Content</dt><dd>Owned authoring and the voice that fills the slots. We co-designed defaults, fallback states, and slot structure so components landed on a good result quickly.</dd></div>
+              <div><dt>Brand</dt><dd>Co-owned type scale, spacing, and visual treatment across components. The library inherits brand instead of fighting it; brand stays expressed at the component level.</dd></div>
+              <div><dt>Growth &amp; SEO</dt><dd>Owned search performance on SEO tables and calculator pages. We co-designed components that improved usability without undercutting search — neither side getting a veto.</dd></div>
+              <div><dt>Accessibility</dt><dd>Owned the accessibility bar — focus order, labels, keyboard support, screen reader behavior. Reviewed each interactive primitive before launch.</dd></div>
+              <div><dt>Design partners</dt><dd>The other designers using the library in their work. Their feedback during use — what bent, what didn't, what got forked — was the most reliable signal on whether the library was getting better or just bigger.</dd></div>
+            </dl>
+
+            <blockquote class="pull" style="margin: 32px 0 0;">
+              "Component projects ran in waves with a small cross-functional pod each time — same five phases, same partners, same checkpoints. The next component cost less than the last."
+              <span class="pull__attr">— Working pattern across the thread</span>
+            </blockquote>
+          </section>
+
+          <!-- 10 IMPACT -->
+          <section id="impact" class="cs-section">
+            <div class="cs-section__num">10 — Impact</div>
+            <h2 class="cs-section__title">Components that <em>compose</em>.</h2>
+            <p class="cs-section__lede">Qualitative impact. The deliverable was the library, and the library got more useful — for designers, content creators, engineering, and the visitors who never see it directly.</p>
+
+            <div class="cs-impact">
+              <div>
+                <div class="cs-impact__label">For designers</div>
+                <h3 class="cs-impact__title">More flexibility, fewer one-offs.</h3>
+                <p class="cs-impact__body">New page needs are increasingly answered by composing existing components instead of designing new ones. The library bends; the catalog stops growing.</p>
+              </div>
+              <div>
+                <div class="cs-impact__label">For content creators</div>
+                <h3 class="cs-impact__title">Faster publishing, better results.</h3>
+                <p class="cs-impact__body">Authoring is more predictable. Slot structure, defaults, and fallback states let authors land on a good result quickly — less time fighting the CMS, more time on the work.</p>
+              </div>
+              <div>
+                <div class="cs-impact__label">For consistency</div>
+                <h3 class="cs-impact__title">Pages that belong to one site.</h3>
+                <p class="cs-impact__body">Components inherit brand, accessibility, and responsive behavior by default. Pages across the site feel like neighbors, not a stack of campaign decisions.</p>
+              </div>
+              <div>
+                <div class="cs-impact__label">For mobile users</div>
+                <h3 class="cs-impact__title">Components that work on phones.</h3>
+                <p class="cs-impact__body">Logo walls hold density. Vertical tabs become a usable mobile pattern. SEO tables stay scannable. Mobile is a first-class context across the library, not a follow-on.</p>
+              </div>
+              <div>
+                <div class="cs-impact__label">For accessibility</div>
+                <h3 class="cs-impact__title">Inclusive by default.</h3>
+                <p class="cs-impact__body">Interactive primitives ship with focus, labels, keyboard paths, and screen-reader behavior built in. The library's accessibility floor came up; nothing has to be retrofitted page by page.</p>
+              </div>
+              <div>
+                <div class="cs-impact__label">For the system itself</div>
+                <h3 class="cs-impact__title">From catalog to system.</h3>
+                <p class="cs-impact__body">The library is smaller in spirit, larger in range. Fewer components covering more page shapes. The relationship between design system principles and CMS implementation got tighter — design system and CMS pulling together.</p>
+              </div>
+            </div>
+
+            <p style="margin-top:8px;">The honest summary: this work didn't produce a hero launch. It produced a marketing site whose pages feel more modern, whose authors move faster, whose components bend instead of breaking — and a library the team can keep using without paying the catalog tax. Component work compounds; the next page is cheaper than the last because the components paid the cost up front.</p>
+
+            <blockquote class="pull" style="margin: 32px 0 0;">
+              "The same three columns now do what fifteen used to. We just designed them like they meant it."
+              <span class="pull__attr">— My note, library retro</span>
+            </blockquote>
+          </section>
+
+          <!-- 11 WHAT I LEARNED -->
+          <section id="learned" class="cs-section">
+            <div class="cs-section__num">11 — What I Learned</div>
+            <h2 class="cs-section__title">Five notes I <em>kept</em>.</h2>
+            <p class="cs-section__lede">Lessons written for the next component library — my own, or someone else's.</p>
+
+            <ol class="cs-decisions">
+              <li>
+                <span class="cs-decisions__num">L · 01</span>
+                <div>
+                  <h3 class="cs-decisions__title"><em>Flex-extension</em> is the default move.</h3>
+                  <p class="cs-decisions__rationale">Every new component request was a chance to make an existing component bend instead. Defaulting to flex-extension — and only forking when the new use case was structurally different — was the single most important habit. It's also the hardest one to keep, because adding a new component always feels faster in the moment.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Keep</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">L · 02</span>
+                <div>
+                  <h3 class="cs-decisions__title">The <em>authoring</em> experience is a design surface.</h3>
+                  <p class="cs-decisions__rationale">Components that punish content creators get quietly abandoned. Designing slot structure, defaults, and fallback states with the same care as the front-end — and counting an authoring improvement as a real improvement — kept the library actually used.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Keep</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">L · 03</span>
+                <div>
+                  <h3 class="cs-decisions__title">Components are an <em>ecosystem</em> before they're a list.</h3>
+                  <p class="cs-decisions__rationale">Social proof was a family before it was four components. Layout was a family before it was three columns. Designing the ecosystem clarifies each piece's job and stops siblings from drifting into overlapping versions of each other.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Keep</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">L · 04</span>
+                <div>
+                  <h3 class="cs-decisions__title">Know when to <em>replace</em>, not iterate.</h3>
+                  <p class="cs-decisions__rationale">The bottom-anchored announcement banner taught me this one. Some patterns are wrong, and iterating on them throws good design after bad. Recognizing that — and arguing for replacement instead of refinement — is part of the systems job.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Keep</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">L · 05</span>
+                <div>
+                  <h3 class="cs-decisions__title"><em>Mobile-first</em> is a system position, not a project tactic.</h3>
+                  <p class="cs-decisions__rationale">When mobile is a primary surface across the whole library — not a per-component negotiation — design conversations get faster and component results get better. Components that don't have a clean mobile shape just aren't done.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Keep</span>
+              </li>
+            </ol>
+          </section>
+
+          <!-- Next -->
+          <nav class="cs-next" aria-label="Case study navigation">
+            <a href="work.html">
+              <span class="cs-next__label">← All work</span>
+              <h4 class="cs-next__title">Back to the <em>index</em></h4>
+            </a>
+            <a href="Product-Led Web Paths.html">
+              <span class="cs-next__label">Next case · 04 / 06</span>
+              <h4 class="cs-next__title">Clearer Paths Through <em>Product-Led</em> Web →</h4>
+            </a>
+          </nav>
+
+        </article>
+      </div>
+    </div>
+
+    <!-- ============ CTA ============ -->
+    <section class="section section--flush">
+      <div class="shell">
+        <div class="cta">
+          <div>
+            <div class="cta__eyebrow">Working together</div>
+            <h2 class="cta__title">Got a CMS that needs to <em>compose</em>?</h2>
+          </div>
+          <div class="cta__side">
+            <p class="cta__lede">Component audits, library modernization, authoring UX, and the systems work that turns catalogs back into libraries.</p>
+            <div style="display:flex; gap:12px; flex-wrap:wrap;">
+              <a href="contact.html" class="btn btn--accent">Start a conversation
+                <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a href="work.html" class="btn btn--ghost">See more work</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell">
+      <div class="footer__grid">
+        <div class="footer__brand-col">
+          <h2 class="footer__brand" style="font-weight: 500">David <em style="font-weight: 500">Cho</em></h2>
+          <p class="footer__tagline">Designing the systems behind high-performing web experiences.</p>
+        </div>
+        <div class="footer__col"><h4>Site</h4><ul><li><a href="index.html">Index</a></li><li><a href="work.html">Work</a></li><li><a href="about.html">About</a></li><li><a href="resume.html">Resume</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+        <div class="footer__col"><h4>Elsewhere</h4><ul><li><a href="#">LinkedIn ↗</a></li><li><a href="#">Read.cv ↗</a></li><li><a href="#">Are.na ↗</a></li><li><a href="#">Dribbble ↗</a></li></ul></div>
+        <div class="footer__col"><h4>Contact</h4><ul><li><a href="mailto:hi@davidcho.design">hi@davidcho.design</a></li><li><a href="contact.html">Project brief</a></li><li><a href="#">+1 (415) 555&#8209;0118</a></li></ul></div>
+      </div>
+      <div class="footer__bar">
+        <span>© <span data-year></span> &nbsp;David Cho · Toronto</span>
+        <span>Set in Source Serif 4 &amp; Space Grotesk</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/site.js"></script>
+  <script>
+    // TOC current-section highlight via IntersectionObserver
+    (function () {
+      const links = document.querySelectorAll('.cs-toc a[data-toc]');
+      const map = new Map();
+      links.forEach(a => map.set(a.getAttribute('href').slice(1), a));
+      const sections = document.querySelectorAll('.cs-section[id]');
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            links.forEach(a => a.classList.remove('is-current'));
+            const a = map.get(e.target.id);
+            if (a) a.classList.add('is-current');
+          }
+        });
+      }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+      sections.forEach(s => io.observe(s));
+
+      links.forEach(a => {
+        a.addEventListener('click', (e) => {
+          const id = a.getAttribute('href').slice(1);
+          const target = document.getElementById(id);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            history.replaceState(null, '', '#' + id);
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

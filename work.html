@@ -1,0 +1,730 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Work — David Cho</title>
+  <meta name="description" content="Selected work by David Cho — web systems, CMS modernization, growth, motion, and design systems." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;1,8..60,300;1,8..60,400;1,8..60,500&family=Space+Grotesk:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ---- Work page additions ---- */
+    .work-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(28px, 3vw, 44px) clamp(28px, 3vw, 44px);
+    }
+    @media (max-width: 880px) {
+      .work-list { grid-template-columns: 1fr; }
+    }
+
+    .wcard {
+      display: flex;
+      flex-direction: column;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: border-color .3s var(--ease), transform .5s var(--ease), box-shadow .3s var(--ease);
+      color: inherit;
+    }
+    .wcard:hover {
+      border-color: var(--line-2);
+      box-shadow: 0 24px 60px -36px rgba(24,21,19,.18);
+    }
+
+    .wcard__thumb {
+      position: relative;
+      aspect-ratio: 16/10;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+      background: var(--bg-2);
+    }
+    .wcard__thumb svg { width: 100%; height: 100%; display: block; }
+    .wcard__badge {
+      position: absolute;
+      top: 18px; left: 18px;
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: color-mix(in oklab, var(--surface) 78%, transparent);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+    .wcard__badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+    .wcard__index {
+      position: absolute;
+      top: 18px; right: 18px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: color-mix(in oklab, var(--surface) 78%, transparent);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+    }
+
+    .wcard__body {
+      padding: clamp(24px, 2.8vw, 36px) clamp(24px, 2.8vw, 36px) clamp(20px, 2.4vw, 28px);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      flex: 1;
+    }
+
+    .wcard__meta {
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--muted);
+    }
+    .wcard__meta .dotsep { width: 3px; height: 3px; border-radius: 50%; background: var(--line-2); }
+
+    .wcard__title {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(26px, 2.4vw, 34px);
+      line-height: 1.08;
+      letter-spacing: -.01em;
+      margin: 0;
+    }
+    .wcard__title em { font-style: italic; color: var(--accent); }
+
+    .wcard__summary {
+      font-size: 15.5px;
+      line-height: 1.55;
+      color: var(--muted);
+      margin: 0;
+      max-width: 56ch;
+    }
+
+    .wcard__tags {
+      display: flex; flex-wrap: wrap; gap: 6px;
+    }
+    .wcard__tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: var(--ink-2);
+      background: var(--bg);
+    }
+    .wcard__tag--accent {
+      color: var(--accent);
+      border-color: color-mix(in oklab, var(--accent) 30%, var(--line));
+      background: var(--accent-soft);
+    }
+
+    .wcard__detail {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-top: 4px;
+    }
+    .wcard__detail > div {
+      background: var(--bg);
+      padding: 14px 16px;
+    }
+    .wcard__detail dt {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .wcard__detail dd {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.4;
+      color: var(--ink);
+    }
+    .wcard__detail dd em {
+      font-style: italic;
+      font-family: var(--font-display);
+      font-size: 19px;
+      color: var(--accent);
+      letter-spacing: -.01em;
+    }
+
+    .wcard__foot {
+      margin-top: auto;
+      padding: 18px clamp(24px, 2.8vw, 36px);
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--muted);
+      background: var(--bg);
+    }
+    .wcard__cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--ink);
+      font-weight: 500;
+      transition: color .2s var(--ease);
+    }
+    .wcard__cta .arrow { transition: transform .3s var(--ease); }
+    .wcard:hover .wcard__cta { color: var(--accent); }
+    .wcard:hover .wcard__cta .arrow { transform: translateX(4px); }
+
+    /* Filter bar refinement */
+    .filterbar {
+      position: sticky;
+      top: 68px;
+      z-index: 30;
+      background: color-mix(in oklab, var(--bg) 92%, transparent);
+      backdrop-filter: saturate(1.2) blur(14px);
+      -webkit-backdrop-filter: saturate(1.2) blur(14px);
+      padding: 18px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      margin-bottom: clamp(40px, 5vw, 64px);
+    }
+    .filterbar__inner {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .filterbar__label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      color: var(--muted);
+      display: inline-flex; align-items: center; gap: 10px;
+    }
+    .filterbar__label::after {
+      content: ""; width: 1px; height: 14px; background: var(--line-2);
+    }
+    .filterbar__chips {
+      display: flex; flex-wrap: wrap; gap: 6px; flex: 1;
+    }
+    .filterbar__count {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      color: var(--muted);
+    }
+    .filterbar__count strong { color: var(--ink); font-weight: 500; }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="shell nav__inner">
+      <a href="index.html" class="brand" aria-label="David Cho — home">
+        <span><span class="brand__name">David Cho</span></span>
+        <span class="brand__role">UX&nbsp;Designer&nbsp;/&nbsp;Manager</span>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="index.html"  class="nav__link">Index</a>
+        <a href="work.html"   class="nav__link is-active">Work</a>
+        <a href="about.html"  class="nav__link">About</a>
+        <a href="resume.html" class="nav__link">Resume</a>
+        <a href="contact.html" class="nav__link">Contact</a>
+        <a href="contact.html" class="btn btn--primary btn--sm nav__cta">Get in touch
+          <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </nav>
+      <button class="nav__menu-btn" aria-label="Open menu"><span></span></button>
+    </div>
+    <div class="nav__panel">
+      <a href="index.html">Index</a>
+      <a href="work.html">Work</a>
+      <a href="about.html">About</a>
+      <a href="resume.html">Resume</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ SUBHERO ============ -->
+    <section class="subhero">
+      <div class="shell">
+        <div class="subhero__eyebrow">Index of work &nbsp;·&nbsp; 2022 — 2026</div>
+        <h1 class="subhero__title">Selected <em>Work</em>.</h1>
+        <p class="subhero__lede">
+          Seven representative projects from the last four years — the web systems, growth experiences,
+          design-system efforts, and team practice I've led or shipped. Filter by practice; the rest are available on request.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ FILTER BAR ============ -->
+    <div class="filterbar" id="work-filterbar" role="region" aria-label="Filters">
+      <div class="shell">
+        <div class="filterbar__inner" data-filter-group data-filter-target="#work-list">
+          <span class="filterbar__label">Filter</span>
+          <div class="filterbar__chips">
+            <button class="chip is-active" data-filter="all">All <span class="chip__count" data-count="all">07</span></button>
+            <button class="chip" data-filter="systems">Systems <span class="chip__count" data-count="systems">04</span></button>
+            <button class="chip" data-filter="growth">Growth <span class="chip__count" data-count="growth">04</span></button>
+            <button class="chip" data-filter="cms">CMS <span class="chip__count" data-count="cms">03</span></button>
+            <button class="chip" data-filter="design-systems">Design Systems <span class="chip__count" data-count="design-systems">04</span></button>
+            <button class="chip" data-filter="leadership">Leadership <span class="chip__count" data-count="leadership">03</span></button>
+            <button class="chip" data-filter="interaction">Interaction <span class="chip__count" data-count="interaction">03</span></button>
+            <button class="chip" data-filter="research">Research <span class="chip__count" data-count="research">02</span></button>
+            <button class="chip" data-filter="analytics">Analytics <span class="chip__count" data-count="analytics">02</span></button>
+          </div>
+          <span class="filterbar__count"><strong id="visible-count">07</strong> / 07 projects</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ GRID ============ -->
+    <section class="section--flush" id="work-list" style="padding-bottom: clamp(80px, 10vw, 140px);">
+      <div class="shell">
+        <div class="work-list">
+
+          <!-- 01 — Project Blueprint -->
+          <a id="blueprint" href="case-study.html" class="wcard reveal" data-tags="systems cms design-systems leadership">
+            <div class="wcard__thumb" style="background:
+              radial-gradient(120% 80% at 80% 10%, #F2D7C9 0%, transparent 55%),
+              radial-gradient(80% 60% at 10% 100%, #E9DFCC 0%, transparent 60%),
+              linear-gradient(180deg, #F7F1E5, #EDE5D2);">
+              <span class="wcard__badge"><span class="dot"></span>In flight</span>
+              <span class="wcard__index">01 / 07</span>
+              <svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <defs><pattern id="g-bp" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="rgba(24,21,19,.08)" stroke-width="1"/></pattern></defs>
+                <rect width="800" height="500" fill="url(#g-bp)"/>
+                <g transform="translate(70,80)" fill="none" stroke="#181513" stroke-width="1.4">
+                  <rect x="0" y="0" width="180" height="60" rx="8" fill="#FAF6EC"/><text x="90" y="36" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="13" fill="#181513" stroke="none">page system</text>
+                  <rect x="240" y="0" width="180" height="60" rx="8" fill="#FAF6EC"/><text x="330" y="36" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="13" fill="#181513" stroke="none">component lib</text>
+                  <rect x="480" y="0" width="180" height="60" rx="8" fill="#C8451E"/><text x="570" y="36" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="13" fill="#FAF6EC" stroke="none">cms model</text>
+                  <rect x="120" y="160" width="180" height="60" rx="8" fill="#FAF6EC"/><text x="210" y="196" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="13" fill="#181513" stroke="none">tokens</text>
+                  <rect x="360" y="160" width="180" height="60" rx="8" fill="#FAF6EC"/><text x="450" y="196" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="13" fill="#181513" stroke="none">templates</text>
+                  <rect x="240" y="320" width="180" height="60" rx="8" fill="#181513"/><text x="330" y="356" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="13" fill="#FAF6EC" stroke="none">marketing.site</text>
+                  <path d="M90 60 V100 H570 V60"/><path d="M210 160 V120 H570 V60"/><path d="M450 160 V120 H570"/><path d="M330 320 V270 H210 V220"/><path d="M330 320 V270 H450 V220"/>
+                </g>
+              </svg>
+            </div>
+            <div class="wcard__body">
+              <div class="wcard__meta"><span>2025 — 2026</span><span class="dotsep"></span><span>SurveyMonkey</span><span class="dotsep"></span><span>Marketing &amp; growth</span></div>
+              <h3 class="wcard__title"><em>Project Blueprint</em>: Modernizing SurveyMonkey's Marketing CMS</h3>
+              <p class="wcard__summary">A ground-up rewrite of the global marketing site as one composable system — page model, component library, tokens, motion, and CMS schema collapsed into one source of truth across four locales.</p>
+              <div class="wcard__tags">
+                <span class="wcard__tag wcard__tag--accent">Systems</span>
+                <span class="wcard__tag">CMS</span>
+                <span class="wcard__tag">Design Systems</span>
+                <span class="wcard__tag">Leadership</span>
+              </div>
+              <dl class="wcard__detail">
+                <div><dt>Role</dt><dd>Lead designer · 4 designers, 11 engineers</dd></div>
+                <div><dt>Impact</dt><dd><em>−72%</em> page launch lead time, 28 templates replace 140+</dd></div>
+              </dl>
+            </div>
+            <div class="wcard__foot">
+              <span>Case study</span>
+              <span class="wcard__cta">Read case <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </div>
+          </a>
+
+          <!-- 02 — Framer -->
+          <a id="framer" href="Framer Experiences Case Study.html" class="wcard reveal" data-tags="interaction growth systems">
+            <div class="wcard__thumb" style="background: radial-gradient(circle at 30% 30%, #1A1614 0%, #2E2823 60%, #181513 100%);">
+              <span class="wcard__badge" style="background:rgba(24,21,19,.5); border-color:rgba(250,246,236,.2); color:var(--surface);"><span class="dot"></span>Shipped</span>
+              <span class="wcard__index" style="background:rgba(24,21,19,.5); border-color:rgba(250,246,236,.2); color:rgba(250,246,236,.7);">02 / 07</span>
+              <svg viewBox="0 0 600 380" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <g transform="translate(60,60)">
+                  <rect x="0" y="0" width="480" height="260" rx="14" fill="none" stroke="rgba(250,246,236,.18)"/>
+                  <rect x="20" y="20" width="120" height="14" rx="3" fill="rgba(250,246,236,.85)"/>
+                  <rect x="20" y="44" width="200" height="14" rx="3" fill="rgba(250,246,236,.55)"/>
+                  <rect x="20" y="100" width="300" height="26" rx="4" fill="#C8451E"/>
+                  <rect x="20" y="135" width="240" height="26" rx="4" fill="rgba(250,246,236,.9)"/>
+                  <circle cx="380" cy="170" r="60" fill="none" stroke="#C8451E" stroke-width="1.5"/>
+                  <circle cx="380" cy="170" r="40" fill="none" stroke="rgba(250,246,236,.4)" stroke-width="1.5"/>
+                  <circle cx="380" cy="170" r="20" fill="#C8451E"/>
+                  <rect x="20" y="200" width="80" height="36" rx="18" fill="rgba(250,246,236,.92)"/>
+                  <rect x="108" y="200" width="80" height="36" rx="18" fill="none" stroke="rgba(250,246,236,.3)"/>
+                </g>
+              </svg>
+            </div>
+            <div class="wcard__body">
+              <div class="wcard__meta"><span>2025</span><span class="dotsep"></span><span>SurveyMonkey</span><span class="dotsep"></span><span>Product launches</span></div>
+              <h3 class="wcard__title">Building Immersive <em>Framer</em> Experiences for SurveyMonkey</h3>
+              <p class="wcard__summary">A motion-led pattern for product launches and category pages — scrolling stories that load fast, pass Core Web Vitals, and stay in lock-step with the core component library.</p>
+              <div class="wcard__tags">
+                <span class="wcard__tag wcard__tag--accent">Interaction</span>
+                <span class="wcard__tag">Growth</span>
+                <span class="wcard__tag">Systems</span>
+              </div>
+              <dl class="wcard__detail">
+                <div><dt>Role</dt><dd>Design lead · solo IC + 2 contractors</dd></div>
+                <div><dt>Impact</dt><dd><em>3.2×</em> launch-page engagement; LCP under 1.8s</dd></div>
+              </dl>
+            </div>
+            <div class="wcard__foot">
+              <span>Case study</span>
+              <span class="wcard__cta">Read case <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </div>
+          </a>
+
+          <!-- 03 — CMS Modernization -->
+          <a id="cms" href="SurveyMonkey CMS Components.html" class="wcard reveal" data-tags="cms systems design-systems">
+            <div class="wcard__thumb" style="background: linear-gradient(160deg, #EDE5D2 0%, #F7F1E5 60%, #F1ECE2 100%);">
+              <span class="wcard__badge"><span class="dot"></span>Shipped</span>
+              <span class="wcard__index">03 / 07</span>
+              <svg viewBox="0 0 600 380" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <g transform="translate(40,40)" font-family="IBM Plex Mono,monospace" font-size="11" fill="#181513">
+                  <rect x="0" y="0" width="220" height="300" rx="10" fill="#FAF6EC" stroke="#DDD4C0"/>
+                  <text x="14" y="24">/components</text>
+                  <g transform="translate(14,40)" fill="#6F6557"><text y="16">— Hero/</text><text y="36">— FeatureRow/</text><text y="56">— PricingTable/</text><text y="76">— LogoCloud/</text><text y="96">— CTABlock/</text><text y="116">— TestimonialGrid/</text><text y="136">— ResourceCard/</text><text y="156">— FormPanel/</text><text y="176">— Footer/</text></g>
+                  <rect x="20" y="222" width="180" height="50" rx="6" fill="#C8451E"/>
+                  <text x="110" y="252" text-anchor="middle" fill="#FAF6EC">+ 28 templates</text>
+                  <rect x="260" y="0" width="260" height="300" rx="10" fill="#181513"/>
+                  <text x="276" y="24" fill="#FAF6EC">cms.preview</text>
+                  <g transform="translate(276,42)" fill="rgba(250,246,236,.7)">
+                    <rect x="0" y="0" width="220" height="40" rx="4" fill="rgba(250,246,236,.08)"/>
+                    <rect x="0" y="50" width="160" height="14" rx="3" fill="rgba(250,246,236,.6)"/>
+                    <rect x="0" y="72" width="200" height="10" rx="3" fill="rgba(250,246,236,.3)"/>
+                    <rect x="0" y="100" width="220" height="80" rx="6" fill="rgba(200,69,30,.85)"/>
+                    <rect x="0" y="192" width="100" height="30" rx="15" fill="rgba(250,246,236,.85)"/>
+                    <rect x="108" y="192" width="100" height="30" rx="15" fill="none" stroke="rgba(250,246,236,.4)"/>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <div class="wcard__body">
+              <div class="wcard__meta"><span>2024</span><span class="dotsep"></span><span>SurveyMonkey</span><span class="dotsep"></span><span>Marketing platform</span></div>
+              <h3 class="wcard__title">Modernizing <em>CMS Components</em> for Scale and Flexibility</h3>
+              <p class="wcard__summary">From a fragmented CMS to a typed, composable component library. Authors compose pages with the same primitives engineers build with — slot-based, locale-aware, and instrumented by default.</p>
+              <div class="wcard__tags">
+                <span class="wcard__tag wcard__tag--accent">CMS</span>
+                <span class="wcard__tag">Systems</span>
+                <span class="wcard__tag">Design Systems</span>
+              </div>
+              <dl class="wcard__detail">
+                <div><dt>Role</dt><dd>Lead designer · 2 designers, 6 engineers</dd></div>
+                <div><dt>Impact</dt><dd><em>4×</em> faster authoring; 60% fewer release regressions</dd></div>
+              </dl>
+            </div>
+            <div class="wcard__foot">
+              <span>Case study</span>
+              <span class="wcard__cta">Read case <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </div>
+          </a>
+
+          <!-- 04 — Product-Led Web -->
+          <a id="plg" href="Product-Led Web Paths.html" class="wcard reveal" data-tags="growth research analytics systems">
+            <div class="wcard__thumb" style="background: linear-gradient(180deg, #F1ECE2, #ECE6D9);">
+              <span class="wcard__badge"><span class="dot"></span>Shipped</span>
+              <span class="wcard__index">04 / 07</span>
+              <svg viewBox="0 0 600 380" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <g transform="translate(40,40)">
+                  <rect x="0" y="0" width="520" height="56" rx="10" fill="#FAF6EC" stroke="#DDD4C0"/>
+                  <circle cx="32" cy="28" r="10" fill="#181513"/>
+                  <rect x="80" y="22" width="60" height="12" rx="3" fill="#181513"/>
+                  <rect x="160" y="22" width="60" height="12" rx="3" fill="#6F6557"/>
+                  <rect x="240" y="22" width="60" height="12" rx="3" fill="#6F6557"/>
+                  <rect x="320" y="22" width="60" height="12" rx="3" fill="#6F6557"/>
+                  <rect x="420" y="14" width="84" height="28" rx="14" fill="#C8451E"/>
+                  <rect x="0" y="80" width="520" height="220" rx="14" fill="#FAF6EC" stroke="#DDD4C0"/>
+                  <g transform="translate(24,104)" font-family="IBM Plex Mono,monospace" font-size="11" fill="#6F6557">
+                    <text y="0">PRODUCT</text>
+                    <line x1="0" y1="10" x2="80" y2="10" stroke="#C8451E" stroke-width="2"/>
+                    <text y="32" fill="#181513" font-family="Source Serif 4,serif" font-size="22">Surveys</text>
+                    <text y="62" fill="#181513" font-family="Source Serif 4,serif" font-size="22">Forms</text>
+                    <text y="92" fill="#181513" font-family="Source Serif 4,serif" font-size="22">Audience</text>
+                    <text y="122" fill="#181513" font-family="Source Serif 4,serif" font-size="22">Analyze</text>
+                  </g>
+                  <g transform="translate(200,104)">
+                    <rect x="0" y="0" width="280" height="172" rx="8" fill="#F1ECE2"/>
+                    <rect x="14" y="14" width="160" height="14" rx="3" fill="#181513"/>
+                    <rect x="14" y="36" width="220" height="10" rx="3" fill="#6F6557"/>
+                    <rect x="14" y="52" width="180" height="10" rx="3" fill="#6F6557"/>
+                    <rect x="14" y="80" width="252" height="76" rx="6" fill="#FAF6EC" stroke="#DDD4C0"/>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <div class="wcard__body">
+              <div class="wcard__meta"><span>2024</span><span class="dotsep"></span><span>SurveyMonkey</span><span class="dotsep"></span><span>Logged-out web</span></div>
+              <h3 class="wcard__title">Designing Clearer Paths Through <em>Product-Led</em> Web Experiences</h3>
+              <p class="wcard__summary">A new global navigation and logged-out journey unifying product, plans, and resources. Re-architected the page-to-product handoff and rebuilt instrumentation so every funnel decision had evidence.</p>
+              <div class="wcard__tags">
+                <span class="wcard__tag wcard__tag--accent">Growth</span>
+                <span class="wcard__tag">Research</span>
+                <span class="wcard__tag">Analytics</span>
+                <span class="wcard__tag">Systems</span>
+              </div>
+              <dl class="wcard__detail">
+                <div><dt>Role</dt><dd>Design lead · partnered with growth PM</dd></div>
+                <div><dt>Impact</dt><dd><em>+18%</em> paid-funnel entry, <em>+6.4%</em> activation</dd></div>
+              </dl>
+            </div>
+            <div class="wcard__foot">
+              <span>Case study</span>
+              <span class="wcard__cta">Read case <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </div>
+          </a>
+
+          <!-- 05 — Animation -->
+          <a id="motion" href="SurveyMonkey Animation Strategy.html" class="wcard reveal" data-tags="interaction design-systems leadership">
+            <div class="wcard__thumb" style="background: radial-gradient(80% 80% at 50% 100%, #F2D7C9 0%, transparent 60%), linear-gradient(180deg, #181513, #2E2823);">
+              <span class="wcard__badge" style="background:rgba(24,21,19,.5); border-color:rgba(250,246,236,.2); color:var(--surface);"><span class="dot"></span>Rolling out</span>
+              <span class="wcard__index" style="background:rgba(24,21,19,.5); border-color:rgba(250,246,236,.2); color:rgba(250,246,236,.7);">05 / 07</span>
+              <svg viewBox="0 0 1200 460" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <g stroke="rgba(250,246,236,.18)" fill="none">
+                  <line x1="0" y1="100" x2="1200" y2="100"/><line x1="0" y1="200" x2="1200" y2="200"/><line x1="0" y1="300" x2="1200" y2="300"/>
+                </g>
+                <g font-family="IBM Plex Mono,monospace" font-size="11">
+                  <g transform="translate(80,60)"><rect width="200" height="32" rx="6" fill="#C8451E"/><text x="12" y="20" fill="#FAF6EC">fade-in / 240ms</text></g>
+                  <g transform="translate(300,76)"><rect width="280" height="32" rx="6" fill="rgba(250,246,236,.85)"/><text x="12" y="20" fill="#181513">slide-up / 320ms · ease-out-quint</text></g>
+                  <g transform="translate(600,60)"><rect width="180" height="32" rx="6" fill="rgba(250,246,236,.3)"/><text x="12" y="20" fill="#FAF6EC">stagger / 60ms</text></g>
+                  <g transform="translate(140,170)"><rect width="240" height="32" rx="6" fill="rgba(250,246,236,.85)"/><text x="12" y="20" fill="#181513">scroll-reveal / spring</text></g>
+                  <g transform="translate(400,160)"><rect width="320" height="32" rx="6" fill="#C8451E"/><text x="12" y="20" fill="#FAF6EC">parallax-layer / 0.4×</text></g>
+                  <g transform="translate(740,170)"><rect width="220" height="32" rx="6" fill="rgba(250,246,236,.3)"/><text x="12" y="20" fill="#FAF6EC">cursor-magnet / hover</text></g>
+                  <g transform="translate(60,270)"><rect width="280" height="32" rx="6" fill="rgba(250,246,236,.85)"/><text x="12" y="20" fill="#181513">type-mask / reveal</text></g>
+                  <g transform="translate(360,260)"><rect width="200" height="32" rx="6" fill="rgba(250,246,236,.3)"/><text x="12" y="20" fill="#FAF6EC">parallax-text</text></g>
+                  <g transform="translate(580,270)"><rect width="380" height="32" rx="6" fill="#C8451E"/><text x="12" y="20" fill="#FAF6EC">background-blur-shift / 600ms</text></g>
+                </g>
+                <line x1="540" y1="40" x2="540" y2="320" stroke="#FAF6EC" stroke-dasharray="3 4" stroke-width="1.2"/>
+                <circle cx="540" cy="40" r="6" fill="#FAF6EC"/>
+              </svg>
+            </div>
+            <div class="wcard__body">
+              <div class="wcard__meta"><span>2024 — 2025</span><span class="dotsep"></span><span>SurveyMonkey</span><span class="dotsep"></span><span>Motion platform</span></div>
+              <h3 class="wcard__title">Creating a Practical <em>Animation Strategy</em> for Marketing Web</h3>
+              <p class="wcard__summary">A timeline-based motion system embedded directly in the CMS, with a curated library of primitives, timing tokens, and a reduced-motion budget — so marketers compose animated pages without engineering review.</p>
+              <div class="wcard__tags">
+                <span class="wcard__tag wcard__tag--accent">Interaction</span>
+                <span class="wcard__tag">Design Systems</span>
+                <span class="wcard__tag">Leadership</span>
+              </div>
+              <dl class="wcard__detail">
+                <div><dt>Role</dt><dd>Motion lead · cross-functional working group</dd></div>
+                <div><dt>Impact</dt><dd><em>14</em> motion primitives in production across 28 templates</dd></div>
+              </dl>
+            </div>
+            <div class="wcard__foot">
+              <span>Case study</span>
+              <span class="wcard__cta">Read case <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </div>
+          </a>
+
+          <!-- 06 — Template Search -->
+          <a id="template" href="Template Discovery Case Study.html" class="wcard reveal" data-tags="interaction research analytics growth">
+            <div class="wcard__thumb" style="background: linear-gradient(160deg, #FAF6EC, #F1ECE2);">
+              <span class="wcard__badge"><span class="dot"></span>Shipped</span>
+              <span class="wcard__index">06 / 07</span>
+              <svg viewBox="0 0 600 380" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <g transform="translate(40,40)">
+                  <rect x="0" y="0" width="520" height="44" rx="22" fill="#181513"/>
+                  <circle cx="24" cy="22" r="6" fill="none" stroke="#FAF6EC" stroke-width="1.5"/>
+                  <line x1="29" y1="27" x2="34" y2="32" stroke="#FAF6EC" stroke-width="1.5"/>
+                  <text x="50" y="27" font-family="IBM Plex Mono,monospace" font-size="13" fill="rgba(250,246,236,.7)">customer feedback</text>
+                  <rect x="420" y="10" width="84" height="24" rx="12" fill="#C8451E"/>
+                  <text x="462" y="27" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#FAF6EC">search</text>
+                  <g transform="translate(0,68)" font-family="IBM Plex Mono,monospace" font-size="10" fill="#6F6557">
+                    <rect x="0" y="0" width="80" height="22" rx="11" fill="#181513"/><text x="40" y="14" text-anchor="middle" fill="#FAF6EC">All · 248</text>
+                    <rect x="90" y="0" width="80" height="22" rx="11" fill="none" stroke="#DDD4C0"/><text x="130" y="14" text-anchor="middle">CX</text>
+                    <rect x="180" y="0" width="80" height="22" rx="11" fill="none" stroke="#DDD4C0"/><text x="220" y="14" text-anchor="middle">Employee</text>
+                    <rect x="270" y="0" width="80" height="22" rx="11" fill="none" stroke="#DDD4C0"/><text x="310" y="14" text-anchor="middle">Market</text>
+                    <rect x="360" y="0" width="80" height="22" rx="11" fill="none" stroke="#DDD4C0"/><text x="400" y="14" text-anchor="middle">Event</text>
+                  </g>
+                  <g transform="translate(0,110)">
+                    <rect x="0" y="0" width="160" height="120" rx="8" fill="#FAF6EC" stroke="#DDD4C0"/>
+                    <rect x="14" y="14" width="80" height="10" rx="2" fill="#181513"/>
+                    <rect x="14" y="30" width="120" height="6" rx="2" fill="#6F6557"/>
+                    <rect x="14" y="60" width="132" height="46" rx="4" fill="#C8451E"/>
+                    <rect x="180" y="0" width="160" height="120" rx="8" fill="#FAF6EC" stroke="#DDD4C0"/>
+                    <rect x="194" y="14" width="80" height="10" rx="2" fill="#181513"/>
+                    <rect x="194" y="30" width="100" height="6" rx="2" fill="#6F6557"/>
+                    <rect x="194" y="60" width="132" height="46" rx="4" fill="#181513"/>
+                    <rect x="360" y="0" width="160" height="120" rx="8" fill="#FAF6EC" stroke="#DDD4C0"/>
+                    <rect x="374" y="14" width="80" height="10" rx="2" fill="#181513"/>
+                    <rect x="374" y="30" width="80" height="6" rx="2" fill="#6F6557"/>
+                    <rect x="374" y="60" width="132" height="46" rx="4" fill="#E9DFCC"/>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <div class="wcard__body">
+              <div class="wcard__meta"><span>2023</span><span class="dotsep"></span><span>SurveyMonkey</span><span class="dotsep"></span><span>Acquisition</span></div>
+              <h3 class="wcard__title">Improving <em>Template Discovery</em> Through Search and Interaction</h3>
+              <p class="wcard__summary">A query-led template browser that replaced a deep category tree. Diary studies, search log analysis, and a new ranking model collapsed a four-step path into one.</p>
+              <div class="wcard__tags">
+                <span class="wcard__tag wcard__tag--accent">Interaction</span>
+                <span class="wcard__tag">Research</span>
+                <span class="wcard__tag">Analytics</span>
+                <span class="wcard__tag">Growth</span>
+              </div>
+              <dl class="wcard__detail">
+                <div><dt>Role</dt><dd>IC designer · partnered with research</dd></div>
+                <div><dt>Impact</dt><dd>Time-to-template <em>41s → 12s</em>; template starts <em>+31%</em></dd></div>
+              </dl>
+            </div>
+            <div class="wcard__foot">
+              <span>Case study</span>
+              <span class="wcard__cta">Read case <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </div>
+          </a>
+
+          <!-- 07 — Web UX Practice -->
+          <a id="practice" href="Building a Web UX Practice.html" class="wcard reveal" data-tags="leadership design-systems cms growth">
+            <div class="wcard__thumb" style="background:
+              radial-gradient(90% 70% at 20% 20%, #F2D7C9 0%, transparent 55%),
+              radial-gradient(80% 70% at 90% 90%, #E9DFCC 0%, transparent 60%),
+              linear-gradient(180deg, #F7F1E5, #EDE5D2);">
+              <span class="wcard__badge"><span class="dot"></span>Practice</span>
+              <span class="wcard__index">07 / 07</span>
+              <svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <defs>
+                  <pattern id="g-wp" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="rgba(24,21,19,.06)" stroke-width="1"/></pattern>
+                </defs>
+                <rect width="800" height="500" fill="url(#g-wp)"/>
+                <g font-family="IBM Plex Mono,monospace" font-size="11" fill="#181513">
+                  <!-- Seven partner nodes orbiting Web UX -->
+                  <g fill="none" stroke="#181513" stroke-width="1" opacity=".35">
+                    <line x1="400" y1="250" x2="180" y2="110"/>
+                    <line x1="400" y1="250" x2="620" y2="110"/>
+                    <line x1="400" y1="250" x2="110" y2="260"/>
+                    <line x1="400" y1="250" x2="690" y2="260"/>
+                    <line x1="400" y1="250" x2="180" y2="410"/>
+                    <line x1="400" y1="250" x2="620" y2="410"/>
+                    <line x1="400" y1="250" x2="400" y2="60"/>
+                  </g>
+                  <g>
+                    <rect x="120" y="90" width="120" height="40" rx="8" fill="#FAF6EC" stroke="#181513"/>
+                    <text x="180" y="114" text-anchor="middle">marketing</text>
+                    <rect x="560" y="90" width="120" height="40" rx="8" fill="#FAF6EC" stroke="#181513"/>
+                    <text x="620" y="114" text-anchor="middle">product</text>
+                    <rect x="50" y="240" width="120" height="40" rx="8" fill="#FAF6EC" stroke="#181513"/>
+                    <text x="110" y="264" text-anchor="middle">brand</text>
+                    <rect x="630" y="240" width="120" height="40" rx="8" fill="#FAF6EC" stroke="#181513"/>
+                    <text x="690" y="264" text-anchor="middle">engineering</text>
+                    <rect x="120" y="390" width="120" height="40" rx="8" fill="#FAF6EC" stroke="#181513"/>
+                    <text x="180" y="414" text-anchor="middle">content</text>
+                    <rect x="560" y="390" width="120" height="40" rx="8" fill="#FAF6EC" stroke="#181513"/>
+                    <text x="620" y="414" text-anchor="middle">growth</text>
+                    <rect x="340" y="40" width="120" height="40" rx="8" fill="#FAF6EC" stroke="#181513"/>
+                    <text x="400" y="64" text-anchor="middle">research</text>
+                    <!-- Center: Web UX as connective tissue -->
+                    <rect x="320" y="220" width="160" height="60" rx="10" fill="#C8451E" stroke="#C8451E"/>
+                    <text x="400" y="246" text-anchor="middle" fill="#FAF6EC" font-size="12">WEB UX</text>
+                    <text x="400" y="264" text-anchor="middle" fill="#FAF6EC" opacity=".7" font-size="10">connective tissue</text>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <div class="wcard__body">
+              <div class="wcard__meta"><span>2022 — 2025</span><span class="dotsep"></span><span>SurveyMonkey</span><span class="dotsep"></span><span>Team leadership</span></div>
+              <h3 class="wcard__title">Building a <em>Web UX</em> Practice Across Marketing, Product &amp; Growth</h3>
+              <p class="wcard__summary">Leadership case: shaping the remit, operating model, and mentorship loop for the team that owns the interactive layer between marketing storytelling and product-led growth.</p>
+              <div class="wcard__tags">
+                <span class="wcard__tag wcard__tag--accent">Leadership</span>
+                <span class="wcard__tag">Design Management</span>
+                <span class="wcard__tag">Design Systems</span>
+                <span class="wcard__tag">CMS</span>
+                <span class="wcard__tag">Team Practice</span>
+              </div>
+              <dl class="wcard__detail">
+                <div><dt>Role</dt><dd>Manager &amp; team lead · mentor · systems strategist</dd></div>
+                <div><dt>Impact</dt><dd><em>Qualitative</em> — clarity, ownership, mentorship, positioning</dd></div>
+              </dl>
+            </div>
+            <div class="wcard__foot">
+              <span>Case study</span>
+              <span class="wcard__cta">Read case <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </div>
+          </a>
+
+        </div>
+
+        <!-- Empty state -->
+        <div id="empty-state" style="display:none; text-align:center; padding: 80px 0; border:1px dashed var(--line-2); border-radius: var(--radius-lg); margin-top: 24px;">
+          <p style="font-family:var(--font-display); font-size: 28px; margin: 0 0 8px;">No projects under that filter — <em style="font-style:italic; color:var(--accent);">yet</em>.</p>
+          <p style="color:var(--muted); margin: 0;">Reset filters or <a href="contact.html" class="ilink">ask about adjacent work</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="section section--flush">
+      <div class="shell">
+        <div class="cta">
+          <div>
+            <div class="cta__eyebrow">Working together</div>
+            <h2 class="cta__title">Got a brief? Let's <em>talk shape</em> before scope.</h2>
+          </div>
+          <div class="cta__side">
+            <p class="cta__lede">Tell me about the system you're building — or the one you're trying to climb out of.</p>
+            <div style="display:flex; gap:12px; flex-wrap:wrap;">
+              <a href="contact.html" class="btn btn--accent">Start a conversation
+                <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a href="about.html" class="btn btn--ghost">More about me</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell">
+      <div class="footer__grid">
+        <div class="footer__brand-col">
+          <h2 class="footer__brand" style="font-weight: 500">David <em style="font-weight: 500">Cho</em></h2>
+          <p class="footer__tagline">Designing the systems behind high-performing web experiences.</p>
+        </div>
+        <div class="footer__col"><h4>Site</h4><ul><li><a href="index.html">Index</a></li><li><a href="work.html">Work</a></li><li><a href="about.html">About</a></li><li><a href="resume.html">Resume</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+        <div class="footer__col"><h4>Elsewhere</h4><ul><li><a href="#">LinkedIn ↗</a></li><li><a href="#">Read.cv ↗</a></li><li><a href="#">Are.na ↗</a></li><li><a href="#">Dribbble ↗</a></li></ul></div>
+        <div class="footer__col"><h4>Contact</h4><ul><li><a href="mailto:hi@davidcho.design">hi@davidcho.design</a></li><li><a href="contact.html">Project brief</a></li><li><a href="#">+1 (415) 555&#8209;0118</a></li></ul></div>
+      </div>
+      <div class="footer__bar">
+        <span>© <span data-year></span> &nbsp;David Cho · Toronto</span>
+        <span>Set in Source Serif 4 &amp; Space Grotesk</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/site.js"></script>
+  <script>
+    // Live count update on filter
+    (function () {
+      const group = document.querySelector('[data-filter-group]');
+      if (!group) return;
+      const items = document.querySelectorAll('#work-list [data-tags]');
+      const countEl = document.getElementById('visible-count');
+      const empty = document.getElementById('empty-state');
+      group.querySelectorAll('.chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          // base filter handler in site.js already toggles visibility
+          requestAnimationFrame(() => {
+            const visible = [...items].filter(i => i.style.display !== 'none').length;
+            if (countEl) countEl.textContent = String(visible).padStart(2, '0');
+            if (empty) empty.style.display = visible === 0 ? 'block' : 'none';
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Font Exploration — David Cho Portfolio</title>
+
+  <!-- Pairing A: Current — Instrument Serif + Geist -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Plus+Jakarta+Sans:wght@300;400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,300;1,8..60,400;1,8..60,500&family=Source+Sans+3:opsz,wght@8..60,300;8..60,400;8..60,500&family=Space+Grotesk:wght@300;400;500;600&family=Outfit:wght@300;400;500&family=JetBrains+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Merriweather:ital,wght@0,300;0,400;1,300;1,400&family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Bitter:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" />
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #1a1a1a; height: 100%; }
+  </style>
+</head>
+<body>
+
+<script type="text/babel" src="design-canvas.jsx"></script>
+
+<script type="text/babel">
+// ── Palette (shared with portfolio) ──────────────────────────────────────────
+const P = {
+  bg:      '#F1ECE2',
+  bg2:     '#ECE6D9',
+  surface: '#FAF6EC',
+  ink:     '#181513',
+  ink2:    '#2E2823',
+  muted:   '#6F6557',
+  muted2:  '#948A7B',
+  line:    '#DDD4C0',
+  line2:   '#C9BFA8',
+  accent:  '#C8451E',
+};
+
+// ── The four pairings ─────────────────────────────────────────────────────────
+const PAIRINGS = [
+  {
+    id:    'current',
+    label: 'A — Current',
+    note:  'Instrument Serif · Geist · Geist Mono',
+    fonts: {
+      display: '"Instrument Serif", Georgia, serif',
+      sans:    '"Geist", system-ui, sans-serif',
+      mono:    '"Geist Mono", monospace',
+    },
+    tag: 'reference',
+  },
+  {
+    id:    'cormorant',
+    label: 'B — High Contrast',
+    note:  'Cormorant Garamond · DM Sans · IBM Plex Mono',
+    fonts: {
+      display: '"Cormorant Garamond", "Times New Roman", serif',
+      sans:    '"DM Sans", system-ui, sans-serif',
+      mono:    '"IBM Plex Mono", monospace',
+    },
+    tag: 'elegant',
+  },
+  {
+    id:    'fraunces',
+    label: 'C — Warm Optical',
+    note:  'Fraunces · Plus Jakarta Sans · JetBrains Mono',
+    fonts: {
+      display: '"Fraunces", Georgia, serif',
+      sans:    '"Plus Jakarta Sans", system-ui, sans-serif',
+      mono:    '"JetBrains Mono", monospace',
+    },
+    tag: 'character',
+  },
+  {
+    id:    'source',
+    label: 'D — Systems Clean',
+    note:  'Source Serif 4 · Outfit · IBM Plex Mono',
+    fonts: {
+      display: '"Source Serif 4", Georgia, serif',
+      sans:    '"Outfit", system-ui, sans-serif',
+      mono:    '"IBM Plex Mono", monospace',
+    },
+    tag: 'precision',
+  },
+];
+
+// ── D Variations ─────────────────────────────────────────────────────────────
+const D_VARIATIONS = [
+  {
+    id: 'd-orig',
+    label: 'D — Original',
+    note: 'Source Serif 4 · Outfit · IBM Plex Mono',
+    fonts: { display: '"Source Serif 4", Georgia, serif', sans: '"Outfit", system-ui, sans-serif', mono: '"IBM Plex Mono", monospace' },
+    tag: 'reference',
+  },
+  {
+    id: 'd1',
+    label: 'D1 — Heavier Serif',
+    note: 'Source Serif 4 (500 wt, opsz 48) · Outfit · IBM Plex Mono',
+    fonts: {
+      display: '"Source Serif 4", Georgia, serif',
+      sans: '"Outfit", system-ui, sans-serif',
+      mono: '"IBM Plex Mono", monospace',
+      h1Weight: 500, h1VarSettings: '"opsz" 48',
+      h2Weight: 500,
+    },
+    tag: 'authoritative',
+  },
+  {
+    id: 'd2',
+    label: 'D2 — Source Stack',
+    note: 'Source Serif 4 · Source Sans 3 · IBM Plex Mono',
+    fonts: {
+      display: '"Source Serif 4", Georgia, serif',
+      sans: '"Source Sans 3", system-ui, sans-serif',
+      mono: '"IBM Plex Mono", monospace',
+    },
+    tag: 'cohesive',
+  },
+  {
+    id: 'd3',
+    label: 'D3 — IBM Stack',
+    note: 'Source Serif 4 · IBM Plex Sans · IBM Plex Mono',
+    fonts: {
+      display: '"Source Serif 4", Georgia, serif',
+      sans: '"IBM Plex Sans", system-ui, sans-serif',
+      mono: '"IBM Plex Mono", monospace',
+    },
+    tag: 'systematic',
+  },
+  {
+    id: 'd4',
+    label: 'D4 — Space Grotesk',
+    note: 'Source Serif 4 · Space Grotesk · IBM Plex Mono',
+    fonts: {
+      display: '"Source Serif 4", Georgia, serif',
+      sans: '"Space Grotesk", system-ui, sans-serif',
+      mono: '"IBM Plex Mono", monospace',
+    },
+    tag: 'technical',
+  },
+  {
+    id: 'd5',
+    label: 'D5 — Featherlight',
+    note: 'Source Serif 4 (300 wt, opsz 60) · Outfit (300) · IBM Plex Mono',
+    fonts: {
+      display: '"Source Serif 4", Georgia, serif',
+      sans: '"Outfit", system-ui, sans-serif',
+      mono: '"IBM Plex Mono", monospace',
+      h1Weight: 300, h1VarSettings: '"opsz" 60',
+      h2Weight: 300,
+      bodyWeight: 300,
+    },
+    tag: 'editorial',
+  },
+];
+
+// ── D Serif Alternatives ──────────────────────────────────────────────────────
+const D_SERIF_ALTS = [
+  {
+    id: 'da-lora',
+    label: 'D — Lora',
+    note: 'Lora · Outfit · IBM Plex Mono',
+    fonts: { display: '"Lora", Georgia, serif', sans: '"Outfit", system-ui, sans-serif', mono: '"IBM Plex Mono", monospace' },
+    tag: 'warm',
+  },
+  {
+    id: 'da-merriweather',
+    label: 'D — Merriweather',
+    note: 'Merriweather · Outfit · IBM Plex Mono',
+    fonts: { display: '"Merriweather", Georgia, serif', sans: '"Outfit", system-ui, sans-serif', mono: '"IBM Plex Mono", monospace', h1Weight: 300, h2Weight: 300 },
+    tag: 'sturdy',
+  },
+  {
+    id: 'da-spectral',
+    label: 'D — Spectral',
+    note: 'Spectral · Outfit · IBM Plex Mono',
+    fonts: { display: '"Spectral", Georgia, serif', sans: '"Outfit", system-ui, sans-serif', mono: '"IBM Plex Mono", monospace', h1Weight: 300, h2Weight: 300 },
+    tag: 'refined',
+  },
+  {
+    id: 'da-garamond',
+    label: 'D — EB Garamond',
+    note: 'EB Garamond · Outfit · IBM Plex Mono',
+    fonts: { display: '"EB Garamond", Georgia, serif', sans: '"Outfit", system-ui, sans-serif', mono: '"IBM Plex Mono", monospace', h1Weight: 500, h2Weight: 500 },
+    tag: 'classical',
+  },
+  {
+    id: 'da-baskerville',
+    label: 'D — Libre Baskerville',
+    note: 'Libre Baskerville · Outfit · IBM Plex Mono',
+    fonts: { display: '"Libre Baskerville", Georgia, serif', sans: '"Outfit", system-ui, sans-serif', mono: '"IBM Plex Mono", monospace' },
+    tag: 'press',
+  },
+  {
+    id: 'da-bitter',
+    label: 'D — Bitter',
+    note: 'Bitter · Outfit · IBM Plex Mono',
+    fonts: { display: '"Bitter", Georgia, serif', sans: '"Outfit", system-ui, sans-serif', mono: '"IBM Plex Mono", monospace', h1Weight: 400, h2Weight: 400 },
+    tag: 'slab',
+  },
+];
+
+// ── D Sans-Accent Variations ─────────────────────────────────────────────────
+// Same Source Serif 4 + Outfit base; accent <em> words swap to various sans
+const accentBase = {
+  display: '"Source Serif 4", Georgia, serif',
+  sans: '"Outfit", system-ui, sans-serif',
+  mono: '"IBM Plex Mono", monospace',
+};
+const D_SANS_ACCENT = [
+  {
+    id: 'dsa-ref',
+    label: 'D — Accent: Italic serif (ref)',
+    note: 'Baseline — italic Source Serif 4 in accent color',
+    fonts: { ...accentBase,
+      accentStyle: { fontStyle: 'italic', color: P.accent, fontFamily: '"Source Serif 4", Georgia, serif' },
+    },
+  },
+  {
+    id: 'dsa-outfit-med',
+    label: 'D — Accent: Outfit 500',
+    note: 'Sans accent · medium weight · upright',
+    fonts: { ...accentBase,
+      accentStyle: { fontStyle: 'normal', fontFamily: '"Outfit", system-ui, sans-serif', fontWeight: 500, color: P.accent },
+    },
+  },
+  {
+    id: 'dsa-outfit-light',
+    label: 'D — Accent: Outfit 300',
+    note: 'Sans accent · light weight · upright',
+    fonts: { ...accentBase,
+      accentStyle: { fontStyle: 'normal', fontFamily: '"Outfit", system-ui, sans-serif', fontWeight: 300, color: P.accent, letterSpacing: '-.01em' },
+    },
+  },
+  {
+    id: 'dsa-space',
+    label: 'D — Accent: Space Grotesk',
+    note: 'Geometric sans accent · medium weight',
+    fonts: { ...accentBase,
+      accentStyle: { fontStyle: 'normal', fontFamily: '"Space Grotesk", system-ui, sans-serif', fontWeight: 500, color: P.accent },
+    },
+  },
+  {
+    id: 'dsa-ibm',
+    label: 'D — Accent: IBM Plex Sans',
+    note: 'Systematic sans accent · medium weight',
+    fonts: { ...accentBase,
+      accentStyle: { fontStyle: 'normal', fontFamily: '"IBM Plex Sans", system-ui, sans-serif', fontWeight: 500, color: P.accent },
+    },
+  },
+  {
+    id: 'dsa-source-sans',
+    label: 'D — Accent: Source Sans 3',
+    note: 'Adobe family match · medium weight',
+    fonts: { ...accentBase,
+      accentStyle: { fontStyle: 'normal', fontFamily: '"Source Sans 3", system-ui, sans-serif', fontWeight: 500, color: P.accent },
+    },
+  },
+  {
+    id: 'dsa-geist',
+    label: 'D — Accent: Geist',
+    note: 'Modern minimal sans accent',
+    fonts: {
+      display: '"Source Serif 4", Georgia, serif',
+      sans: '"Outfit", system-ui, sans-serif',
+      mono: '"IBM Plex Mono", monospace',
+      accentStyle: { fontStyle: 'normal', fontFamily: '"Geist", system-ui, sans-serif', fontWeight: 400, color: P.accent, letterSpacing: '-.02em' },
+    },
+  },
+];
+
+// ── Mini portfolio card rendered in each pairing ──────────────────────────────
+const cardStyles = {
+  card: {
+    background: P.bg,
+    width: '100%',
+    height: '100%',
+    padding: '40px 44px',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 0,
+    overflowY: 'auto',
+  },
+};
+
+function PairingCard({ fonts }) {
+  const mono = { fontFamily: fonts.mono };
+  const sans = { fontFamily: fonts.sans, fontWeight: fonts.bodyWeight || 400 };
+  const disp = { fontFamily: fonts.display };
+  const h1Extra = {
+    fontWeight: fonts.h1Weight || 400,
+    ...(fonts.h1VarSettings ? { fontVariationSettings: fonts.h1VarSettings } : {}),
+  };
+  const h2Extra = {
+    fontWeight: fonts.h2Weight || 400,
+  };
+  const accentEm = fonts.accentStyle || { fontStyle: 'italic', color: P.accent };
+
+  return (
+    <div style={cardStyles.card}>
+
+      {/* Nav strip */}
+      <div style={{
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        paddingBottom: 20, borderBottom: `1px solid ${P.line}`, marginBottom: 36,
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <span style={{
+            ...mono, fontSize: 10, fontWeight: 500,
+            border: `1px solid ${P.ink}`, borderRadius: 4,
+            padding: '3px 5px', background: P.surface, letterSpacing: '.02em',
+          }}>DC</span>
+          <span style={{ ...disp, fontStyle: 'italic', fontSize: 16 }}>David Cho</span>
+          <span style={{ ...mono, fontSize: 10, color: P.muted, letterSpacing: '.1em', textTransform: 'uppercase', borderLeft: `1px solid ${P.line2}`, paddingLeft: 10, marginLeft: 4 }}>UX&nbsp;Web&nbsp;Designer</span>
+        </div>
+        <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
+          {['Index','Work','About'].map(l => (
+            <span key={l} style={{ ...mono, fontSize: 11, textTransform: 'uppercase', letterSpacing: '.1em', color: P.muted2 }}>{l}</span>
+          ))}
+          <span style={{
+            ...sans, fontSize: 12, fontWeight: 500,
+            background: P.ink, color: P.surface,
+            padding: '7px 14px', borderRadius: 999,
+          }}>Get in touch</span>
+        </div>
+      </div>
+
+      {/* Hero eyebrow */}
+      <div style={{ ...mono, fontSize: 10, letterSpacing: '.14em', textTransform: 'uppercase', color: P.muted, marginBottom: 28 }}>
+        Portfolio / 2026 — San Francisco
+      </div>
+
+      {/* Headline */}
+      <h1 style={{
+        ...disp, ...h1Extra, fontSize: 72, lineHeight: .96,
+        letterSpacing: '-.022em', margin: '0 0 32px', color: P.ink,
+        maxWidth: '16ch',
+      }}>
+        Designing the <em style={accentEm}>systems</em><br/>
+        behind <em style={accentEm}>high&#8209;performing</em><br/>
+        web experiences.
+      </h1>
+
+      {/* Lede + meta */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 40, alignItems: 'end', marginBottom: 32 }}>
+        <p style={{ ...sans, fontSize: 17, lineHeight: 1.5, color: P.ink2, margin: 0, maxWidth: '44ch' }}>
+          <strong style={{ fontWeight: 500, color: P.ink }}>I'm David Cho</strong>, a UX Web Designer and Manager focused on scalable web systems, CMS modernization, growth experiences, and the connective tissue between marketing, product, and design systems.
+        </p>
+        <div>
+          <div style={{ display: 'flex', gap: 10, marginBottom: 20 }}>
+            <span style={{
+              ...sans, fontSize: 14, fontWeight: 500,
+              background: P.ink, color: P.surface,
+              padding: '11px 20px', borderRadius: 999, display: 'inline-flex', alignItems: 'center', gap: 8,
+            }}>View Work →</span>
+            <span style={{
+              ...sans, fontSize: 14,
+              border: `1px solid ${P.line2}`, color: P.ink,
+              padding: '11px 20px', borderRadius: 999,
+            }}>Contact Me</span>
+          </div>
+          <dl style={{ ...mono, fontSize: 11, margin: 0, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px 16px', paddingTop: 16, borderTop: `1px solid ${P.line}` }}>
+            <div>
+              <dt style={{ textTransform: 'uppercase', letterSpacing: '.1em', color: P.muted, marginBottom: 4 }}>Currently</dt>
+              <dd style={{ ...sans, fontSize: 13, margin: 0, color: P.ink }}>UX Web Designer, SurveyMonkey</dd>
+            </div>
+            <div>
+              <dt style={{ textTransform: 'uppercase', letterSpacing: '.1em', color: P.muted, marginBottom: 4 }}>Practice</dt>
+              <dd style={{ ...sans, fontSize: 13, margin: 0, color: P.ink }}>Web systems · CMS · Growth</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      {/* Divider + section head */}
+      <div style={{ borderTop: `1px solid ${P.line}`, paddingTop: 28, marginTop: 8, display: 'grid', gridTemplateColumns: '180px 1fr', gap: 40, alignItems: 'start' }}>
+        <span style={{ ...mono, fontSize: 11, letterSpacing: '.14em', textTransform: 'uppercase', color: P.muted, display: 'flex', alignItems: 'center', gap: 8 }}>
+          <span style={{ width: 7, height: 7, borderRadius: '50%', background: P.accent, display: 'inline-block', flexShrink: 0 }}></span>
+          01 — What I do
+        </span>
+        <div>
+          <h2 style={{ ...disp, ...h2Extra, fontSize: 38, lineHeight: 1.04, letterSpacing: '-.012em', margin: '0 0 12px', color: P.ink }}>
+            Four practices, <em style={accentEm}>one operating model</em> for the web.
+          </h2>
+          <p style={{ ...sans, fontSize: 15, lineHeight: 1.55, color: P.muted, margin: 0, maxWidth: '56ch' }}>
+            I work where strategy meets systems — translating brand, product, and growth goals into web experiences that scale across regions, teams, and tools.
+          </p>
+        </div>
+      </div>
+
+      {/* Tags sample */}
+      <div style={{ display: 'flex', gap: 6, marginTop: 20, flexWrap: 'wrap' }}>
+        {['CMS','Patterns','IA','Workflows','Tokens','Components'].map(t => (
+          <span key={t} style={{
+            ...mono, fontSize: 11, textTransform: 'uppercase', letterSpacing: '.08em',
+            padding: '4px 10px', borderRadius: 999, border: `1px solid ${P.line}`,
+            color: P.muted, background: `color-mix(in oklab, ${P.bg} 70%, ${P.surface})`,
+          }}>{t}</span>
+        ))}
+      </div>
+
+    </div>
+  );
+}
+
+// ── App ───────────────────────────────────────────────────────────────────────
+function App() {
+  return (
+    <DesignCanvas title="Font Exploration — David Cho Portfolio">
+      <DCSection id="pairings" title="Pairing options — full layout context">
+        {PAIRINGS.map(p => (
+          <DCArtboard key={p.id} id={p.id} label={`${p.label}  ·  ${p.note}`} width={860} height={640}>
+            <PairingCard fonts={p.fonts} />
+          </DCArtboard>
+        ))}
+      </DCSection>
+      <DCSection id="d-variations" title="D variations — Source Serif 4 explorations">
+        {D_VARIATIONS.map(p => (
+          <DCArtboard key={p.id} id={p.id} label={`${p.label}  ·  ${p.note}`} width={860} height={640}>
+            <PairingCard fonts={p.fonts} />
+          </DCArtboard>
+        ))}
+      </DCSection>
+      <DCSection id="d-sans-accent" title="D sans-accent variations — sans-serif for the orange emphasis words">
+        {D_SANS_ACCENT.map(p => (
+          <DCArtboard key={p.id} id={p.id} label={`${p.label}  ·  ${p.note}`} width={860} height={640}>
+            <PairingCard fonts={p.fonts} />
+          </DCArtboard>
+        ))}
+      </DCSection>
+      <DCSection id="d-serif-alts" title="D serif alternatives — less Playfair, same sans stack">
+        {D_SERIF_ALTS.map(p => (
+          <DCArtboard key={p.id} id={p.id} label={`${p.label}  ·  ${p.note}`} width={860} height={640}>
+            <PairingCard fonts={p.fonts} />
+          </DCArtboard>
+        ))}
+      </DCSection>
+    </DesignCanvas>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+
+<div id="root"></div>
+</body>
+</html>

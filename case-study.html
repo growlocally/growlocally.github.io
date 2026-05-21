@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project Blueprint — Case Study · David Cho</title>
+  <meta name="description" content="Case study — modernizing SurveyMonkey's marketing CMS as one composable web system." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;1,8..60,300;1,8..60,400;1,8..60,500&family=Space+Grotesk:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="shell nav__inner">
+      <a href="index.html" class="brand" aria-label="David Cho — home">
+        <span><span class="brand__name">David Cho</span></span>
+        <span class="brand__role">UX&nbsp;Designer&nbsp;/&nbsp;Manager</span>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="index.html"  class="nav__link">Index</a>
+        <a href="work.html"   class="nav__link is-active">Work</a>
+        <a href="about.html"  class="nav__link">About</a>
+        <a href="resume.html" class="nav__link">Resume</a>
+        <a href="contact.html" class="nav__link">Contact</a>
+        <a href="contact.html" class="btn btn--primary btn--sm nav__cta">Get in touch
+          <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </nav>
+      <button class="nav__menu-btn" aria-label="Open menu"><span></span></button>
+    </div>
+    <div class="nav__panel">
+      <a href="index.html">Index</a><a href="work.html">Work</a><a href="about.html">About</a><a href="resume.html">Resume</a><a href="contact.html">Contact</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="cs-hero">
+      <div class="shell">
+        <a class="cs-hero__breadcrumb" href="work.html">
+          <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          All work
+        </a>
+        <div class="cs-hero__eyebrow">Case Study · 01 / 06 · In flight</div>
+        <h1 class="cs-hero__title"><em>Project Blueprint</em>: Modernizing SurveyMonkey's Marketing CMS.</h1>
+        <p class="cs-hero__sub">A ground-up rewrite of the global marketing web as one composable system — page model, components, tokens, motion, and CMS schema collapsed into a single source of truth.</p>
+
+        <div class="cs-hero__tags">
+          <span class="tag tag--accent">Systems</span>
+          <span class="tag">CMS</span>
+          <span class="tag">Design Systems</span>
+          <span class="tag">Leadership</span>
+          <span class="tag">Motion</span>
+        </div>
+
+        <dl class="cs-summary">
+          <div><dt>Role</dt><dd>Lead designer</dd></div>
+          <div><dt>Team</dt><dd>4 designers · 11 engineers · 6 PMMs</dd></div>
+          <div><dt>Timeline</dt><dd>Q4 2024 — Q3 2026 · in flight</dd></div>
+          <div><dt>Surface</dt><dd>marketing.surveymonkey.com · 4 locales</dd></div>
+        </dl>
+
+        <!-- Cover plate (image placeholder) -->
+        <div class="cs-cover">
+          <span class="placeholder">Figure 00 — Hero image placeholder · 1920 × 1080</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ READING LAYOUT ============ -->
+    <div class="shell">
+      <div class="cs-layout">
+
+        <!-- TOC -->
+        <aside class="cs-toc" aria-label="Contents">
+          <div class="cs-toc__label">Contents</div>
+          <ol>
+            <li><a href="#overview" data-toc>Overview</a></li>
+            <li><a href="#context" data-toc>Context</a></li>
+            <li><a href="#problem" data-toc>Problem</a></li>
+            <li><a href="#role" data-toc>My Role</a></li>
+            <li><a href="#strategy" data-toc>Strategy</a></li>
+            <li><a href="#process" data-toc>Process</a></li>
+            <li><a href="#decisions" data-toc>Key Decisions</a></li>
+            <li><a href="#solution" data-toc>System &amp; UX Solution</a></li>
+            <li><a href="#collab" data-toc>Collaboration</a></li>
+            <li><a href="#impact" data-toc>Impact</a></li>
+            <li><a href="#learned" data-toc>What I Learned</a></li>
+          </ol>
+        </aside>
+
+        <!-- BODY -->
+        <article class="cs-body">
+
+          <!-- 01 OVERVIEW -->
+          <section id="overview" class="cs-section">
+            <div class="cs-section__num">01 — Overview</div>
+            <h2 class="cs-section__title">One <em>system</em>, not a hundred pages.</h2>
+            <p class="cs-section__lede">A long-running effort to retire SurveyMonkey's fragmented marketing site stack and replace it with one composable web system used by everyone who touches the site.</p>
+            <p>Blueprint isn't a redesign. The brand was healthy and the traffic was strong; the problem sat underneath the design layer, in the page model, the CMS, and the way three different teams were each authoring their own version of "the homepage." This case study walks through the strategy, the decisions worth flagging, and what changed once the system started landing in production.</p>
+          </section>
+
+          <!-- 02 CONTEXT -->
+          <section id="context" class="cs-section">
+            <div class="cs-section__num">02 — Context</div>
+            <h2 class="cs-section__title">The site had <em>grown into three sites</em>.</h2>
+            <p>The marketing surface served roughly four audiences (researchers, CX teams, employee-experience buyers, and SMBs trying surveys for the first time) across four locales. Over a decade of growth, the implementation had accreted into three parallel CMSes, each with its own component vocabulary, motion habits, and update cadence.</p>
+            <p>Authors stitched pages from a long tail of one-off components. Engineers patched the live site to clear backlog. A brand refresh had landed in product but not on marketing — so the front door was visibly off from the rest of the experience.</p>
+
+            <div class="cs-callout">
+              <div class="cs-callout__label">Background</div>
+              <p class="cs-callout__body">By the start of the project, the team supported <em>140-plus</em> distinct page components and a similar number of one-off templates. The cost of a new page was no longer "design a page" — it was "decide which of three systems to use."</p>
+            </div>
+          </section>
+
+          <!-- 03 PROBLEM -->
+          <section id="problem" class="cs-section">
+            <div class="cs-section__num">03 — Problem</div>
+            <h2 class="cs-section__title">The platform was <em>holding the work hostage</em>.</h2>
+            <p>The visible symptom was slow page launches. The deeper problem was that no single team could change the marketing site safely on their own. Marketing waited on engineering; engineering waited on design; design waited on a brand decision that wasn't going to come.</p>
+
+            <div class="cs-twocol">
+              <div>
+                <h4>What we kept hearing</h4>
+                <ul>
+                  <li>"Every campaign feels like a new build."</li>
+                  <li>"I don't know which components are blessed."</li>
+                  <li>"We can't ship a localized variant without a ticket."</li>
+                  <li>"Motion behaves differently per page."</li>
+                </ul>
+              </div>
+              <div>
+                <h4>What the data hinted at</h4>
+                <ul>
+                  <li>Long page-launch lead times</li>
+                  <li>High variance in performance budgets per page</li>
+                  <li>Duplicate components doing similar jobs</li>
+                  <li>Drift between marketing and product styling</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- 04 MY ROLE -->
+          <section id="role" class="cs-section">
+            <div class="cs-section__num">04 — My Role</div>
+            <h2 class="cs-section__title">Lead designer &amp; the <em>person holding the spine</em>.</h2>
+            <p>I owned the design direction end-to-end: the page system, the component model, the motion vocabulary, the CMS schema work, and the cross-team alignment that the project lived or died by. On any given week I was switching between IC work, design crits, engineering API reviews, and exec readouts.</p>
+
+            <dl class="cs-role">
+              <div><dt>What I led</dt><dd>Page system · component library · tokens · motion · CMS schema · governance model</dd></div>
+              <div><dt>What I shipped personally</dt><dd>Architecture diagrams, the first 8 components, brand-to-token mapping, the motion primitives spec</dd></div>
+              <div><dt>What I delegated</dt><dd>Detailed component design, doc site implementation, locale-specific pattern variants</dd></div>
+              <div><dt>What I didn't own</dt><dd>Brand visual identity, product UX, marketing copy</dd></div>
+            </dl>
+          </section>
+
+          <!-- 05 STRATEGY -->
+          <section id="strategy" class="cs-section">
+            <div class="cs-section__num">05 — Strategy</div>
+            <h2 class="cs-section__title">Treat the marketing site as <em>a product</em>.</h2>
+            <p class="cs-section__lede">If a product team needs a roadmap, a design system, instrumentation, and a release model — so does this.</p>
+
+            <p>The strategy had three commitments. First: <strong>one system, not a refresh of three</strong>. We would invest where it compounded — the page model, the component library, the CMS schema — and let the visual brand follow tokens automatically. Second: <strong>authors are users</strong>. The CMS authoring experience was treated as a UX surface in its own right, with its own design crits. Third: <strong>ship as we go</strong>. We picked a real campaign every quarter to be a forcing function, instead of building in private.</p>
+
+            <div class="cs-callout cs-callout--decision">
+              <div class="cs-callout__label">Strategic bet</div>
+              <p class="cs-callout__body">A small, opinionated set of <em>composable templates</em> would do more for velocity than a sprawling component library that "could build anything."</p>
+            </div>
+          </section>
+
+          <!-- 06 PROCESS -->
+          <section id="process" class="cs-section">
+            <div class="cs-section__num">06 — Process</div>
+            <h2 class="cs-section__title">Six months of <em>listening</em>, then build in public.</h2>
+
+            <div class="cs-figure">
+              <div class="cs-figure__frame"><span class="cs-figure__placeholder">Figure 01 — Process timeline</span></div>
+              <div class="cs-figure__caption"><span class="num">Fig 01</span><span>A high-level view of the project arc — discovery, system foundations, pilot campaign, scale.</span></div>
+            </div>
+
+            <p>The first two months were almost entirely listening. We mapped every component in production, interviewed the marketers and engineers using them, and ran a quiet audit of the authoring experience by sitting next to authors as they shipped real pages.</p>
+            <p>From there we worked outward in concentric rings: tokens first, then primitives, then a small set of composable templates, then the CMS schema that exposed them to authors. We didn't try to migrate the whole site — instead, each quarter we picked one real campaign as the test of whether the system was ready.</p>
+
+            <div class="cs-figure">
+              <div class="cs-figure__frame"><span class="cs-figure__placeholder">Figure 02 — Component audit map</span></div>
+              <div class="cs-figure__caption"><span class="num">Fig 02</span><span>Inventory of the existing component landscape, grouped by job-to-be-done and overlap density.</span></div>
+            </div>
+          </section>
+
+          <!-- 07 KEY DECISIONS -->
+          <section id="decisions" class="cs-section">
+            <div class="cs-section__num">07 — Key Decisions</div>
+            <h2 class="cs-section__title">The <em>handful of choices</em> that shaped everything after.</h2>
+
+            <ol class="cs-decisions">
+              <li>
+                <span class="cs-decisions__num">D · 01</span>
+                <div>
+                  <h3 class="cs-decisions__title">Page <em>templates</em> over freeform pages</h3>
+                  <p class="cs-decisions__rationale">A curated set of templates, each with a clear job, instead of a blank canvas. Less expressive — more reliable, more measurable, and far faster to ship in.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Kept</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">D · 02</span>
+                <div>
+                  <h3 class="cs-decisions__title">Tokens as the <em>real</em> brand surface</h3>
+                  <p class="cs-decisions__rationale">Marketing visual changes route through tokens, not component-level styling. The site can be re-themed without re-shipping a single component.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Kept</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">D · 03</span>
+                <div>
+                  <h3 class="cs-decisions__title">CMS schema designed <em>with</em> authors</h3>
+                  <p class="cs-decisions__rationale">We co-designed the authoring schema with marketers in the room, then made it the API for engineering. Authoring is a design surface, not an afterthought.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Kept</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">D · 04</span>
+                <div>
+                  <h3 class="cs-decisions__title">A motion vocabulary, not a motion library</h3>
+                  <p class="cs-decisions__rationale">We picked a small set of motion primitives with timing tokens and a reduced-motion budget. Designers compose; they don't reach for the Lottie folder.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Kept</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">D · 05</span>
+                <div>
+                  <h3 class="cs-decisions__title">"Big bang" rewrite</h3>
+                  <p class="cs-decisions__rationale">Initial plan called for a full migration in one cycle. We revised to a per-campaign rollout — slower, but with measurable wins each quarter and a clear off-ramp if priorities shifted.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--rev">Revised</span>
+              </li>
+            </ol>
+          </section>
+
+          <!-- 08 SOLUTION -->
+          <section id="solution" class="cs-section">
+            <div class="cs-section__num">08 — System &amp; UX Solution</div>
+            <h2 class="cs-section__title">A <em>stack</em>, not a Figma file.</h2>
+            <p class="cs-section__lede">Five layers, each owned by a clear team, each composable upward into a real marketing page.</p>
+
+            <div class="cs-figure">
+              <div class="cs-figure__frame"><span class="cs-figure__placeholder">Figure 03 — System architecture diagram</span></div>
+              <div class="cs-figure__caption"><span class="num">Fig 03</span><span>From tokens to templates to authored pages — how a marketer's page request resolves into shipped pixels.</span></div>
+            </div>
+
+            <p>At the base sit <strong>tokens</strong>: color, type, motion timing, spacing, radii. Above that, <strong>primitives</strong> — buttons, headings, layouts, media — that consume tokens and nothing else. Then a curated set of <strong>composable components</strong> with clear jobs (Hero, FeatureRow, PricingTable, CTABlock). Above that, <strong>page templates</strong>: opinionated arrangements of components with sensible defaults. The top layer is the <strong>CMS schema</strong>, which exposes only the surface area authors should be making decisions about.</p>
+
+            <div class="cs-callout cs-callout--dark">
+              <div class="cs-callout__label">Principle</div>
+              <p class="cs-callout__body">If a marketer can't ship a page without engineering, the system has failed. <em>Boring</em> at the bottom; <em>fast</em> at the top.</p>
+            </div>
+
+            <div class="cs-figure cs-figure--wide">
+              <div class="cs-figure__frame"><span class="cs-figure__placeholder">Figure 04 — Component anatomy: Hero / FeatureRow / PricingTable</span></div>
+              <div class="cs-figure__caption"><span class="num">Fig 04</span><span>Three of the foundational components and their slot model. Variants are token-driven, not duplicated.</span></div>
+            </div>
+          </section>
+
+          <!-- 09 COLLABORATION -->
+          <section id="collab" class="cs-section">
+            <div class="cs-section__num">09 — Collaboration</div>
+            <h2 class="cs-section__title">Designed alongside <em>marketing, engineering, and brand</em>.</h2>
+            <p>Blueprint had three sponsoring orgs and no single boss. That made cross-functional collaboration the actual work, not a side effect of it.</p>
+
+            <div class="cs-twocol">
+              <div>
+                <h4>How we worked</h4>
+                <ul>
+                  <li>Weekly system reviews open to anyone</li>
+                  <li>A monthly "authoring lab" with PMMs</li>
+                  <li>Pull-request-shaped design proposals</li>
+                  <li>Shared OKR with engineering &amp; PMM</li>
+                  <li>Public roadmap in a shared Linear project</li>
+                </ul>
+              </div>
+              <div>
+                <h4>How we made decisions</h4>
+                <ul>
+                  <li>Written one-page proposals before any meeting</li>
+                  <li>Reversible decisions: ship and review in 4 weeks</li>
+                  <li>One-way doors: stop, write a memo, defend it</li>
+                  <li>Brand vetoes documented and dated</li>
+                  <li>Authoring veto power for repeated UX pain</li>
+                </ul>
+              </div>
+            </div>
+
+            <blockquote class="pull" style="margin: 32px 0 0;">
+              "The system felt designed <em>with</em> us instead of handed to us. That was the difference."
+              <span class="pull__attr">— PMM, EMEA · partner team</span>
+            </blockquote>
+          </section>
+
+          <!-- 10 IMPACT -->
+          <section id="impact" class="cs-section">
+            <div class="cs-section__num">10 — Impact</div>
+            <h2 class="cs-section__title">What <em>changed</em> downstream.</h2>
+            <p class="cs-section__lede">Impact is still landing — the project is in flight. The shifts below are qualitative observations from teams using the system, recorded in the first two pilot campaigns.</p>
+
+            <div class="cs-impact">
+              <div>
+                <div class="cs-impact__label">Velocity</div>
+                <h3 class="cs-impact__title">Page launches feel routine.</h3>
+                <p class="cs-impact__body">Authors report that shipping a campaign page now resembles writing a brief instead of running a build. Engineering review remains, but as a check, not a bottleneck.</p>
+              </div>
+              <div>
+                <div class="cs-impact__label">Consistency</div>
+                <h3 class="cs-impact__title">The site looks like one site.</h3>
+                <p class="cs-impact__body">Brand has stopped flagging cross-page drift in weekly QA. Locale variants share a visual rhythm without explicit coordination.</p>
+              </div>
+              <div>
+                <div class="cs-impact__label">Trust</div>
+                <h3 class="cs-impact__title">Marketing &amp; engineering relaxed.</h3>
+                <p class="cs-impact__body">The two teams that historically blocked each other are running off a shared backlog. Escalations to design dropped sharply.</p>
+              </div>
+            </div>
+
+            <p style="margin-top: 8px;">Quantitative results are tracked per pilot campaign and shared internally as each one closes. I'm comfortable speaking to those numbers in a live conversation; I won't quote them here while the program is mid-flight.</p>
+          </section>
+
+          <!-- 11 WHAT I LEARNED -->
+          <section id="learned" class="cs-section">
+            <div class="cs-section__num">11 — What I Learned</div>
+            <h2 class="cs-section__title">Three things I'd <em>do the same</em>, two I'd change.</h2>
+
+            <ol class="cs-decisions">
+              <li>
+                <span class="cs-decisions__num">L · 01</span>
+                <div>
+                  <h3 class="cs-decisions__title">Make the <em>authoring</em> experience your hero.</h3>
+                  <p class="cs-decisions__rationale">The component design was the easy half. The 10× gain came from designing the CMS form a marketer fills in — that's where velocity lives.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Keep</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">L · 02</span>
+                <div>
+                  <h3 class="cs-decisions__title">Use real campaigns as <em>forcing functions</em>.</h3>
+                  <p class="cs-decisions__rationale">The temptation to build the system "fully" before letting anyone touch it is real and wrong. Every quarter we shipped, the system got better — because reality has a way of finding the gaps.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Keep</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">L · 03</span>
+                <div>
+                  <h3 class="cs-decisions__title">Governance is a <em>design problem</em>.</h3>
+                  <p class="cs-decisions__rationale">Who can add a component? Who can override a token? Documented and answered up front, those questions save quarters of friction later.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Keep</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">L · 04</span>
+                <div>
+                  <h3 class="cs-decisions__title">I waited too long on <em>motion</em>.</h3>
+                  <p class="cs-decisions__rationale">We treated motion as a phase-two concern. By the time the primitives landed, teams had already invented their own — which we then had to deprecate. Should have shipped a minimal motion vocabulary in week one.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--rev">Change</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">L · 05</span>
+                <div>
+                  <h3 class="cs-decisions__title">Under-invested in <em>docs</em>.</h3>
+                  <p class="cs-decisions__rationale">A working component without a working doc is a half-shipped component. Next time, doc writing sits inside the definition-of-done, not after it.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--rev">Change</span>
+              </li>
+            </ol>
+          </section>
+
+          <!-- Next -->
+          <nav class="cs-next" aria-label="Case study navigation">
+            <a href="work.html">
+              <span class="cs-next__label">← All work</span>
+              <h4 class="cs-next__title">Back to the <em>index</em></h4>
+            </a>
+            <a href="Framer Experiences Case Study.html">
+              <span class="cs-next__label">Next case · 02 / 06</span>
+              <h4 class="cs-next__title">Building Immersive <em>Framer</em> Experiences →</h4>
+            </a>
+          </nav>
+
+        </article>
+      </div>
+    </div>
+
+    <!-- ============ CTA ============ -->
+    <section class="section section--flush">
+      <div class="shell">
+        <div class="cta">
+          <div>
+            <div class="cta__eyebrow">Working together</div>
+            <h2 class="cta__title">Have a system that needs to <em>cohere</em>?</h2>
+          </div>
+          <div class="cta__side">
+            <p class="cta__lede">Audits, rewrites, and team-leadership engagements — open to a few each year.</p>
+            <div style="display:flex; gap:12px; flex-wrap:wrap;">
+              <a href="contact.html" class="btn btn--accent">Start a conversation
+                <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a href="work.html" class="btn btn--ghost">See more work</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell">
+      <div class="footer__grid">
+        <div class="footer__brand-col">
+          <h2 class="footer__brand" style="font-weight: 500">David <em style="font-weight: 500">Cho</em></h2>
+          <p class="footer__tagline">Designing the systems behind high-performing web experiences.</p>
+        </div>
+        <div class="footer__col"><h4>Site</h4><ul><li><a href="index.html">Index</a></li><li><a href="work.html">Work</a></li><li><a href="about.html">About</a></li><li><a href="resume.html">Resume</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+        <div class="footer__col"><h4>Elsewhere</h4><ul><li><a href="#">LinkedIn ↗</a></li><li><a href="#">Read.cv ↗</a></li><li><a href="#">Are.na ↗</a></li><li><a href="#">Dribbble ↗</a></li></ul></div>
+        <div class="footer__col"><h4>Contact</h4><ul><li><a href="/cdn-cgi/l/email-protection#533b3a133732253a37303b3c7d3736203a343d"><span class="__cf_email__" data-cfemail="bed6d7fedadfc8d7daddd6d190dadbcdd7d9d0">[email&#160;protected]</span></a></li><li><a href="contact.html">Project brief</a></li><li><a href="#">+1 (415) 555&#8209;0118</a></li></ul></div>
+      </div>
+      <div class="footer__bar">
+        <span>© <span data-year></span> &nbsp;David Cho · Toronto</span>
+        <span>Set in Source Serif 4 &amp; Space Grotesk</span>
+      </div>
+    </div>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/site.js"></script>
+  <script>
+    // TOC current-section highlight via IntersectionObserver
+    (function () {
+      const links = document.querySelectorAll('.cs-toc a[data-toc]');
+      const map = new Map();
+      links.forEach(a => map.set(a.getAttribute('href').slice(1), a));
+      const sections = document.querySelectorAll('.cs-section[id]');
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            links.forEach(a => a.classList.remove('is-current'));
+            const a = map.get(e.target.id);
+            if (a) a.classList.add('is-current');
+          }
+        });
+      }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+      sections.forEach(s => io.observe(s));
+
+      // Smooth-scroll for TOC clicks
+      links.forEach(a => {
+        a.addEventListener('click', (e) => {
+          const id = a.getAttribute('href').slice(1);
+          const target = document.getElementById(id);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            history.replaceState(null, '', '#' + id);
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

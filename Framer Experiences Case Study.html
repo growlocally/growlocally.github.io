@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Building Immersive Framer Experiences — Case Study · David Cho</title>
+  <meta name="description" content="Case study — adopting Framer as a second surface for SurveyMonkey's editorial, interactive marketing moments." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;1,8..60,300;1,8..60,400;1,8..60,500&family=Space+Grotesk:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="shell nav__inner">
+      <a href="index.html" class="brand" aria-label="David Cho — home">
+        <span><span class="brand__name">David Cho</span></span>
+        <span class="brand__role">UX&nbsp;Designer&nbsp;/&nbsp;Manager</span>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="index.html"  class="nav__link">Index</a>
+        <a href="work.html"   class="nav__link is-active">Work</a>
+        <a href="about.html"  class="nav__link">About</a>
+        <a href="resume.html" class="nav__link">Resume</a>
+        <a href="contact.html" class="nav__link">Contact</a>
+        <a href="contact.html" class="btn btn--primary btn--sm nav__cta">Get in touch
+          <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </nav>
+      <button class="nav__menu-btn" aria-label="Open menu"><span></span></button>
+    </div>
+    <div class="nav__panel">
+      <a href="index.html">Index</a><a href="work.html">Work</a><a href="about.html">About</a><a href="resume.html">Resume</a><a href="contact.html">Contact</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="cs-hero">
+      <div class="shell">
+        <a class="cs-hero__breadcrumb" href="work.html">
+          <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          All work
+        </a>
+        <div class="cs-hero__eyebrow">Case Study · 02 / 06 · Shipped</div>
+        <h1 class="cs-hero__title">Building Immersive <em>Framer</em> Experiences for SurveyMonkey.</h1>
+        <p class="cs-hero__sub">Adopting a second tool for the moments the CMS wasn't built for — and turning it into a repeatable model for editorial, interactive landing pages with the analytics and infrastructure to back them up.</p>
+
+        <div class="cs-hero__tags">
+          <span class="tag tag--accent">Interaction</span>
+          <span class="tag">Growth</span>
+          <span class="tag">Systems</span>
+          <span class="tag">Analytics</span>
+          <span class="tag">Storytelling</span>
+        </div>
+
+        <dl class="cs-summary">
+          <div><dt>Role</dt><dd>Design Lead · Framer Implementation Lead · UX Strategist</dd></div>
+          <div><dt>Timeline</dt><dd>2024 — 2025</dd></div>
+          <div><dt>Anchor launches</dt><dd>SurveyMonkey Trends · Workplace Trends for a New Era</dd></div>
+          <div><dt>Surface</dt><dd>Marketing Web · Framer · AWS Reverse Proxy</dd></div>
+        </dl>
+
+        <!-- Cover plate -->
+        <div class="cs-cover">
+          <span class="placeholder">Figure 00 — Trends landing hero scene · 1920 × 1080</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ READING LAYOUT ============ -->
+    <div class="shell">
+      <div class="cs-layout">
+
+        <!-- TOC -->
+        <aside class="cs-toc" aria-label="Contents">
+          <div class="cs-toc__label">Contents</div>
+          <ol>
+            <li><a href="#overview" data-toc>Overview</a></li>
+            <li><a href="#context" data-toc>Context</a></li>
+            <li><a href="#problem" data-toc>Problem</a></li>
+            <li><a href="#role" data-toc>My Role</a></li>
+            <li><a href="#strategy" data-toc>Strategy</a></li>
+            <li><a href="#process" data-toc>Process</a></li>
+            <li><a href="#decisions" data-toc>Key Decisions</a></li>
+            <li><a href="#solution" data-toc>System &amp; UX Solution</a></li>
+            <li><a href="#collab" data-toc>Collaboration</a></li>
+            <li><a href="#impact" data-toc>Impact</a></li>
+            <li><a href="#learned" data-toc>What I Learned</a></li>
+          </ol>
+        </aside>
+
+        <!-- BODY -->
+        <article class="cs-body">
+
+          <!-- 01 OVERVIEW -->
+          <section id="overview" class="cs-section">
+            <div class="cs-section__num">01 — Overview</div>
+            <h2 class="cs-section__title">A second tool, used <em>deliberately</em>.</h2>
+            <p class="cs-section__lede">The TL;DR — what the work was, why it mattered, and what it changed.</p>
+            <p>SurveyMonkey's CMS is excellent for scalable marketing content, but a handful of moments — major reports, trends pieces, brand moments — needed something more editorial and more interactive than the CMS was built to express. I led the evaluation and adoption of Framer as a complement to the CMS, then designed and built the first wave of high-impact landing pages on it: <strong>SurveyMonkey Trends</strong> and <strong>Workplace Trends for a New Era</strong>.</p>
+            <p>The work wasn't just visual. I partnered with engineering on a reverse-proxy approach that lets Framer-built pages live under the SurveyMonkey domain, defined the Amplitude event plan so these experiences could be measured rather than just launched, and helped the team articulate when to reach for Framer versus when to stay inside the CMS. The result is a repeatable model for shipping immersive marketing — brand-forward, interactive, measurable, and operationally honest.</p>
+          </section>
+
+          <!-- 02 CONTEXT -->
+          <section id="context" class="cs-section">
+            <div class="cs-section__num">02 — Context</div>
+            <h2 class="cs-section__title">A CMS built for <em>scale</em>, not for <em>moments</em>.</h2>
+            <p>The CMS is the workhorse of SurveyMonkey's marketing site — hundreds of pages across regions and campaign cycles, all flowing through a shared component library. By 2024 it was doing exactly what we'd designed it to do: ship a high volume of high-craft pages quickly, with brand consistency and accessibility baked in.</p>
+            <p>But scale and craft aren't always the same brief. Major reports, category-defining trends content, and brand moments wanted to be slower, taller, more editorial — with scroll-driven storytelling, interactive data exploration, and visual layering the CMS components weren't designed to compose. Forcing those moments into the CMS either watered them down or stretched the system into shapes it would have to pay for later. The question wasn't "is the CMS broken" — it wasn't. The question was: <em>where does the CMS end, and what should sit alongside it?</em></p>
+
+            <div class="cs-callout">
+              <div class="cs-callout__label">Background</div>
+              <p class="cs-callout__body">SurveyMonkey's marketing surface served <em>four audiences</em> across four locales. The CMS scaled content well — but editorial, interactive brand moments needed a different surface entirely.</p>
+            </div>
+          </section>
+
+          <!-- 03 PROBLEM -->
+          <section id="problem" class="cs-section">
+            <div class="cs-section__num">03 — Problem</div>
+            <h2 class="cs-section__title">Brand moments deserved a <em>different gear</em>.</h2>
+            <p>Trends reports and anchor brand moments are different in kind from a product page. They're narrative, paced, and visually unusual on purpose — the page <em>is</em> the report, not a wrapper around a PDF download. The CMS was an excellent fit for everything around those moments but a poor fit for the moments themselves.</p>
+            <p>At the same time, a parallel tool couldn't be a free-for-all. If Framer pages drifted from the brand, opened in a different domain, broke analytics, or sat outside SEO, the cost would land back on marketing anyway. The real problem wasn't "which tool is best" — it was how to introduce a second tool without losing the operational discipline the CMS work had built.</p>
+
+            <div class="cs-callout cs-callout--decision">
+              <div class="cs-callout__label">Problem</div>
+              <p class="cs-callout__body">Teams trying to ship editorial, interactive brand moments were forced to either <em>water the experience down</em> to fit the CMS or <em>detach it</em> from the rest of the site entirely.</p>
+            </div>
+
+            <div class="cs-twocol">
+              <div>
+                <h4>What we heard</h4>
+                <ul>
+                  <li>Brand described the CMS as "right tool, wrong altitude" for trends pieces.</li>
+                  <li>Growth wanted to measure trends content like the rest of the site — microsites kept arriving uninstrumented.</li>
+                </ul>
+              </div>
+              <div>
+                <h4>What was missing</h4>
+                <ul>
+                  <li>Engineering had been asked several times whether a non-CMS experience could live under the SurveyMonkey domain. The answer needed to be "yes, here's how."</li>
+                  <li>Marketing leadership wanted clarity: when do we reach for Framer, and when do we stay in the CMS?</li>
+                </ul>
+              </div>
+            </div>
+
+            <blockquote class="pull" style="margin: 32px 0 0;">
+              "We don't need a different brand for these moments. We need a different gear."
+              <span class="pull__attr">— Brand stakeholder, scoping workshop</span>
+            </blockquote>
+          </section>
+
+          <!-- 04 MY ROLE -->
+          <section id="role" class="cs-section">
+            <div class="cs-section__num">04 — My Role</div>
+            <h2 class="cs-section__title">Design lead, <em>and</em> the person on the keyboard.</h2>
+            <p>I owned both halves of the problem — the strategy and the build. That meant arguing for Framer as a fit, designing the experiences themselves, and then sitting inside Framer to ship them. It also meant translating between teams that didn't usually work together on web: partnering with engineering on the reverse-proxy infrastructure, with growth on the Amplitude plan, with brand and content on the story.</p>
+
+            <dl class="cs-role">
+              <div><dt>What I led</dt><dd>Tool evaluation and adoption · end-to-end design and build of Trends &amp; Workplace Trends · reusable storytelling patterns · Framer-vs-CMS decision model</dd></div>
+              <div><dt>What I shipped personally</dt><dd>Art direction, interaction design, and in-Framer implementation of both anchor launches</dd></div>
+              <div><dt>What I contributed to</dt><dd>AWS reverse-proxy implementation · Amplitude tracking plan · brand &amp; content partnership</dd></div>
+              <div><dt>What I didn't own</dt><dd>Brand visual identity · editorial copy · backend infrastructure</dd></div>
+            </dl>
+
+            <div class="cs-callout cs-callout--dark">
+              <div class="cs-callout__label">Plainly</div>
+              <p class="cs-callout__body">I treated this as a <em>platform problem</em> in disguise. The deliverable looked like two beautiful landing pages — the actual deliverable was a repeatable model for shipping immersive web work.</p>
+            </div>
+          </section>
+
+          <!-- 05 STRATEGY -->
+          <section id="strategy" class="cs-section">
+            <div class="cs-section__num">05 — Strategy</div>
+            <h2 class="cs-section__title">Bridge <em>craft</em> and <em>infrastructure</em>.</h2>
+            <p class="cs-section__lede">Treat Framer as a deliberate second surface, not an escape hatch.</p>
+            <p>A second surface has a defined role, a defined relationship to the CMS, an infrastructure path, and a measurement story. An escape hatch is whatever someone reaches for when the main tool feels too small — and accumulates the same kind of debt the CMS did before we modernized it.</p>
+            <p>What that meant in practice was naming the things we wouldn't do. We wouldn't move CMS-shaped work into Framer just because it was new. We wouldn't ship Framer pages on a separate domain. And we wouldn't launch without analytics — if we couldn't measure the experience, we couldn't justify the model long-term.</p>
+
+            <div class="cs-callout cs-callout--decision">
+              <div class="cs-callout__label">Strategic bet</div>
+              <p class="cs-callout__body">A <em>deliberate second surface</em> with a defined role, infrastructure path, and measurement story — not an escape hatch that accumulates debt.</p>
+            </div>
+          </section>
+
+          <!-- 06 PROCESS -->
+          <section id="process" class="cs-section">
+            <div class="cs-section__num">06 — Process</div>
+            <h2 class="cs-section__title">From <em>tool eval</em> to <em>launched experience</em>.</h2>
+
+            <div class="cs-figure">
+              <div class="cs-figure__frame"><span class="cs-figure__placeholder">Figure 01 — Tool evaluation · CMS gaps mapped to Framer strengths</span></div>
+              <div class="cs-figure__caption"><span class="num">Fig 01</span><span>CMS gaps on the left, Framer fit on the right, with the dotted line where the two surfaces should meet.</span></div>
+            </div>
+
+            <p>Five phases. The shortest ones — eval and infra — carried the longest decisions; the longest ones — design and build — were where the work actually showed.</p>
+
+            <ol class="cs-decisions">
+              <li>
+                <span class="cs-decisions__num">Phase 01</span>
+                <div>
+                  <h3 class="cs-decisions__title"><em>Evaluate</em></h3>
+                  <p class="cs-decisions__rationale">Audited the work the CMS struggled with and the tools the market offered. Framer won on design fidelity, scroll interactivity, and time-to-publish for editorial moments.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Done</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">Phase 02</span>
+                <div>
+                  <h3 class="cs-decisions__title"><em>Infrastructure</em></h3>
+                  <p class="cs-decisions__rationale">Paired with engineering on a reverse-proxy on AWS so Framer pages could live under surveymonkey.com — routing, caching, redirects, and SEO behavior aligned with the rest of the site.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Done</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">Phase 03</span>
+                <div>
+                  <h3 class="cs-decisions__title"><em>Design</em></h3>
+                  <p class="cs-decisions__rationale">Designed Trends and Workplace Trends for a New Era end-to-end — narrative arc, interactive moments, motion language, responsive behavior.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Done</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">Phase 04</span>
+                <div>
+                  <h3 class="cs-decisions__title">Build &amp; <em>instrument</em></h3>
+                  <p class="cs-decisions__rationale">Built the experiences inside Framer. Defined and instrumented the Amplitude event plan in lock-step with design so measurement shipped on day one.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Done</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">Phase 05</span>
+                <div>
+                  <h3 class="cs-decisions__title"><em>Codify</em></h3>
+                  <p class="cs-decisions__rationale">Wrote the Framer-vs-CMS decision model, captured the storytelling patterns, and handed it to the broader team as a repeatable playbook.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Done</span>
+              </li>
+            </ol>
+
+            <div class="cs-figure" style="margin-top:40px;">
+              <div class="cs-figure__frame"><span class="cs-figure__placeholder">Figure 02 — Reverse-proxy diagram · AWS routing</span></div>
+              <div class="cs-figure__caption"><span class="num">Fig 02</span><span>Framer publishes; the proxy maps requests under surveymonkey.com; one domain, two surfaces.</span></div>
+            </div>
+
+            <div class="cs-figure">
+              <div class="cs-figure__frame"><span class="cs-figure__placeholder">Figure 03 — Amplitude event plan · trends pages</span></div>
+              <div class="cs-figure__caption"><span class="num">Fig 03</span><span>The measurement plan that shipped with the design. Sections, interactions, scroll depth, exits — named and instrumented before launch.</span></div>
+            </div>
+          </section>
+
+          <!-- 07 KEY DECISIONS -->
+          <section id="decisions" class="cs-section">
+            <div class="cs-section__num">07 — Key Decisions</div>
+            <h2 class="cs-section__title">The four <em>forks</em> that shaped the model.</h2>
+
+            <ol class="cs-decisions">
+              <li>
+                <span class="cs-decisions__num">D · 01</span>
+                <div>
+                  <h3 class="cs-decisions__title">Adopt a second tool, instead of <em>stretching the CMS</em></h3>
+                  <p class="cs-decisions__rationale">Extending the CMS to cover editorial, scroll-driven storytelling would have meant adding edge-case components for a handful of pages a year — the exact pattern that fragmented the CMS the first time.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Kept</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">D · 02</span>
+                <div>
+                  <h3 class="cs-decisions__title"><em>Reverse-proxy</em> on AWS, not a separate subdomain</h3>
+                  <p class="cs-decisions__rationale">Standalone microsites read as detached from the brand and split SEO authority. Routing Framer pages under surveymonkey.com via a proxy kept the domain story honest — one site to visitors, two surfaces to the team.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Kept</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">D · 03</span>
+                <div>
+                  <h3 class="cs-decisions__title">Analytics requirements ship <em>with</em> design, not after</h3>
+                  <p class="cs-decisions__rationale">Microsites that arrive uninstrumented don't get a second pass. Defining the Amplitude plan during design forced clearer questions and made the experiences legible to growth from day one.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Kept</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">D · 04</span>
+                <div>
+                  <h3 class="cs-decisions__title">Write a <em>decision model</em> before the next request arrives</h3>
+                  <p class="cs-decisions__rationale">Without a clear rule for Framer-versus-CMS, every project would have re-litigated the question. A short, shared decision model meant other teams could choose correctly without coming back to me each time.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Kept</span>
+              </li>
+            </ol>
+          </section>
+
+          <!-- 08 SOLUTION -->
+          <section id="solution" class="cs-section">
+            <div class="cs-section__num">08 — System &amp; UX Solution</div>
+            <h2 class="cs-section__title">A second surface, with <em>guardrails</em>.</h2>
+            <p class="cs-section__lede">Three pieces holding the model together: a decision framework, a storytelling pattern set, and an infrastructure + analytics layer.</p>
+
+            <p>The solution isn't a Framer page — it's a way of using Framer. Framer covers the editorial, narrative, interactive moments. The CMS covers everything around them. A reverse-proxy makes the two read as one site. An Amplitude event plan makes the work measurable. And a short decision model keeps teams from drifting either direction.</p>
+
+            <div class="cs-figure cs-figure--wide">
+              <div class="cs-figure__frame"><span class="cs-figure__placeholder">Figure 04 — Trends landing · scroll narrative + interactive moments</span></div>
+              <div class="cs-figure__caption"><span class="num">Fig 04</span><span>A scroll-driven editorial story with interactive data sections, navigation, and a measurable arc end-to-end.</span></div>
+            </div>
+
+            <div class="cs-callout">
+              <div class="cs-callout__label">Decision model</div>
+              <p class="cs-callout__body"><strong>Reach for Framer</strong> when the page <em>is</em> the story — editorial, paced, interactive. <strong>Stay in CMS</strong> when the page is one of many of its kind. <strong>If unsure</strong>, default to CMS — Framer earns the page; the CMS is the floor.</p>
+            </div>
+
+            <div class="cs-twocol" style="margin-top:32px;">
+              <div>
+                <h4>Storytelling patterns introduced</h4>
+                <ul>
+                  <li><strong>Scroll Chapter</strong> — full-height narrative beat; pacing primitive</li>
+                  <li><strong>Interactive Stat</strong> — hover, toggle, or scrub to explore data</li>
+                  <li><strong>Section Nav</strong> — persistent chapter index</li>
+                </ul>
+              </div>
+              <div>
+                <h4>Infrastructure patterns</h4>
+                <ul>
+                  <li><strong>Proxy routing</strong> — Framer pages live under surveymonkey.com</li>
+                  <li><strong>Ambient CTA</strong> — persistent, scroll-aware conversion surface</li>
+                  <li><strong>Exit Moment</strong> — designed end-of-story transition back to core site</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="cs-figure" style="margin-top:32px;">
+              <div class="cs-figure__frame"><span class="cs-figure__placeholder">Figure 05 — Workplace Trends for a New Era · full-page composition</span></div>
+              <div class="cs-figure__caption"><span class="num">Fig 05</span><span>The second launch on the model — applying the same storytelling patterns to a different narrative structure and visual treatment.</span></div>
+            </div>
+          </section>
+
+          <!-- 09 COLLABORATION -->
+          <section id="collab" class="cs-section">
+            <div class="cs-section__num">09 — Collaboration</div>
+            <h2 class="cs-section__title">Designed alongside <em>engineering, growth, and brand</em>.</h2>
+            <p>This project touched more functions than most web work does. It lived at the intersection of brand, growth, engineering, and content — and each had a legitimate claim on the outcome.</p>
+
+            <div class="cs-twocol">
+              <div>
+                <h4>Key partners</h4>
+                <ul>
+                  <li><strong>Engineering</strong> — reverse-proxy architecture, caching, redirects, and SEO behavior on AWS</li>
+                  <li><strong>Growth</strong> — Amplitude event taxonomy, scroll-depth instrumentation, attribution</li>
+                  <li><strong>Brand &amp; Content</strong> — voice, narrative arc, hierarchy, and pacing of trends content</li>
+                </ul>
+              </div>
+              <div>
+                <h4>How we worked</h4>
+                <ul>
+                  <li>Weekly cross-functional check-ins during build</li>
+                  <li>Analytics plan reviewed and approved before launch</li>
+                  <li>Brand sign-off on interaction patterns, not just static mocks</li>
+                  <li>Post-launch retro that fed the Framer playbook</li>
+                </ul>
+              </div>
+            </div>
+
+            <blockquote class="pull" style="margin: 32px 0 0;">
+              "This is the first time a marketing page shipped with analytics that growth could actually read on day one."
+              <span class="pull__attr">— Growth PM · cross-functional partner</span>
+            </blockquote>
+          </section>
+
+          <!-- 10 IMPACT -->
+          <section id="impact" class="cs-section">
+            <div class="cs-section__num">10 — Impact</div>
+            <h2 class="cs-section__title">What <em>changed</em> downstream.</h2>
+            <p class="cs-section__lede">Qualitative outcomes from the first two Framer launches and the model they established.</p>
+
+            <div class="cs-impact">
+              <div>
+                <div class="cs-impact__label">Engagement</div>
+                <h3 class="cs-impact__title">Immersive pages earned deeper reads.</h3>
+                <p class="cs-impact__body">Scroll depth and section-level engagement on Trends pages exceeded comparable CMS-built content, validating the editorial investment.</p>
+              </div>
+              <div>
+                <div class="cs-impact__label">Measurement</div>
+                <h3 class="cs-impact__title">Day-one analytics, not "we'll add it later."</h3>
+                <p class="cs-impact__body">Both launches shipped with a full Amplitude event plan. Growth could read section views, interaction events, and exit moments from the first day of traffic.</p>
+              </div>
+              <div>
+                <div class="cs-impact__label">Repeatability</div>
+                <h3 class="cs-impact__title">A model, not a one-off.</h3>
+                <p class="cs-impact__body">The Framer-vs-CMS decision model, storytelling patterns, and infrastructure setup are now used by the broader team without coming back to me each time.</p>
+              </div>
+            </div>
+
+            <p style="margin-top: 12px;">The reverse-proxy approach means Framer pages live under surveymonkey.com — one site to visitors, search engines, and analytics. SEO authority stays consolidated; brand perception stays unified. Quantitative engagement metrics are tracked internally and available on request.</p>
+          </section>
+
+          <!-- 11 WHAT I LEARNED -->
+          <section id="learned" class="cs-section">
+            <div class="cs-section__num">11 — What I Learned</div>
+            <h2 class="cs-section__title">Three things I'd <em>do the same</em>, two I'd change.</h2>
+
+            <ol class="cs-decisions">
+              <li>
+                <span class="cs-decisions__num">L · 01</span>
+                <div>
+                  <h3 class="cs-decisions__title">Write the <em>decision model</em> before the second project asks for it.</h3>
+                  <p class="cs-decisions__rationale">The playbook we wrote after the first launch prevented every subsequent project from re-litigating "Framer or CMS?" That clarity was the highest-leverage artifact in the whole initiative.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Keep</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">L · 02</span>
+                <div>
+                  <h3 class="cs-decisions__title">Ship analytics <em>with</em> the design, every time.</h3>
+                  <p class="cs-decisions__rationale">Defining the Amplitude plan during design — not after launch — forced better design questions and made the experiences legible to growth immediately. Non-negotiable going forward.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Keep</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">L · 03</span>
+                <div>
+                  <h3 class="cs-decisions__title">Treat the <em>infrastructure</em> as part of the design brief.</h3>
+                  <p class="cs-decisions__rationale">The reverse-proxy wasn't a technical afterthought — it was a design decision. "One domain" shaped everything from SEO to brand perception. Design leads should own that conversation early.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Keep</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">L · 04</span>
+                <div>
+                  <h3 class="cs-decisions__title">Start <em>responsive</em> design earlier in Framer.</h3>
+                  <p class="cs-decisions__rationale">We designed desktop-first and adapted to mobile later than we should have. Framer's responsive tools are capable but require intentional setup from the start — retrofitting breakpoints is expensive.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--rev">Change</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">L · 05</span>
+                <div>
+                  <h3 class="cs-decisions__title">Document <em>interaction patterns</em> in code, not just mocks.</h3>
+                  <p class="cs-decisions__rationale">The storytelling patterns (scroll chapter, interactive stat, ambient CTA) were documented as design examples. They should have shipped as Framer component snippets — the gap between "documented" and "reusable" was wider than expected.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--rev">Change</span>
+              </li>
+            </ol>
+          </section>
+
+          <!-- Next -->
+          <nav class="cs-next" aria-label="Case study navigation">
+            <a href="case-study.html">
+              <span class="cs-next__label">← Previous case · 01 / 06</span>
+              <h4 class="cs-next__title"><em>Project Blueprint</em>: Modernizing the CMS</h4>
+            </a>
+            <a href="work.html">
+              <span class="cs-next__label">All work</span>
+              <h4 class="cs-next__title">Back to the <em>index</em> →</h4>
+            </a>
+          </nav>
+
+        </article>
+      </div>
+    </div>
+
+    <!-- ============ CTA ============ -->
+    <section class="section section--flush">
+      <div class="shell">
+        <div class="cta">
+          <div>
+            <div class="cta__eyebrow">Working together</div>
+            <h2 class="cta__title">Need immersive web <em>experiences</em>?</h2>
+          </div>
+          <div class="cta__side">
+            <p class="cta__lede">Editorial storytelling, interactive data, and scroll-driven pages — done with operational rigor.</p>
+            <div style="display:flex; gap:12px; flex-wrap:wrap;">
+              <a href="contact.html" class="btn btn--accent">Start a conversation
+                <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a href="work.html" class="btn btn--ghost">See more work</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell">
+      <div class="footer__grid">
+        <div class="footer__brand-col">
+          <h2 class="footer__brand" style="font-weight: 500">David <em style="font-weight: 500">Cho</em></h2>
+          <p class="footer__tagline">Designing the systems behind high-performing web experiences.</p>
+        </div>
+        <div class="footer__col"><h4>Site</h4><ul><li><a href="index.html">Index</a></li><li><a href="work.html">Work</a></li><li><a href="about.html">About</a></li><li><a href="resume.html">Resume</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+        <div class="footer__col"><h4>Elsewhere</h4><ul><li><a href="#">LinkedIn ↗</a></li><li><a href="#">Read.cv ↗</a></li><li><a href="#">Are.na ↗</a></li><li><a href="#">Dribbble ↗</a></li></ul></div>
+        <div class="footer__col"><h4>Contact</h4><ul><li><a href="mailto:hi@davidcho.design">hi@davidcho.design</a></li><li><a href="contact.html">Project brief</a></li><li><a href="#">+1 (415) 555&#8209;0118</a></li></ul></div>
+      </div>
+      <div class="footer__bar">
+        <span>© <span data-year></span> &nbsp;David Cho · Toronto</span>
+        <span>Set in Source Serif 4 &amp; Space Grotesk</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/site.js"></script>
+  <script>
+    // TOC current-section highlight via IntersectionObserver
+    (function () {
+      const links = document.querySelectorAll('.cs-toc a[data-toc]');
+      const map = new Map();
+      links.forEach(a => map.set(a.getAttribute('href').slice(1), a));
+      const sections = document.querySelectorAll('.cs-section[id]');
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            links.forEach(a => a.classList.remove('is-current'));
+            const a = map.get(e.target.id);
+            if (a) a.classList.add('is-current');
+          }
+        });
+      }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+      sections.forEach(s => io.observe(s));
+
+      // Smooth-scroll for TOC clicks
+      links.forEach(a => {
+        a.addEventListener('click', (e) => {
+          const id = a.getAttribute('href').slice(1);
+          const target = document.getElementById(id);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            history.replaceState(null, '', '#' + id);
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

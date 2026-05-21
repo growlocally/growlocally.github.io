@@ -1,0 +1,789 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CMS Modernization — Case Study · David Cho</title>
+  <meta name="description" content="Turning SurveyMonkey's patchwork of one-off templates into a scalable, modular CMS platform." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;1,8..60,300;1,8..60,400;1,8..60,500&family=Space+Grotesk:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── Extra components used in this case study ── */
+
+    /* Spec table */
+    .cs-specs { margin: 24px 0; border-top: 1px solid var(--line); }
+    .cs-spec {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 20px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--line);
+      align-items: baseline;
+    }
+    .cs-spec dt {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .cs-spec dd { margin: 0; font-size: 15px; color: var(--ink); }
+    @media (max-width: 560px) { .cs-spec { grid-template-columns: 1fr; gap: 4px; } }
+
+    /* Process steps */
+    .cs-process {
+      margin: 28px 0;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .cs-process__step {
+      padding: 22px 16px 22px 0;
+      border-right: 1px solid var(--line);
+    }
+    .cs-process__step:last-child { border-right: 0; }
+    .cs-process__n {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .cs-process__h {
+      font-family: var(--font-display);
+      font-size: 20px;
+      line-height: 1.15;
+      color: var(--ink);
+      margin: 0 0 8px;
+    }
+    .cs-process__d { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    @media (max-width: 960px) {
+      .cs-process { grid-template-columns: repeat(2, 1fr); }
+      .cs-process__step:nth-child(2n) { border-right: 0; }
+      .cs-process__step { border-bottom: 1px solid var(--line); }
+      .cs-process__step:last-child { border-bottom: 0; }
+    }
+    @media (max-width: 560px) { .cs-process { grid-template-columns: 1fr; } }
+
+    /* Primitive cards grid */
+    .cs-primitives {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin: 24px 0;
+    }
+    .cs-primitive {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      background: var(--bg);
+    }
+    .cs-primitive__head {
+      padding: 13px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+      background: var(--bg-2);
+    }
+    .cs-primitive__name {
+      font-family: var(--font-display);
+      font-size: 17px;
+      color: var(--ink);
+    }
+    .cs-primitive__tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .cs-primitive__vis {
+      height: 96px;
+      background: repeating-linear-gradient(135deg, rgba(24,21,19,.04) 0 2px, transparent 2px 12px), var(--bg-2);
+      display: grid;
+      place-items: center;
+      color: var(--muted-2);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .cs-primitive__body { padding: 12px 16px; font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+    /* Before / After compare */
+    .cs-compare {
+      margin: 28px 0;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+    .cs-compare__row {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      border-bottom: 1px solid var(--line);
+    }
+    .cs-compare__row:last-child { border-bottom: 0; }
+    .cs-compare__label {
+      padding: 18px 18px;
+      background: var(--bg-2);
+      border-right: 1px solid var(--line);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .cs-compare__label.is-after { color: var(--accent); }
+    .cs-compare__body { padding: 18px 20px; font-size: 15px; color: var(--ink); line-height: 1.6; }
+    @media (max-width: 560px) {
+      .cs-compare__row { grid-template-columns: 1fr; }
+      .cs-compare__label { border-right: 0; border-bottom: 1px solid var(--line); }
+    }
+
+    /* Roles grid */
+    .cs-roles {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      margin: 24px 0;
+    }
+    .cs-role-card {
+      padding: 22px 22px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: var(--bg);
+    }
+    .cs-role-card:nth-child(2n) { border-right: 0; }
+    .cs-role-card:nth-last-child(-n+2) { border-bottom: 0; }
+    .cs-role-card__who { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+    .cs-role-card__av {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: var(--ink);
+      color: var(--surface);
+      display: grid; place-items: center;
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-style: italic;
+      flex-shrink: 0;
+    }
+    .cs-role-card__av.is-accent { background: var(--accent); }
+    .cs-role-card__name { font-weight: 600; font-size: 15px; color: var(--ink); }
+    .cs-role-card__what { font-size: 13px; color: var(--muted); }
+    .cs-role-card p { font-size: 14px; line-height: 1.55; margin: 0; color: var(--ink-2); }
+    @media (max-width: 640px) { .cs-roles { grid-template-columns: 1fr; } .cs-role-card { border-right: 0; } .cs-role-card:nth-last-child(-n+2) { border-bottom: 1px solid var(--line); } .cs-role-card:last-child { border-bottom: 0; } }
+
+    /* Principles list */
+    .cs-principles { margin: 24px 0; }
+    .cs-principle {
+      padding: 22px 0;
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 32px;
+      align-items: baseline;
+    }
+    .cs-principle:last-child { border-bottom: 1px solid var(--line); }
+    .cs-principle__head { font-family: var(--font-display); font-size: 22px; line-height: 1.25; color: var(--ink); }
+    .cs-principle__head em { font-style: italic; color: var(--accent); }
+    .cs-principle__body { font-size: 15px; color: var(--ink-2); line-height: 1.6; }
+    @media (max-width: 640px) { .cs-principle { grid-template-columns: 1fr; gap: 8px; } }
+
+    /* Figure grid 2-up */
+    .cs-figure-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 28px 0;
+    }
+    .cs-figure-grid .cs-figure { margin: 0; }
+    @media (max-width: 640px) { .cs-figure-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="shell nav__inner">
+      <a href="index.html" class="brand" aria-label="David Cho — home">
+        <span><span class="brand__name">David Cho</span></span>
+        <span class="brand__role">UX&nbsp;Designer&nbsp;/&nbsp;Manager</span>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="index.html"  class="nav__link">Index</a>
+        <a href="work.html"   class="nav__link is-active">Work</a>
+        <a href="about.html"  class="nav__link">About</a>
+        <a href="resume.html" class="nav__link">Resume</a>
+        <a href="contact.html" class="nav__link">Contact</a>
+        <a href="contact.html" class="btn btn--primary btn--sm nav__cta">Get in touch
+          <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </nav>
+      <button class="nav__menu-btn" aria-label="Open menu"><span></span></button>
+    </div>
+    <div class="nav__panel">
+      <a href="index.html">Index</a><a href="work.html">Work</a><a href="about.html">About</a><a href="resume.html">Resume</a><a href="contact.html">Contact</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============ HERO ============ -->
+    <section class="cs-hero">
+      <div class="shell">
+        <a class="cs-hero__breadcrumb" href="work.html">
+          <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          All work
+        </a>
+        <div class="cs-hero__eyebrow">Case Study · Platform &amp; Systems UX · 2023</div>
+        <h1 class="cs-hero__title">Project Blueprint: modernizing SurveyMonkey's <em>marketing CMS</em>.</h1>
+        <p class="cs-hero__sub">Turning a patchwork of one-off templates into a scalable, modular platform — built on layout primitives, design tokens, and a governance model the whole marketing org could move through.</p>
+
+        <div class="cs-hero__tags">
+          <span class="tag tag--accent">CMS</span>
+          <span class="tag">Design Systems</span>
+          <span class="tag">Web UX</span>
+          <span class="tag">Platform UX</span>
+          <span class="tag">Growth</span>
+          <span class="tag">Governance</span>
+        </div>
+
+        <dl class="cs-summary">
+          <div><dt>Company</dt><dd>SurveyMonkey</dd></div>
+          <div><dt>Role</dt><dd>UX Designer / Manager · Systems Lead</dd></div>
+          <div><dt>Timeline</dt><dd>2023 · ~12 months</dd></div>
+          <div><dt>Surface</dt><dd>Marketing Web · CMS</dd></div>
+        </dl>
+
+        <div class="cs-cover">
+          <span class="placeholder">Figure 00 — Hero image · CMS overview · 1920 × 1080</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ READING LAYOUT ============ -->
+    <div class="shell">
+      <div class="cs-layout">
+
+        <!-- TOC -->
+        <aside class="cs-toc" aria-label="Contents">
+          <div class="cs-toc__label">Contents</div>
+          <ol>
+            <li><a href="#overview"  data-toc>Overview</a></li>
+            <li><a href="#context"   data-toc>Context</a></li>
+            <li><a href="#problem"   data-toc>Problem</a></li>
+            <li><a href="#role"      data-toc>My Role</a></li>
+            <li><a href="#strategy"  data-toc>Strategy</a></li>
+            <li><a href="#process"   data-toc>Process</a></li>
+            <li><a href="#decisions" data-toc>Key Decisions</a></li>
+            <li><a href="#solution"  data-toc>System &amp; UX Solution</a></li>
+            <li><a href="#collab"    data-toc>Collaboration</a></li>
+            <li><a href="#impact"    data-toc>Impact</a></li>
+            <li><a href="#learned"   data-toc>What I Learned</a></li>
+          </ol>
+        </aside>
+
+        <!-- BODY -->
+        <article class="cs-body">
+
+          <!-- 01 OVERVIEW -->
+          <section id="overview" class="cs-section">
+            <div class="cs-section__num">01 — Overview</div>
+            <h2 class="cs-section__title">A patchwork, recast as a <em>platform</em>.</h2>
+            <p class="cs-section__lede">The TL;DR — what the work was, why it mattered, and what it changed.</p>
+            <p>SurveyMonkey's marketing site is the company's front door, but the CMS behind it had grown into a patchwork of one-off page templates, drifting components, and accumulated brand debt — fast at first, expensive to maintain at scale. The bet was to recast it as a modular platform built on a small vocabulary of layout primitives, a token system, and a pattern library the whole marketing org could ship through.</p>
+            <p>I led the design side of the modernization — owning the system's shape, partnering with engineering on the implementation, and working across Brand, Content, and Growth to make the new vocabulary stick. The deliverable wasn't a screen; it was a system designed to make the next thousand pages easier to build than the last hundred were.</p>
+          </section>
+
+          <!-- 02 CONTEXT -->
+          <section id="context" class="cs-section">
+            <div class="cs-section__num">02 — Context</div>
+            <h2 class="cs-section__title">A marketing site with <em>more history than system</em>.</h2>
+            <p class="cs-section__lede">Where the CMS was, what it was being asked to do, and which constraints were real versus inherited.</p>
+            <p>SurveyMonkey's marketing site has been the workhorse of acquisition for more than a decade — hundreds of pages, multiple regions, frequent campaign cycles, and several historical brand eras layered on top of one another. The CMS had been added to year over year, mostly by cloning whichever template was closest to the next idea. It worked. It just didn't scale.</p>
+            <p>This case is about the marketing CMS specifically — the system Marketing, Brand, Content, and Growth use to build and ship pages. Adjacent surfaces (the product UI, the app's design system) had their own teams and their own systems. The CMS had to share a brand language with them without sharing their architecture, and it had to keep the live site running through every step of the migration.</p>
+
+            <dl class="cs-specs">
+              <div class="cs-spec"><dt>Industry</dt><dd>SaaS · Surveys, forms, and market research</dd></div>
+              <div class="cs-spec"><dt>Stage</dt><dd>Mature public company · large marketing org · distributed eng partners</dd></div>
+              <div class="cs-spec"><dt>Surface</dt><dd>Marketing CMS — landing pages, product pages, campaign surfaces, resource pages</dd></div>
+              <div class="cs-spec"><dt>Audience</dt><dd>Internal teams (Marketing, Brand, Content, Growth, Eng); end-users are site visitors at every stage of acquisition</dd></div>
+              <div class="cs-spec"><dt>Constraints</dt><dd>Live production site, multi-region, mixed legacy templates that couldn't all migrate at once</dd></div>
+            </dl>
+          </section>
+
+          <!-- 03 PROBLEM -->
+          <section id="problem" class="cs-section">
+            <div class="cs-section__num">03 — Problem</div>
+            <h2 class="cs-section__title">Marketing wanted to move at the <em>speed of ideas</em>.</h2>
+            <p class="cs-section__lede">The CMS made them move at the speed of engineering tickets — and brand drift, accessibility debt, and experimentation cost all followed from there.</p>
+            <p>The simplest way to describe the old CMS: every page was a snowflake. New pages cloned the nearest old page and edited from there. Every campaign cycle accumulated a new variant of a hero, a feature row, a footer CTA. Brand updates required hunting down each instance by hand. Accessibility was inconsistent and unowned. And because every variant was a custom build, growth experiments were expensive enough that the team ran far fewer than they wanted to.</p>
+
+            <div class="cs-callout cs-callout--decision">
+              <div class="cs-callout__label">Problem statement</div>
+              <p class="cs-callout__body">Teams trying to <em>ship campaigns on a weekly cadence</em> were forced to file engineering tickets or clone-and-customize legacy templates because the CMS had no shared vocabulary of components, tokens, or layout primitives.</p>
+            </div>
+
+            <div class="cs-twocol" style="margin-top: 24px;">
+              <div>
+                <h4>What we heard</h4>
+                <ul>
+                  <li>Marketing PMs described the CMS as "build it once, maintain it forever." A page was easier to launch than to edit a month later.</li>
+                  <li>Growth couldn't run more than a handful of experiments per quarter — each variant required a custom build.</li>
+                  <li>Brand caught drift only after pages were live. Updates were retroactive and expensive.</li>
+                  <li>Engineering was triaging marketing tickets that should never have needed an engineer.</li>
+                </ul>
+              </div>
+              <div>
+                <h4>The knock-on effects</h4>
+                <ul>
+                  <li>Publishing velocity slowed to the cadence of the eng ticket queue.</li>
+                  <li>Brand expression was uneven across the company's most-visited surface.</li>
+                  <li>Accessibility was inconsistent and unowned across hundreds of pages.</li>
+                  <li>The cost of variation crowded out the experiment itself.</li>
+                </ul>
+              </div>
+            </div>
+
+            <blockquote class="pull" style="margin-top: 40px;">
+              "Every page in the CMS is a snowflake. We don't have a system — we have a graveyard of templates."
+              <span class="pull__attr">— Marketing Engineer, kickoff workshop</span>
+            </blockquote>
+          </section>
+
+          <!-- 04 MY ROLE -->
+          <section id="role" class="cs-section">
+            <div class="cs-section__num">04 — My Role</div>
+            <h2 class="cs-section__title">Design lead on the system, <em>not the screens</em>.</h2>
+            <p class="cs-section__lede">UX Designer / Manager. On this initiative, design lead and systems strategist.</p>
+            <p>I owned the system's shape — what it was, what it owned, what it would and wouldn't support — and worked across teams to make that shape stick. That meant designing the primitives, defining the tokens, drafting the governance model, and spending a lot of time in working sessions translating between Brand, Engineering, Content, and Growth.</p>
+
+            <dl class="cs-role">
+              <div><dt>What I led</dt><dd>Systems-level strategy; layout primitives; token model; pattern library taxonomy; governance model</dd></div>
+              <div><dt>What I shipped personally</dt><dd>Primitive API, token model, reduction audit, pilot pages, governance proposal</dd></div>
+              <div><dt>What I contributed to</dt><dd>Brand token alignment; engineering architecture; Growth's experimentation model</dd></div>
+              <div><dt>What I didn't own</dt><dd>Product UI design system, brand visual identity, marketing copy</dd></div>
+            </dl>
+
+            <div class="cs-callout" style="margin-top: 24px;">
+              <div class="cs-callout__label">Plainly</div>
+              <p class="cs-callout__body">The deliverable was a system, not a screen. The job was to make the <em>next thousand pages</em> easier to build than the last hundred were — and to make the case, repeatedly, that the CMS deserved to be designed like a product.</p>
+            </div>
+          </section>
+
+          <!-- 05 STRATEGY -->
+          <section id="strategy" class="cs-section">
+            <div class="cs-section__num">05 — Strategy</div>
+            <h2 class="cs-section__title">Treat the CMS like a <em>product</em>, not a tool.</h2>
+            <p class="cs-section__lede">Invest in primitives that compose into pages, not templates that try to predict pages.</p>
+            <p>The strategy fit on one slide: stop adding templates, start designing primitives. Templates encode the page in front of you; primitives encode the pages you haven't designed yet. We chose primitives, and built every other decision — tokens, governance, rollout sequencing — around that single commitment.</p>
+            <p>What that meant in practice was naming what we <em>wouldn't</em> do. We wouldn't add a new page template every time marketing had a new need — that path was the problem, not the solution. We wouldn't rewrite the editor into a monolithic visual builder, tempting and expensive as that was. And we wouldn't lock the system down: governance over gatekeeping.</p>
+
+            <div class="cs-principles">
+              <div class="cs-principle">
+                <div class="cs-principle__head">Primitives over <em>templates</em>.</div>
+                <div class="cs-principle__body">A small set of layout primitives that compose into anything is more durable than a large set of templates that compose into nothing. The vocabulary is the system.</div>
+              </div>
+              <div class="cs-principle">
+                <div class="cs-principle__head">Tokens are the <em>contract</em>.</div>
+                <div class="cs-principle__body">Type, spacing, color, and container widths live in tokens. If a brand decision can't be expressed in tokens, it probably shouldn't ship — and a brand refresh shouldn't require a rebuild.</div>
+              </div>
+              <div class="cs-principle">
+                <div class="cs-principle__head">Speed and consistency are the <em>same output</em>.</div>
+                <div class="cs-principle__body">Brand consistency and publishing velocity aren't opposites. They're both signals that the system is doing its job — holding the floor so teams can move faster on top of it.</div>
+              </div>
+              <div class="cs-principle">
+                <div class="cs-principle__head">Governance, <em>not gatekeeping</em>.</div>
+                <div class="cs-principle__body">Anyone can use the system. New patterns get reviewed before they enter it. The system stays small as it grows, and the team trusts itself to extend it without re-fragmenting it.</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 06 PROCESS -->
+          <section id="process" class="cs-section">
+            <div class="cs-section__num">06 — Process</div>
+            <h2 class="cs-section__title">From <em>audit</em> to <em>vocabulary</em>.</h2>
+            <p class="cs-section__lede">Twelve months in five phases — most of it spent reducing what looked like complexity into a smaller, more honest set of shapes.</p>
+
+            <div class="cs-process">
+              <div class="cs-process__step">
+                <div class="cs-process__n">Phase 01</div>
+                <div class="cs-process__h">Audit</div>
+                <div class="cs-process__d">Inventoried every live marketing page; cataloged the components, layouts, and one-offs in the wild.</div>
+              </div>
+              <div class="cs-process__step">
+                <div class="cs-process__n">Phase 02</div>
+                <div class="cs-process__h">Frame</div>
+                <div class="cs-process__d">Mapped 60+ unique "layouts" to a much smaller set of underlying shapes. Identified the primitives that, composed, accounted for the majority of real pages.</div>
+              </div>
+              <div class="cs-process__step">
+                <div class="cs-process__n">Phase 03</div>
+                <div class="cs-process__h">Define</div>
+                <div class="cs-process__d">Drafted the primitive API, the token model, the pattern-library taxonomy, and the governance model. Whiteboards before Figma.</div>
+              </div>
+              <div class="cs-process__step">
+                <div class="cs-process__n">Phase 04</div>
+                <div class="cs-process__h">Pilot</div>
+                <div class="cs-process__d">Rebuilt a high-traffic product page and a campaign landing page entirely from the new primitives. Used those two pages as the proof of concept.</div>
+              </div>
+              <div class="cs-process__step">
+                <div class="cs-process__n">Phase 05</div>
+                <div class="cs-process__h">Roll out</div>
+                <div class="cs-process__d">New pages on the new system from day one; legacy migration in waves. Governance group stood up alongside.</div>
+              </div>
+            </div>
+
+            <div class="cs-figure cs-figure--wide">
+              <div class="cs-figure__frame"><span class="cs-figure__placeholder">Figure 01 — Audit map · 60+ layouts reduced to a primitive vocabulary</span></div>
+              <div class="cs-figure__caption"><span class="num">Fig 01</span><span>The reduction map. Every live layout on the left; the primitives that composed it on the right. The visual that made the strategy legible to non-designers.</span></div>
+            </div>
+
+            <div class="cs-figure-grid">
+              <div class="cs-figure">
+                <div class="cs-figure__frame"><span class="cs-figure__placeholder">Figure 02 — Pilot · product page rebuild</span></div>
+                <div class="cs-figure__caption"><span class="num">Fig 02</span><span>Pilot one: a high-traffic product page composed entirely of primitives.</span></div>
+              </div>
+              <div class="cs-figure">
+                <div class="cs-figure__frame"><span class="cs-figure__placeholder">Figure 03 — Pilot · campaign landing rebuild</span></div>
+                <div class="cs-figure__caption"><span class="num">Fig 03</span><span>Pilot two: a campaign page rebuilt and re-launched on the new system. Proved the velocity story.</span></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 07 KEY DECISIONS -->
+          <section id="decisions" class="cs-section">
+            <div class="cs-section__num">07 — Key Decisions</div>
+            <h2 class="cs-section__title">The four <em>forks</em> that shaped the system.</h2>
+            <p class="cs-section__lede">Each one had a reasonable counter-argument. Each one held up under the next year of use.</p>
+
+            <ol class="cs-decisions">
+              <li>
+                <span class="cs-decisions__num">D · 01</span>
+                <div>
+                  <h3 class="cs-decisions__title">Layout <em>primitives</em>, not page templates.</h3>
+                  <p class="cs-decisions__rationale">A Section / Row / Stack / Column / Grid vocabulary composes into anything marketing can imagine; a Hero / Features / Pricing / FAQ taxonomy fights you every time marketing imagines something new. The template approach was what produced the patchwork in the first place.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Kept</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">D · 02</span>
+                <div>
+                  <h3 class="cs-decisions__title">Tokens at the core, not <em>hand-coded values</em>.</h3>
+                  <p class="cs-decisions__rationale">Spacing, type, container widths, and responsive breakpoints all live as tokens. The brand system becomes the contract — not a PDF, not a Figma file, but a layer the CMS itself consumes. A brand refresh now lands by changing tokens, not by re-touching every component.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Kept</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">D · 03</span>
+                <div>
+                  <h3 class="cs-decisions__title">Governance, not <em>gatekeeping</em>.</h3>
+                  <p class="cs-decisions__rationale">Marketing's velocity was the whole point; a review queue would have re-introduced the bottleneck we were trying to remove. Anyone can use the system, anyone can propose a new pattern, and a small standing group reviews proposals weekly. Trust over toll booths.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Kept</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">D · 04</span>
+                <div>
+                  <h3 class="cs-decisions__title">Designed for <em>experimentation</em> from day one.</h3>
+                  <p class="cs-decisions__rationale">Growth needed to spin up variants without an engineering ticket. Building variant-friendly composition into the primitives — rather than bolting an A/B layer on top later — was a deliberate early call. It cost more up front and paid back the moment growth started running tests at the cadence they wanted.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Kept</span>
+              </li>
+            </ol>
+          </section>
+
+          <!-- 08 SYSTEM / UX SOLUTION -->
+          <section id="solution" class="cs-section">
+            <div class="cs-section__num">08 — System &amp; UX Solution</div>
+            <h2 class="cs-section__title">A small <em>vocabulary</em>, composed without limit.</h2>
+            <p class="cs-section__lede">Seven layout primitives, a token system connecting type / spacing / container / responsive behavior, and a pattern library built on top of both.</p>
+            <p>The system is built around a deliberately small vocabulary. Marketing composes pages by nesting primitives — Sections wrap Stacks wrap Grids wrap Columns — with every spacing, type, and color decision flowing from tokens. Patterns (Hero, Feature Grid, CTA Block, Testimonial Row) are higher-level compositions of primitives, never bespoke components. New patterns are encouraged; new primitives are rare events.</p>
+
+            <div class="cs-figure cs-figure--wide">
+              <div class="cs-figure__frame"><span class="cs-figure__placeholder">Figure 04 — System overview · primitives, tokens, patterns</span></div>
+              <div class="cs-figure__caption"><span class="num">Fig 04</span><span>The whole system on one page. Primitives at the base, tokens binding them together, patterns composed on top.</span></div>
+            </div>
+
+            <h3 style="font-family: var(--font-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 40px 0 16px;">Layout primitives</h3>
+            <div class="cs-primitives">
+              <div class="cs-primitive">
+                <div class="cs-primitive__head"><div class="cs-primitive__name">Section</div><div class="cs-primitive__tag">Primitive</div></div>
+                <div class="cs-primitive__vis">Outer container</div>
+                <div class="cs-primitive__body">Outermost container. Owns background, vertical rhythm, and the max content width. Every page is a stack of Sections.</div>
+              </div>
+              <div class="cs-primitive">
+                <div class="cs-primitive__head"><div class="cs-primitive__name">Stack</div><div class="cs-primitive__tag">Primitive</div></div>
+                <div class="cs-primitive__vis">Vertical rhythm</div>
+                <div class="cs-primitive__body">Vertical arrangement with token-driven gaps. The workhorse — most pages are mostly Stacks.</div>
+              </div>
+              <div class="cs-primitive">
+                <div class="cs-primitive__head"><div class="cs-primitive__name">Row</div><div class="cs-primitive__tag">Primitive</div></div>
+                <div class="cs-primitive__vis">Horizontal arrangement</div>
+                <div class="cs-primitive__body">Horizontal arrangement with gap and alignment tokens. Wraps responsively without authoring two layouts.</div>
+              </div>
+              <div class="cs-primitive">
+                <div class="cs-primitive__head"><div class="cs-primitive__name">Grid</div><div class="cs-primitive__tag">Primitive</div></div>
+                <div class="cs-primitive__vis">n-column responsive</div>
+                <div class="cs-primitive__body">N-column responsive grid with span-aware children. The basis for feature grids, card layouts, logo walls.</div>
+              </div>
+              <div class="cs-primitive">
+                <div class="cs-primitive__head"><div class="cs-primitive__name">Column</div><div class="cs-primitive__tag">Primitive</div></div>
+                <div class="cs-primitive__vis">Grid cell w/ span tokens</div>
+                <div class="cs-primitive__body">A cell inside a Grid. Span tokens, not hard-coded widths. Behaves predictably at every breakpoint.</div>
+              </div>
+              <div class="cs-primitive">
+                <div class="cs-primitive__head"><div class="cs-primitive__name">Heading</div><div class="cs-primitive__tag">Primitive</div></div>
+                <div class="cs-primitive__vis">Typographic primitive</div>
+                <div class="cs-primitive__body">Bound to the type scale. Semantic level and visual level decoupled — SEO and design are no longer in conflict.</div>
+              </div>
+              <div class="cs-primitive">
+                <div class="cs-primitive__head"><div class="cs-primitive__name">Image</div><div class="cs-primitive__tag">Primitive</div></div>
+                <div class="cs-primitive__vis">Responsive, a11y-first</div>
+                <div class="cs-primitive__body">Responsive, art-direction-aware, accessibility-first. Alt text and aspect ratio are required fields, not afterthoughts.</div>
+              </div>
+              <div class="cs-primitive">
+                <div class="cs-primitive__head"><div class="cs-primitive__name">Pattern Library</div><div class="cs-primitive__tag">Composition</div></div>
+                <div class="cs-primitive__vis">Patterns built from primitives</div>
+                <div class="cs-primitive__body">Hero, Feature Grid, CTA Block, Testimonial Row, Logo Wall. Compositions of primitives — not bespoke components.</div>
+              </div>
+            </div>
+
+            <h3 style="font-family: var(--font-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 40px 0 16px;">Before · After</h3>
+            <div class="cs-compare">
+              <div class="cs-compare__row">
+                <div class="cs-compare__label">Before</div>
+                <div class="cs-compare__body">To ship a campaign landing page, marketing filed a ticket. Engineering cloned the nearest template. Design reviewed for brand drift after the fact. The page shipped two-to-three sprints later — slightly inconsistent, with accessibility addressed unevenly.</div>
+              </div>
+              <div class="cs-compare__row">
+                <div class="cs-compare__label is-after">After</div>
+                <div class="cs-compare__body">Marketing composes the page in the CMS from primitives. Brand, spacing, type, and accessibility floor are inherited from tokens. Pages ship on the same day they're scoped, with brand expression coming <em>out of</em> the system instead of being enforced on top of it.</div>
+              </div>
+            </div>
+
+            <div class="cs-figure-grid" style="margin-top: 28px;">
+              <div class="cs-figure cs-figure--tall">
+                <div class="cs-figure__frame"><span class="cs-figure__placeholder">Figure 05 — Token model · type, spacing, container</span></div>
+                <div class="cs-figure__caption"><span class="num">Fig 05</span><span>The token model. Every visual decision traces back to a token — tokens are the only place where brand decisions get encoded.</span></div>
+              </div>
+              <div class="cs-figure cs-figure--tall">
+                <div class="cs-figure__frame"><span class="cs-figure__placeholder">Figure 06 — Page composed from primitives</span></div>
+                <div class="cs-figure__caption"><span class="num">Fig 06</span><span>A live page rendered as its primitive tree. The page is the composition; the composition is auditable, portable, and re-themeable.</span></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 09 COLLABORATION -->
+          <section id="collab" class="cs-section">
+            <div class="cs-section__num">09 — Collaboration</div>
+            <h2 class="cs-section__title">Who was <em>in the room</em>.</h2>
+            <p class="cs-section__lede">Design doesn't happen alone. Credit the people, and name the working pattern.</p>
+            <p>The working setup was lean by design: weekly working session with PM and engineering lead, open Figma file with comments-as-conversation, critique on Thursdays. Shipped behind a flag, watched live for two weeks before opening up. Most alignment happened asynchronously — a well-written Loom saved a lot of meetings.</p>
+
+            <div class="cs-roles">
+              <div class="cs-role-card">
+                <div class="cs-role-card__who">
+                  <div class="cs-role-card__av is-accent">A</div>
+                  <div>
+                    <div class="cs-role-card__name">Marketing PM</div>
+                    <div class="cs-role-card__what">Product Management</div>
+                  </div>
+                </div>
+                <p>Owned campaign delivery timelines and was the clearest voice for publishing velocity. Our weekly sync was where scope decisions got made and held.</p>
+              </div>
+              <div class="cs-role-card">
+                <div class="cs-role-card__who">
+                  <div class="cs-role-card__av">B</div>
+                  <div>
+                    <div class="cs-role-card__name">Engineering Lead</div>
+                    <div class="cs-role-card__what">Front-End Engineering</div>
+                  </div>
+                </div>
+                <p>Built the primitive API alongside the design definition. Pairing on the component authoring model early saved significant rework — design and implementation were never more than a sprint apart.</p>
+              </div>
+              <div class="cs-role-card">
+                <div class="cs-role-card__who">
+                  <div class="cs-role-card__av">C</div>
+                  <div>
+                    <div class="cs-role-card__name">Brand Lead</div>
+                    <div class="cs-role-card__what">Brand &amp; Visual Identity</div>
+                  </div>
+                </div>
+                <p>Token values were a shared decision. The brand-to-token mapping was the most important alignment artifact the two teams produced together — it made a brand refresh a token update, not a rebuild.</p>
+              </div>
+              <div class="cs-role-card">
+                <div class="cs-role-card__who">
+                  <div class="cs-role-card__av">D</div>
+                  <div>
+                    <div class="cs-role-card__name">Growth Lead</div>
+                    <div class="cs-role-card__what">Experimentation &amp; Growth</div>
+                  </div>
+                </div>
+                <p>Made the case internally for variant-friendly primitives. Their requirements shaped the composition model more than any other team's — and they were the first to see the payback when the experiments started running.</p>
+              </div>
+            </div>
+
+            <div class="cs-callout">
+              <div class="cs-callout__label">Working pattern</div>
+              <p class="cs-callout__body">Weekly working session with PM + Eng lead. Open Figma file with comments-as-conversation. Critique on Thursdays. Shipped behind a flag, watched live for two weeks before opening up.</p>
+            </div>
+          </section>
+
+          <!-- 10 IMPACT -->
+          <section id="impact" class="cs-section">
+            <div class="cs-section__num">10 — Impact</div>
+            <h2 class="cs-section__title">What the work <em>moved</em>.</h2>
+            <p class="cs-section__lede">Qualitative first. If numbers are available and honest, they go in the supporting paragraph — not the headline.</p>
+
+            <div class="cs-impact">
+              <div>
+                <div class="cs-impact__label">For the user</div>
+                <h3 class="cs-impact__title">Pages ship on the day they're scoped.</h3>
+                <p class="cs-impact__body">Authors compose in the CMS from primitives. Brand, spacing, type, and accessibility floor are inherited. Engineering review is a check, not a bottleneck.</p>
+              </div>
+              <div>
+                <div class="cs-impact__label">For the team</div>
+                <h3 class="cs-impact__title">A vocabulary, not a graveyard.</h3>
+                <p class="cs-impact__body">The patterns introduced became shared shorthand across product, engineering, and marketing — speeding subsequent work on adjacent surfaces and reducing design review cycles.</p>
+              </div>
+              <div>
+                <div class="cs-impact__label">For the business</div>
+                <h3 class="cs-impact__title">Growth experiments run on cadence.</h3>
+                <p class="cs-impact__body">Variant-friendly primitives unlocked the experiment volume Growth had wanted but couldn't afford. The cost of variation dropped; the number of tests per quarter went up.</p>
+              </div>
+            </div>
+
+            <p>Brand has stopped flagging cross-page drift in weekly QA. Engineering escalations to design dropped measurably. Locale variants share a visual rhythm without explicit coordination. Quantitative results are tracked per pilot campaign — I'm comfortable speaking to those numbers in a live conversation.</p>
+
+            <blockquote class="pull" style="margin-top: 36px;">
+              "The system felt designed <em>with</em> us instead of handed to us. That was the difference."
+              <span class="pull__attr">— PMM, partner team</span>
+            </blockquote>
+          </section>
+
+          <!-- 11 WHAT I LEARNED -->
+          <section id="learned" class="cs-section">
+            <div class="cs-section__num">11 — What I Learned</div>
+            <h2 class="cs-section__title">The notes I <em>kept</em>.</h2>
+            <p class="cs-section__lede">Four lessons, written as practical advice to my next self. Not platitudes.</p>
+
+            <ol class="cs-decisions">
+              <li>
+                <span class="cs-decisions__num">L · 01</span>
+                <div>
+                  <h3 class="cs-decisions__title">Make the <em>authoring experience</em> your hero.</h3>
+                  <p class="cs-decisions__rationale">The component design was the easy half. The 10× gain came from designing the CMS form a marketer fills in — that's where velocity actually lives.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Keep</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">L · 02</span>
+                <div>
+                  <h3 class="cs-decisions__title">The earliest sketch was right about the <em>structure</em>, wrong about the tone.</h3>
+                  <p class="cs-decisions__rationale">Trust the bones of an early direction even when the surface treatment is bad. The structural insight rarely changes; the visual layer almost always does.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Keep</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">L · 03</span>
+                <div>
+                  <h3 class="cs-decisions__title">Governance is a <em>design problem</em>.</h3>
+                  <p class="cs-decisions__rationale">Who can add a component? Who can override a token? Documented and answered up front, those questions save quarters of friction later. Underdocumented governance re-introduces the snowflake problem under a different name.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Keep</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">L · 04</span>
+                <div>
+                  <h3 class="cs-decisions__title">The hardest part wasn't the design — it was <em>holding the frame</em>.</h3>
+                  <p class="cs-decisions__rationale">The team had three reasonable directions to choose from. The job was less to invent a fourth and more to defend the chosen one through six weeks of build. Primitive-over-template is a principle that needs repeating at every sprint review.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Keep</span>
+              </li>
+            </ol>
+          </section>
+
+          <!-- NEXT -->
+          <nav class="cs-next" aria-label="Case study navigation">
+            <a href="work.html">
+              <span class="cs-next__label">← All work</span>
+              <h4 class="cs-next__title">Back to the <em>index</em></h4>
+            </a>
+            <a href="SurveyMonkey CMS Components.html">
+              <span class="cs-next__label">Next case</span>
+              <h4 class="cs-next__title">SurveyMonkey <em>CMS Components</em> →</h4>
+            </a>
+          </nav>
+
+        </article>
+      </div>
+    </div>
+
+    <!-- ============ CTA ============ -->
+    <section class="section section--flush">
+      <div class="shell">
+        <div class="cta">
+          <div>
+            <div class="cta__eyebrow">Working together</div>
+            <h2 class="cta__title">Have a system that needs to <em>cohere</em>?</h2>
+          </div>
+          <div class="cta__side">
+            <p class="cta__lede">Audits, rewrites, and team-leadership engagements — open to a few each year.</p>
+            <div style="display:flex; gap:12px; flex-wrap:wrap;">
+              <a href="contact.html" class="btn btn--accent">Start a conversation
+                <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a href="work.html" class="btn btn--ghost">See more work</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="shell">
+      <div class="footer__grid">
+        <div class="footer__brand-col">
+          <h2 class="footer__brand" style="font-weight: 500">David <em style="font-weight: 500">Cho</em></h2>
+          <p class="footer__tagline">Designing the systems behind high-performing web experiences.</p>
+        </div>
+        <div class="footer__col"><h4>Site</h4><ul><li><a href="index.html">Index</a></li><li><a href="work.html">Work</a></li><li><a href="about.html">About</a></li><li><a href="resume.html">Resume</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+        <div class="footer__col"><h4>Elsewhere</h4><ul><li><a href="#">LinkedIn ↗</a></li><li><a href="#">Read.cv ↗</a></li><li><a href="#">Are.na ↗</a></li><li><a href="#">Dribbble ↗</a></li></ul></div>
+        <div class="footer__col"><h4>Contact</h4><ul><li><a href="contact.html">Project brief</a></li></ul></div>
+      </div>
+      <div class="footer__bar">
+        <span>© <span data-year></span> &nbsp;David Cho · Toronto</span>
+        <span>Set in Source Serif 4 &amp; Space Grotesk</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/site.js"></script>
+  <script>
+    // TOC current-section highlight via IntersectionObserver
+    (function () {
+      const links = document.querySelectorAll('.cs-toc a[data-toc]');
+      const map = new Map();
+      links.forEach(a => map.set(a.getAttribute('href').slice(1), a));
+      const sections = document.querySelectorAll('.cs-section[id]');
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            links.forEach(a => a.classList.remove('is-current'));
+            const a = map.get(e.target.id);
+            if (a) a.classList.add('is-current');
+          }
+        });
+      }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+      sections.forEach(s => io.observe(s));
+    })();
+  </script>
+
+</body>
+</html>

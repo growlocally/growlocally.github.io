@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About — David Cho</title>
+  <meta name="description" content="About David Cho — a UX Web Designer and Manager working at the intersection of web systems, growth, and design systems." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;1,8..60,300;1,8..60,400;1,8..60,500&family=Space+Grotesk:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="shell nav__inner">
+      <a href="index.html" class="brand" aria-label="David Cho — home">
+        <span><span class="brand__name">David Cho</span></span>
+        <span class="brand__role">UX&nbsp;Designer&nbsp;/&nbsp;Manager</span>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="index.html"  class="nav__link">Index</a>
+        <a href="work.html"   class="nav__link">Work</a>
+        <a href="about.html"  class="nav__link is-active">About</a>
+        <a href="resume.html" class="nav__link">Resume</a>
+        <a href="contact.html" class="nav__link">Contact</a>
+        <a href="contact.html" class="btn btn--primary btn--sm nav__cta">Get in touch
+          <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </nav>
+      <button class="nav__menu-btn" aria-label="Open menu"><span></span></button>
+    </div>
+    <div class="nav__panel">
+      <a href="index.html">Index</a><a href="work.html">Work</a><a href="about.html">About</a><a href="resume.html">Resume</a><a href="contact.html">Contact</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ SUBHERO ============ -->
+    <section class="subhero">
+      <div class="shell">
+        <div class="subhero__eyebrow">About &nbsp;·&nbsp; A short note</div>
+        <h1 class="subhero__title">A designer who treats the web as <em>infrastructure</em>.</h1>
+        <p class="subhero__lede">
+          Twelve years of designing and shipping web. The last six leading teams.
+          Most of what I make lives downstream of a CMS, a component library, or a content model — and that's on purpose.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ BIO ============ -->
+    <section class="section section--flush">
+      <div class="shell">
+        <div style="display:grid; grid-template-columns: 200px 1fr; gap: clamp(24px, 5vw, 80px); align-items:start;">
+          <span class="section-head__index">01 — Bio</span>
+          <div style="max-width: 64ch; display:flex; flex-direction:column; gap:22px; font-size: clamp(18px, 1.6vw, 21px); line-height: 1.55;">
+            <p style="margin:0;">
+              I'm <strong>David Cho</strong> — a UX Web Designer and Manager at SurveyMonkey.
+              I spend most of my time on the systems that sit underneath a marketing site:
+              the page model, the components, the motion vocabulary, the analytics that says whether any of it is working.
+            </p>
+            <p style="margin:0; color:var(--muted);">
+              I started in agency work — the kind where a site launch was the deliverable and the
+              CMS was someone else's problem. After moving in-house, it became clear the interesting
+              problem wasn't the launch. It was the next twenty-four months: how does a small team
+              produce hundreds of high-quality pages without producing a hundred design debts?
+            </p>
+            <p style="margin:0; color:var(--muted);">
+              These days I lead a small team across web systems and growth. We treat marketing, product
+              storytelling, and the design system as one continuous surface. I write briefs, build out
+              tokens and components, partner with engineering on the CMS model, and run the analytics
+              loop that closes feedback faster than a quarterly review.
+            </p>
+            <p style="margin:0;">
+              Outside work I cook a lot, run slowly, and keep a long-running Notion of every navigation
+              pattern I've ever found notable. <a href="contact.html" class="ilink">Say hi</a> — I'm easy to find.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PULL QUOTE / PHILOSOPHY ============ -->
+    <section class="section">
+      <div class="shell">
+        <div style="display:grid; grid-template-columns: 1.2fr 1fr; gap: clamp(40px, 6vw, 96px); align-items: start;">
+          <blockquote class="pull" style="margin:0">
+            “I'd rather ship a system that's <em>boringly correct for a year</em>
+            than a beautiful one-off that needs a maintainer.”
+            <span class="pull__attr">— Working philosophy</span>
+          </blockquote>
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <div style="font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:.14em; color:var(--muted);">Currently</div>
+            <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:14px; font-size:16px;">
+              <li style="display:grid; grid-template-columns:120px 1fr; gap:16px;"><span style="font-family:var(--font-mono); font-size:12px; color:var(--muted); letter-spacing:.1em; text-transform:uppercase;">Leading</span><span>Project Blueprint — global web system rewrite</span></li>
+              <li style="display:grid; grid-template-columns:120px 1fr; gap:16px;"><span style="font-family:var(--font-mono); font-size:12px; color:var(--muted); letter-spacing:.1em; text-transform:uppercase;">Writing</span><span>An internal handbook on web-systems governance</span></li>
+              <li style="display:grid; grid-template-columns:120px 1fr; gap:16px;"><span style="font-family:var(--font-mono); font-size:12px; color:var(--muted); letter-spacing:.1em; text-transform:uppercase;">Reading</span><span>Reorienting around <em style="font-style:italic; font-family:var(--font-display);">Designing Design</em>, Kenya Hara</span></li>
+              <li style="display:grid; grid-template-columns:120px 1fr; gap:16px;"><span style="font-family:var(--font-mono); font-size:12px; color:var(--muted); letter-spacing:.1em; text-transform:uppercase;">Tinkering</span><span>A timeline-based motion editor inside the CMS</span></li>
+              <li style="display:grid; grid-template-columns:120px 1fr; gap:16px;"><span style="font-family:var(--font-mono); font-size:12px; color:var(--muted); letter-spacing:.1em; text-transform:uppercase;">Mentoring</span><span>3 mid-level designers — async, monthly</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS GRID ============ -->
+    <section class="section">
+      <div class="shell">
+        <header class="section-head">
+          <span class="section-head__index">02 — Skills</span>
+          <div>
+            <h2 class="section-head__title">What I'm <em>actually good at</em>.</h2>
+            <p class="section-head__lede">Not an exhaustive list — the things I reach for when there's a real decision to make.</p>
+          </div>
+        </header>
+
+        <div class="skills reveal">
+          <div class="skill">
+            <div class="skill__num">01 / Practice</div>
+            <h3 class="skill__title">Web UX systems</h3>
+            <ul class="skill__list">
+              <li>Page systems &amp; template libraries</li>
+              <li>Content modelling for headless CMS</li>
+              <li>Responsive layout patterns</li>
+              <li>Component API design</li>
+              <li>Information architecture</li>
+              <li>Editorial workflows</li>
+            </ul>
+          </div>
+          <div class="skill">
+            <div class="skill__num">02 / Practice</div>
+            <h3 class="skill__title">Growth &amp; product-led web</h3>
+            <ul class="skill__list">
+              <li>Logged-out experience design</li>
+              <li>Conversion path mapping</li>
+              <li>Experimentation (A/B, multi-arm)</li>
+              <li>SEO &amp; programmatic pages</li>
+              <li>Activation &amp; onboarding bridges</li>
+              <li>Pricing &amp; plan storytelling</li>
+            </ul>
+          </div>
+          <div class="skill">
+            <div class="skill__num">03 / Practice</div>
+            <h3 class="skill__title">Design systems</h3>
+            <ul class="skill__list">
+              <li>Token architecture (Tokens Studio)</li>
+              <li>Component governance</li>
+              <li>Documentation as a product</li>
+              <li>Cross-team contribution model</li>
+              <li>Versioning &amp; deprecation</li>
+              <li>Accessibility baseline (WCAG AA+)</li>
+            </ul>
+          </div>
+          <div class="skill">
+            <div class="skill__num">04 / Practice</div>
+            <h3 class="skill__title">Motion &amp; interactive</h3>
+            <ul class="skill__list">
+              <li>Framer (production)</li>
+              <li>CSS / Web Animations API</li>
+              <li>Motion primitives &amp; timing curves</li>
+              <li>Scroll-tied storytelling</li>
+              <li>Perf-aware motion patterns</li>
+              <li>Prefers-reduced-motion budgets</li>
+            </ul>
+          </div>
+          <div class="skill">
+            <div class="skill__num">05 / Practice</div>
+            <h3 class="skill__title">Analytics &amp; measurement</h3>
+            <ul class="skill__list">
+              <li>Event taxonomy design</li>
+              <li>Funnel &amp; cohort modelling</li>
+              <li>Heap · Amplitude · Mixpanel</li>
+              <li>Qualitative + quantitative loop</li>
+              <li>Instrumentation review</li>
+              <li>Quarterly readout writing</li>
+            </ul>
+          </div>
+          <div class="skill">
+            <div class="skill__num">06 / Practice</div>
+            <h3 class="skill__title">Leadership</h3>
+            <ul class="skill__list">
+              <li>Hiring &amp; coaching designers</li>
+              <li>Org design for web teams</li>
+              <li>Cross-functional alignment</li>
+              <li>Roadmapping &amp; planning</li>
+              <li>Brief &amp; decision-doc writing</li>
+              <li>Executive stakeholder management</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TOOLBOX ============ -->
+    <section class="section">
+      <div class="shell">
+        <header class="section-head">
+          <span class="section-head__index">03 — Toolbox</span>
+          <div>
+            <h2 class="section-head__title">Tools I keep <em>open all day</em>.</h2>
+          </div>
+        </header>
+
+        <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background:var(--line); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;">
+          <!-- repeating tool cells -->
+          <div style="background:var(--bg); padding:24px 24px 28px;">
+            <div style="font-family:var(--font-mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:8px;">Design</div>
+            <p style="margin:0; font-family:var(--font-display); font-size:22px; line-height:1.2;">Figma · Tokens Studio · Framer</p>
+          </div>
+          <div style="background:var(--bg); padding:24px 24px 28px;">
+            <div style="font-family:var(--font-mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:8px;">CMS</div>
+            <p style="margin:0; font-family:var(--font-display); font-size:22px; line-height:1.2;">Sanity · Contentful · Storyblok</p>
+          </div>
+          <div style="background:var(--bg); padding:24px 24px 28px;">
+            <div style="font-family:var(--font-mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:8px;">Build</div>
+            <p style="margin:0; font-family:var(--font-display); font-size:22px; line-height:1.2;">Next.js · Astro · Storybook</p>
+          </div>
+          <div style="background:var(--bg); padding:24px 24px 28px;">
+            <div style="font-family:var(--font-mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:8px;">Analytics</div>
+            <p style="margin:0; font-family:var(--font-display); font-size:22px; line-height:1.2;">Heap · Amplitude · GA4</p>
+          </div>
+          <div style="background:var(--bg); padding:24px 24px 28px;">
+            <div style="font-family:var(--font-mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:8px;">Motion</div>
+            <p style="margin:0; font-family:var(--font-display); font-size:22px; line-height:1.2;">Framer · Rive · WAAPI</p>
+          </div>
+          <div style="background:var(--bg); padding:24px 24px 28px;">
+            <div style="font-family:var(--font-mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:8px;">Research</div>
+            <p style="margin:0; font-family:var(--font-display); font-size:22px; line-height:1.2;">Dovetail · Maze · UserTesting</p>
+          </div>
+          <div style="background:var(--bg); padding:24px 24px 28px;">
+            <div style="font-family:var(--font-mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:8px;">Ops</div>
+            <p style="margin:0; font-family:var(--font-display); font-size:22px; line-height:1.2;">Linear · Notion · Loom</p>
+          </div>
+          <div style="background:var(--bg); padding:24px 24px 28px;">
+            <div style="font-family:var(--font-mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:8px;">Code</div>
+            <p style="margin:0; font-family:var(--font-display); font-size:22px; line-height:1.2;">HTML · CSS · TS (reading)</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ INFLUENCES / RECOG ============ -->
+    <section class="section">
+      <div class="shell">
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 96px);">
+          <div>
+            <div style="font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:.14em; color:var(--muted); margin-bottom:24px;">Influences</div>
+            <h3 style="font-family:var(--font-display); font-size:clamp(28px, 3vw, 40px); line-height:1.1; margin:0 0 24px;">The people and places I steal good ideas from.</h3>
+            <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column;">
+              <li style="padding:14px 0; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:24px;"><span>Vercel</span><span style="color:var(--muted); font-family:var(--font-mono); font-size:12px; text-transform:uppercase; letter-spacing:.1em;">Editorial pace</span></li>
+              <li style="padding:14px 0; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:24px;"><span>Linear</span><span style="color:var(--muted); font-family:var(--font-mono); font-size:12px; text-transform:uppercase; letter-spacing:.1em;">Restraint</span></li>
+              <li style="padding:14px 0; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:24px;"><span>Framer</span><span style="color:var(--muted); font-family:var(--font-mono); font-size:12px; text-transform:uppercase; letter-spacing:.1em;">Motion as language</span></li>
+              <li style="padding:14px 0; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:24px;"><span>Stripe</span><span style="color:var(--muted); font-family:var(--font-mono); font-size:12px; text-transform:uppercase; letter-spacing:.1em;">Density done well</span></li>
+              <li style="padding:14px 0; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:24px;"><span>Apple HIG</span><span style="color:var(--muted); font-family:var(--font-mono); font-size:12px; text-transform:uppercase; letter-spacing:.1em;">Hierarchy</span></li>
+              <li style="padding:14px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); display:flex; justify-content:space-between; gap:24px;"><span>Brand New</span><span style="color:var(--muted); font-family:var(--font-mono); font-size:12px; text-transform:uppercase; letter-spacing:.1em;">Critique discipline</span></li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:.14em; color:var(--muted); margin-bottom:24px;">Talks &amp; writing</div>
+            <h3 style="font-family:var(--font-display); font-size:clamp(28px, 3vw, 40px); line-height:1.1; margin:0 0 24px;">Where I've shown my work.</h3>
+            <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column;">
+              <li style="padding:18px 0; border-top:1px solid var(--line);">
+                <div style="display:flex; justify-content:space-between; gap:24px; align-items:baseline;"><span style="font-family:var(--font-display); font-size:22px;">Designing web systems for marketing teams</span><span style="font-family:var(--font-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); flex-shrink:0;">2025</span></div>
+                <p style="margin:6px 0 0; color:var(--muted); font-size:14.5px;">Config London — workshop, 90 min</p>
+              </li>
+              <li style="padding:18px 0; border-top:1px solid var(--line);">
+                <div style="display:flex; justify-content:space-between; gap:24px; align-items:baseline;"><span style="font-family:var(--font-display); font-size:22px;">CMS as a design surface</span><span style="font-family:var(--font-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); flex-shrink:0;">2024</span></div>
+                <p style="margin:6px 0 0; color:var(--muted); font-size:14.5px;">Clarity Conf — talk</p>
+              </li>
+              <li style="padding:18px 0; border-top:1px solid var(--line);">
+                <div style="display:flex; justify-content:space-between; gap:24px; align-items:baseline;"><span style="font-family:var(--font-display); font-size:22px;">Motion you don't notice</span><span style="font-family:var(--font-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); flex-shrink:0;">2024</span></div>
+                <p style="margin:6px 0 0; color:var(--muted); font-size:14.5px;">An A List Apart essay</p>
+              </li>
+              <li style="padding:18px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+                <div style="display:flex; justify-content:space-between; gap:24px; align-items:baseline;"><span style="font-family:var(--font-display); font-size:22px;">Inside SurveyMonkey's web rewrite</span><span style="font-family:var(--font-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); flex-shrink:0;">2026</span></div>
+                <p style="margin:6px 0 0; color:var(--muted); font-size:14.5px;">Forthcoming — Smashing Mag</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="section section--flush">
+      <div class="shell">
+        <div class="cta">
+          <div>
+            <div class="cta__eyebrow">Reach out</div>
+            <h2 class="cta__title">If any of this <em>resonates</em>, let's talk.</h2>
+          </div>
+          <div class="cta__side">
+            <p class="cta__lede">I'm currently open to senior and principal UX roles, and to a couple of advisory engagements per year.</p>
+            <div style="display:flex; gap:12px; flex-wrap:wrap;">
+              <a href="contact.html" class="btn btn--accent">Say hello
+                <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a href="resume.html" class="btn btn--ghost">See the résumé</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell">
+      <div class="footer__grid">
+        <div class="footer__brand-col">
+          <h2 class="footer__brand" style="font-weight: 500">David <em style="font-weight: 500">Cho</em></h2>
+          <p class="footer__tagline">Designing the systems behind high-performing web experiences.</p>
+        </div>
+        <div class="footer__col"><h4>Site</h4><ul><li><a href="index.html">Index</a></li><li><a href="work.html">Work</a></li><li><a href="about.html">About</a></li><li><a href="resume.html">Resume</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+        <div class="footer__col"><h4>Elsewhere</h4><ul><li><a href="#">LinkedIn ↗</a></li><li><a href="#">Read.cv ↗</a></li><li><a href="#">Are.na ↗</a></li><li><a href="#">Dribbble ↗</a></li></ul></div>
+        <div class="footer__col"><h4>Contact</h4><ul><li><a href="mailto:hi@davidcho.design">hi@davidcho.design</a></li><li><a href="contact.html">Project brief</a></li><li><a href="#">+1 (415) 555&#8209;0118</a></li></ul></div>
+      </div>
+      <div class="footer__bar">
+        <span>© <span data-year></span> &nbsp;David Cho · Toronto</span>
+        <span>Set in Source Serif 4 &amp; Space Grotesk</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/site.js"></script>
+</body>
+</html>

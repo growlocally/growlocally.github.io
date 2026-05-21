@@ -1,0 +1,671 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Designing Clearer Paths Through Product-Led Web Experiences — Case Study · David Cho</title>
+  <meta name="description" content="Case study — navigation, IA, and product storytelling work at SurveyMonkey that helped users move from awareness to action and helped teams decide where new product stories should live." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;1,8..60,300;1,8..60,400;1,8..60,500&family=Space+Grotesk:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="shell nav__inner">
+      <a href="index.html" class="brand" aria-label="David Cho — home">
+        <span><span class="brand__name">David Cho</span></span>
+        <span class="brand__role">UX&nbsp;Designer&nbsp;/&nbsp;Manager</span>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="index.html"  class="nav__link">Index</a>
+        <a href="work.html"   class="nav__link is-active">Work</a>
+        <a href="about.html"  class="nav__link">About</a>
+        <a href="resume.html" class="nav__link">Resume</a>
+        <a href="contact.html" class="nav__link">Contact</a>
+        <a href="contact.html" class="btn btn--primary btn--sm nav__cta">Get in touch
+          <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </nav>
+      <button class="nav__menu-btn" aria-label="Open menu"><span></span></button>
+    </div>
+    <div class="nav__panel">
+      <a href="index.html">Index</a><a href="work.html">Work</a><a href="about.html">About</a><a href="resume.html">Resume</a><a href="contact.html">Contact</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="cs-hero">
+      <div class="shell">
+        <a class="cs-hero__breadcrumb" href="work.html">
+          <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          All work
+        </a>
+        <div class="cs-hero__eyebrow">Case Study · 04 / 06 · Shipped</div>
+        <h1 class="cs-hero__title">Designing Clearer Paths Through <em>Product-Led</em> Web Experiences.</h1>
+        <p class="cs-hero__sub">Navigation, chapter wayfinding, and logged-out experience work that helped users move from awareness to action — and helped teams decide where new product stories should live without fragmenting the site.</p>
+
+        <div class="cs-hero__tags">
+          <span class="tag tag--accent">Growth</span>
+          <span class="tag">Navigation</span>
+          <span class="tag">Information Architecture</span>
+          <span class="tag">Product Storytelling</span>
+          <span class="tag">PLG</span>
+          <span class="tag">Experimentation</span>
+        </div>
+
+        <dl class="cs-summary">
+          <div><dt>Role</dt><dd>UX lead · web experience strategist</dd></div>
+          <div><dt>Span</dt><dd>2022 — 2025 · multi-initiative thread</dd></div>
+          <div><dt>Initiatives</dt><dd>Global nav · chapter nav · MRX IA · Programs · PLG surfaces</dd></div>
+          <div><dt>Surface</dt><dd>Logged-out web · long-form content · acquisition paths</dd></div>
+        </dl>
+
+        <!-- Cover plate -->
+        <div class="cs-cover">
+          <span class="placeholder">Figure 00 — Pathways diagram, logged-out to product · 1920 × 1080</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ READING LAYOUT ============ -->
+    <div class="shell">
+      <div class="cs-layout">
+
+        <!-- TOC -->
+        <aside class="cs-toc" aria-label="Contents">
+          <div class="cs-toc__label">Contents</div>
+          <ol>
+            <li><a href="#overview" data-toc>Overview</a></li>
+            <li><a href="#context" data-toc>Context</a></li>
+            <li><a href="#problem" data-toc>Problem</a></li>
+            <li><a href="#role" data-toc>My Role</a></li>
+            <li><a href="#strategy" data-toc>Strategy</a></li>
+            <li><a href="#process" data-toc>Process</a></li>
+            <li><a href="#decisions" data-toc>Key Decisions</a></li>
+            <li><a href="#solution" data-toc>System &amp; UX Solution</a></li>
+            <li><a href="#collab" data-toc>Collaboration</a></li>
+            <li><a href="#impact" data-toc>Impact</a></li>
+            <li><a href="#learned" data-toc>What I Learned</a></li>
+          </ol>
+        </aside>
+
+        <!-- BODY -->
+        <article class="cs-body">
+
+          <!-- 01 OVERVIEW -->
+          <section id="overview" class="cs-section">
+            <div class="cs-section__num">01 — Overview</div>
+            <h2 class="cs-section__title">From <em>pages</em> to <em>pathways</em>.</h2>
+            <p class="cs-section__lede">A three-year thread of navigation, IA, and product-storytelling work — read separately as nav projects, read together as one piece of design about how a growing product gets explained.</p>
+            <p>A growing product ecosystem doesn't just need more pages — it needs clearer pathways through them. Over three years I led a thread of work focused on exactly that: a global navigation redesign, a chapter navigation system for long-form content, an information architecture strategy for MRX (Market Research) in the logged-out site, an exploration of how Programs should appear on the marketing surface, and a broader set of product-led growth experiences that help users educate themselves before they ever sign up.</p>
+            <p>Read together, they're one piece of work: helping users move from awareness to understanding to action, and helping cross-functional teams decide where new product stories should live without fragmenting the site. The thread that ties them is <em>information architecture as product storytelling</em> — the menu, the page hierarchy, and the order of explanation are part of the product experience, not packaging around it.</p>
+          </section>
+
+          <!-- 02 CONTEXT -->
+          <section id="context" class="cs-section">
+            <div class="cs-section__num">02 — Context</div>
+            <h2 class="cs-section__title">A bigger product, a <em>fuller</em> site.</h2>
+            <p>By 2022 SurveyMonkey wasn't one product anymore. There was the flagship survey product, expanding solution areas for HR, CX, and market research, a developing MRX (Market Research Experience), and longer-running motions like Programs that didn't fit cleanly into any of the existing buckets. Each had its own audience, its own narrative, and a legitimate claim on the marketing site. The site, like most growing sites, had been built one campaign at a time — the navigation reflected where the company had been, not where it was going.</p>
+            <p>Logged-out visitors were doing more pre-product work than ever. They were learning about features, comparing solution areas, evaluating fit for their team, and trying to figure out what SurveyMonkey actually was before they signed up. The site was doing product education whether anyone had designed it for that job or not — and doing it unevenly. The work in this case is the work of making it do that job on purpose.</p>
+
+            <div class="cs-callout">
+              <div class="cs-callout__label">From pages to pathways</div>
+              <p class="cs-callout__body">Logged-out marketing surfaces aren't a brochure stack. They're the <em>product education layer</em> — where visitors learn what SurveyMonkey offers, find their way to the area that matches their job, and self-orient before they sign up. Treating navigation, hierarchy, and IA as pathways through the product — not as menu chrome — is the difference between a site that grows with the company and one that fragments under it.</p>
+            </div>
+          </section>
+
+          <!-- 03 PROBLEM -->
+          <section id="problem" class="cs-section">
+            <div class="cs-section__num">03 — Problem</div>
+            <h2 class="cs-section__title">A site users had to <em>decode</em>.</h2>
+            <p class="cs-section__lede">Two problems, one cause: visitors couldn't always find the path through the product, and teams couldn't always agree on where new product stories should live.</p>
+
+            <p>From the outside, the marketing site asked visitors to do a lot of decoding. The top-level nav had grown to reflect history, not strategy. Solution areas and product surfaces overlapped in unhelpful ways. Long-form content didn't give readers a way to orient inside a page or move between sections without scrolling. Visitors arriving from search ads or organic landed on a single page and often couldn't tell what else was nearby, what they should read next, or how the page they were on connected to the product.</p>
+
+            <p>From the inside, every new product story re-opened the same conversation: where does this live on the site? MRX needed to introduce a developing market-research experience without fragmenting the existing portfolio. Programs needed a way to surface a more complex concept that didn't fit the single-product page pattern. Each ask was reasonable on its own; together they were producing a navigation system that grew by accretion.</p>
+
+            <div class="cs-twocol">
+              <div>
+                <h4>What was getting in the way — visitor side</h4>
+                <ul>
+                  <li><strong>Global nav</strong> reflected history, not strategy — items added over years with no clear hierarchy of solution vs product vs resource.</li>
+                  <li><strong>Long-form content</strong> shipped without consistent in-page wayfinding — readers couldn't see where they were in a 4,000-word guide.</li>
+                  <li><strong>PLG surfaces</strong> were shaped by whichever team owned them, not by a shared model of the acquisition journey.</li>
+                </ul>
+              </div>
+              <div>
+                <h4>What was getting in the way — internal side</h4>
+                <ul>
+                  <li><strong>MRX</strong> needed an introduction strategy — without one, each team proposed a different shape and the conversation kept restarting.</li>
+                  <li><strong>Programs</strong> didn't map to the existing page templates and needed a way to be explained the site hadn't been designed to express.</li>
+                  <li><strong>The safest path</strong> in every new conversation was always to add another item to the menu — and the menu was already overfull.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="cs-callout">
+              <div class="cs-callout__label">Problem statement</div>
+              <p class="cs-callout__body">Visitors needed clearer paths through a growing product ecosystem, and internal teams needed clearer models for where new product stories should live — but neither was getting it, because <em>navigation, IA, and long-form content wayfinding were being treated as page-level work instead of as the product education layer they actually were</em>.</p>
+            </div>
+
+            <blockquote class="pull" style="margin: 32px 0 0;">
+              "The menu tells you what the company has built. It doesn't tell you what to do."
+              <span class="pull__attr">— Internal workshop, navigation discovery</span>
+            </blockquote>
+          </section>
+
+          <!-- 04 MY ROLE -->
+          <section id="role" class="cs-section">
+            <div class="cs-section__num">04 — My Role</div>
+            <h2 class="cs-section__title">UX lead across the <em>thread</em>.</h2>
+            <p>I led the navigation, IA, and product storytelling work as one connected effort. That meant leading individual initiatives end-to-end where I owned them outright (chapter nav, MRX IA exploration, Programs framing), and acting as the systems-and-strategy partner on the bigger ones (global nav, PLG surfaces) where ownership sat with other teams. The connective work — translating between initiatives, keeping the framing consistent across them, and making sure no two of them quietly contradicted each other — was as much the role as the individual designs.</p>
+
+            <dl class="cs-role">
+              <div><dt>What I led</dt><dd>Chapter navigation primitive · MRX logged-out nav strategy · Programs exploration · cross-cutting IA framing</dd></div>
+              <div><dt>What I partnered closely on</dt><dd>Global nav redesign · PLG web surfaces · solution-area positioning</dd></div>
+              <div><dt>What I shipped personally</dt><dd>Option-shaping matrices, IA audit maps, chapter-nav spec, Programs experiment frame, the “pathways over pages” framing artifact</dd></div>
+              <div><dt>What I didn't own</dt><dd>Brand identity, the implementation of global nav, growth experimentation infrastructure</dd></div>
+            </dl>
+
+            <div class="cs-callout">
+              <div class="cs-callout__label">Plainly</div>
+              <p class="cs-callout__body">I treated these initiatives as one body of work, not a parallel stack. The deliverable for any given one looked like a nav redesign or a content navigation system; the deliverable across them was a more legible site, and a clearer way for the org to decide where new product stories should live.</p>
+            </div>
+          </section>
+
+          <!-- 05 STRATEGY -->
+          <section id="strategy" class="cs-section">
+            <div class="cs-section__num">05 — Strategy</div>
+            <h2 class="cs-section__title">Marketing UX <em>is</em> product UX.</h2>
+            <p class="cs-section__lede">If a visitor's first hour with the company is on logged-out pages, the logged-out site is part of the product. Design it that way.</p>
+
+            <p>The bet on one line: <em>treat navigation, IA, and product storytelling as the product education layer — not as packaging.</em> Once you accept that frame, the choices change. The menu isn't a list of what the company has built; it's the entry to a set of pathways into the product. Long-form content isn't a piece of marketing copy; it's a workspace the reader has to be able to navigate. MRX isn't a new tab; it's a story that has to fit into the visitor's existing model of SurveyMonkey without overwriting it. Programs isn't a page; it's an experiment in how a complex concept gets introduced.</p>
+
+            <p>The corollary was that creating <em>options</em> was a deliverable. Most of the hard decisions in this thread were cross-functional — brand, growth, product marketing, content, engineering, and leadership all had legitimate inputs. My job wasn't always to land the single right answer; it was often to lay out the option set, name the tradeoffs, and make the decision smaller and faster for the people who had to sign off. Options work <em>is</em> design work.</p>
+
+            <div class="cs-callout cs-callout--decision">
+              <div class="cs-callout__label">Strategic bet</div>
+              <p class="cs-callout__body">Design <em>pathways</em>, not pages. The unit of design is the journey from awareness to understanding to action — pages are stops on a path, nav is the path's shape, and optimizing pages without designing the path between them is the trap.</p>
+            </div>
+
+            <ol class="cs-decisions">
+              <li>
+                <span class="cs-decisions__num">S · 01</span>
+                <div>
+                  <h3 class="cs-decisions__title">Design <em>pathways</em>, not pages.</h3>
+                  <p class="cs-decisions__rationale">The unit of design is the journey from awareness to understanding to action. Pages are stops on a path; nav is the path's shape.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Principle</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">S · 02</span>
+                <div>
+                  <h3 class="cs-decisions__title">Marketing UX <em>is</em> product UX.</h3>
+                  <p class="cs-decisions__rationale">The logged-out site is where most visitors meet the product first. Treat its IA, hierarchy, and storytelling with the same craft as the product's own onboarding.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Principle</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">S · 03</span>
+                <div>
+                  <h3 class="cs-decisions__title">Lay out <em>options</em>, then narrow.</h3>
+                  <p class="cs-decisions__rationale">For cross-functional decisions, the design job is often option-shaping — listing the real choices, naming the tradeoffs, and making the decision smaller for the room.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Principle</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">S · 04</span>
+                <div>
+                  <h3 class="cs-decisions__title">Frame as <em>experiments</em> when the answer isn't known.</h3>
+                  <p class="cs-decisions__rationale">For genuinely novel surfaces — Programs, PLG entry points — treat the design as a hypothesis to test, not a final page to ship. Experiment framing turns ambiguity into forward motion.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Principle</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">S · 05</span>
+                <div>
+                  <h3 class="cs-decisions__title">Wayfinding is <em>readability</em>.</h3>
+                  <p class="cs-decisions__rationale">Inside long-form content, navigation is part of comprehension. Chapter nav isn't decoration; it's the reader's map of where they are and where they can go next.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Principle</span>
+              </li>
+            </ol>
+          </section>
+
+          <!-- 06 PROCESS -->
+          <section id="process" class="cs-section">
+            <div class="cs-section__num">06 — Process</div>
+            <h2 class="cs-section__title">Audit, <em>frame</em>, option, decide, ship.</h2>
+            <p class="cs-section__lede">Five phases I ran across each initiative — overlapping in time, not sequenced. The thread held even when the projects didn't.</p>
+
+            <div class="cs-figure">
+              <div class="cs-figure__frame"><span class="cs-figure__placeholder">Figure 01 — IA audit · current-state map across product, solution &amp; resource surfaces</span></div>
+              <div class="cs-figure__caption"><span class="num">Fig 01</span><span>The audit map — existing nav, page types, and the cross-links between them, laid out so the seams were visible, not the slogans.</span></div>
+            </div>
+
+            <ol class="cs-decisions">
+              <li>
+                <span class="cs-decisions__num">P · 01</span>
+                <div>
+                  <h3 class="cs-decisions__title">Audit</h3>
+                  <p class="cs-decisions__rationale">Walked the site as a visitor would. Mapped the existing IA, the points of friction, and the spots where new product stories kept colliding with old structure.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Phase</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">P · 02</span>
+                <div>
+                  <h3 class="cs-decisions__title">Frame</h3>
+                  <p class="cs-decisions__rationale">Named the shared framing — pathways over pages, marketing UX as product UX — and tested whether stakeholders could repeat it back. The frame had to land before the options would carry weight.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Phase</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">P · 03</span>
+                <div>
+                  <h3 class="cs-decisions__title">Option</h3>
+                  <p class="cs-decisions__rationale">For each initiative, laid out two-to-four real options with tradeoffs. Not a recommended path — the option set, scored against the same criteria, so the room could choose.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Phase</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">P · 04</span>
+                <div>
+                  <h3 class="cs-decisions__title">Decide</h3>
+                  <p class="cs-decisions__rationale">Walked options through cross-functional reviews. Translated between brand, growth, product, content, and engineering vocabularies. Closed decisions in writing.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Phase</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">P · 05</span>
+                <div>
+                  <h3 class="cs-decisions__title">Ship</h3>
+                  <p class="cs-decisions__rationale">Designed the chosen path end-to-end — desktop, mobile, accessibility, fallback states — and partnered with engineering and content on rollout, including experiment framing where the answer wasn't yet known.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Phase</span>
+              </li>
+            </ol>
+
+            <div class="cs-figure">
+              <div class="cs-figure__frame"><span class="cs-figure__placeholder">Figure 02 — Pathways framing · awareness → understanding → action</span></div>
+              <div class="cs-figure__caption"><span class="num">Fig 02</span><span>The frame the rest of the thread hangs on. Three states, the surfaces that serve each, and how a visitor moves between them.</span></div>
+            </div>
+          </section>
+
+          <!-- 07 KEY DECISIONS -->
+          <section id="decisions" class="cs-section">
+            <div class="cs-section__num">07 — Key Decisions</div>
+            <h2 class="cs-section__title">Five <em>forks</em> across the thread.</h2>
+            <p class="cs-section__lede">Each was a decision I either led directly or shaped heavily — and each held across multiple initiatives, which is what made the thread feel like one piece of work.</p>
+
+            <ol class="cs-decisions">
+              <li>
+                <span class="cs-decisions__num">D · 01</span>
+                <div>
+                  <h3 class="cs-decisions__title">Treat nav and IA as the <em>product education layer</em></h3>
+                  <p class="cs-decisions__rationale">Logged-out visitors do most of their product education before sign-up. Once you accept that the marketing site is doing that job, navigation stops being chrome and becomes part of how users learn the product. That reframing is what made the rest of the thread coherent.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Kept</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">D · 02</span>
+                <div>
+                  <h3 class="cs-decisions__title">Ship <em>options</em>, not opinions, on cross-functional calls</h3>
+                  <p class="cs-decisions__rationale">A strong opinion arrives as a wall to negotiate. A clear option set arrives as a starting point. Option-shaping moved decisions faster than advocacy did, and the room kept its agency.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Kept</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">D · 03</span>
+                <div>
+                  <h3 class="cs-decisions__title">Pick the MRX nav pattern by <em>what visitors think they're buying</em></h3>
+                  <p class="cs-decisions__rationale">Product switcher, hub, sub-routes, house-of-brands — each was defensible. The deciding question wasn't internal structure; it was whether visitors understood MRX as part of SurveyMonkey or as a sibling brand.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Kept</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">D · 04</span>
+                <div>
+                  <h3 class="cs-decisions__title">Frame Programs as an <em>experiment</em>, not a page</h3>
+                  <p class="cs-decisions__rationale">Programs was new enough that nobody knew the right shape for it yet. Treating it as a final page would have forced a guess; treating it as a hypothesis to test let us learn the shape from real behavior.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Kept</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">D · 05</span>
+                <div>
+                  <h3 class="cs-decisions__title">Standardize chapter navigation as a <em>content primitive</em></h3>
+                  <p class="cs-decisions__rationale">Long-form content was shipping with bespoke nav on every guide. Building chapter nav as a reusable primitive — desktop sticky, mobile sheet, accessible by default — meant every long-form page got readable wayfinding without paying for it again.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Kept</span>
+              </li>
+            </ol>
+          </section>
+
+          <!-- 08 SOLUTION -->
+          <section id="solution" class="cs-section">
+            <div class="cs-section__num">08 — System &amp; UX Solution</div>
+            <h2 class="cs-section__title">Four initiatives, <em>one thread</em>.</h2>
+            <p class="cs-section__lede">Each project is described as its own piece — but the underlying frame is shared: nav and IA as the product education layer, with options laid out for cross-functional decisions and experiment framing where the shape was still unknown.</p>
+
+            <div class="cs-figure cs-figure--wide">
+              <div class="cs-figure__frame"><span class="cs-figure__placeholder">Figure 03 — Awareness → understanding → action · the pathway view</span></div>
+              <div class="cs-figure__caption"><span class="num">Fig 03</span><span>The pathway frame the thread sits inside — global nav at awareness, chapter nav at understanding, MRX and Programs at the new-product seam, PLG surfaces at the handoff into the product.</span></div>
+            </div>
+
+            <h3>I. SurveyMonkey navigation redesign</h3>
+            <p>The global nav had grown by accretion — top-level items added over years, hierarchies blurred between product, solution, and resource, mobile behavior brittle, accessibility uneven. The redesign clarified hierarchy, rebalanced what got top-level placement, and rebuilt the dropdown, sticky, and mobile behaviors as a single connected system. I sat on this initiative as IA and option partner rather than sole owner; the contribution was helping the room agree on what the nav was <em>for</em> before agreeing on what it should look like.</p>
+
+            <div class="cs-twocol">
+              <div>
+                <h4>Before</h4>
+                <p style="margin:0">Top-level items reflected company history. Solution and product surfaces overlapped without a clear hierarchy. Dropdowns were inconsistent across sections. Mobile collapsed everything into a single overstuffed sheet. Accessibility on focus, keyboard paths, and ARIA was uneven.</p>
+              </div>
+              <div>
+                <h4>After</h4>
+                <p style="margin:0">A hierarchy organized around what visitors are trying to do — product, solutions, resources, pricing — with consistent dropdown behavior, deliberate sticky behavior, a usable mobile pattern, and accessibility baked into the components. The menu became a wayfinding tool, not a sitemap.</p>
+              </div>
+            </div>
+
+            <h3 style="margin-top:48px;">II. Chapter navigation for long-form content</h3>
+            <p>Long-form pages — guides, reports, deep solution pages — were shipping with bespoke nav per project. Readers couldn't see where they were in a 4,000-word page, couldn't jump between sections, and lost orientation on mobile. I led the design of a chapter nav primitive: sticky on desktop, surfaced as a usable sheet on mobile, with progress orientation, keyboard support, and screen-reader-friendly section labeling. Once it was a primitive, every new long-form page inherited it.</p>
+
+            <div class="cs-figure">
+              <div class="cs-figure__frame"><span class="cs-figure__placeholder">Figure 04 — Chapter nav primitive · desktop sticky + mobile sheet</span></div>
+              <div class="cs-figure__caption"><span class="num">Fig 04</span><span>The chapter nav primitive — sticky index on desktop, mobile sheet with progress, accessible labels. Built once, reused on every long-form page.</span></div>
+            </div>
+
+            <h3 style="margin-top:48px;">III. MRX logged-out navigation strategy</h3>
+            <p>MRX needed a way to live within the existing site without fragmenting it. I led the IA exploration: four real options, scored against the same criteria, with the tradeoffs named for leadership. The decision wasn't mine to make — but the option set is what let the decision get made.</p>
+
+            <ol class="cs-decisions">
+              <li>
+                <span class="cs-decisions__num">A</span>
+                <div>
+                  <h3 class="cs-decisions__title">Product switcher · top-level toggle</h3>
+                  <p class="cs-decisions__rationale"><strong>Pros:</strong> reads MRX as a co-equal product. Strong if MRX is positioned as its own line. <strong>Cons:</strong> doubles the surface visitors have to orient inside; risks splitting brand authority.</p>
+                </div>
+                <span class="cs-decisions__verdict">Option</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">B</span>
+                <div>
+                  <h3 class="cs-decisions__title">MRX hub · dedicated section under SM</h3>
+                  <p class="cs-decisions__rationale"><strong>Pros:</strong> a defined home for MRX storytelling without breaking global nav. Easiest to ship. <strong>Cons:</strong> can feel like a sub-area rather than a peer if not framed carefully.</p>
+                </div>
+                <span class="cs-decisions__verdict">Option</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">C</span>
+                <div>
+                  <h3 class="cs-decisions__title">Sub-routes in product nav</h3>
+                  <p class="cs-decisions__rationale"><strong>Pros:</strong> minimal nav cost, MRX inherits site authority. <strong>Cons:</strong> easy to miss; harder for MRX to develop its own narrative voice over time.</p>
+                </div>
+                <span class="cs-decisions__verdict">Option</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">D</span>
+                <div>
+                  <h3 class="cs-decisions__title">House of brands · sibling brand</h3>
+                  <p class="cs-decisions__rationale"><strong>Pros:</strong> maximum independence for MRX brand and IA. <strong>Cons:</strong> high cost to launch and maintain; risks fragmenting visitor's mental model of SurveyMonkey.</p>
+                </div>
+                <span class="cs-decisions__verdict">Option</span>
+              </li>
+            </ol>
+
+            <p>The option set was the artifact. Each was scored against the same criteria — visitor mental model, launch cost, narrative latitude for MRX, long-term IA risk — and presented to leadership side-by-side, not stack-ranked. The conversation moved from "what should we do?" to "which of these tradeoffs are we choosing?" — which is the conversation a decision can actually close in.</p>
+
+            <h3 style="margin-top:48px;">IV. Programs exploration</h3>
+            <p>Programs was a more complex concept than the existing solution-page template could express. I led the exploration of how it should appear on the marketing site — not as a final page, but as a set of options framed as experiments. Where should it live? How should the concept be introduced? Where does animation help and where does it overwhelm? The framing turned an ambiguous brief into a forward motion: we could test versions, learn the shape from behavior, and ship the version that earned it.</p>
+
+            <div class="cs-twocol">
+              <div>
+                <h4>Experiment frame</h4>
+                <p style="margin:0">Treat the Programs surface as a hypothesis. Define what visitors should understand after reading. Ship two-to-three structurally distinct versions. Read the results as evidence about the concept, not just the page.</p>
+              </div>
+              <div>
+                <h4>Storytelling primitives</h4>
+                <p style="margin:0">Use motion and progressive disclosure to introduce a complex concept gradually. Anchor the explanation in a concrete use case, then expand outward. Reserve denser detail for readers who scroll past the orientation.</p>
+              </div>
+            </div>
+
+            <h3 style="margin-top:48px;">V. Product-led growth surfaces</h3>
+            <p>PLG surfaces are where logged-out turns into logged-in — sign-up entry points, template-to-product hand-offs, the seams between the marketing site and the product itself. I partnered with growth on those surfaces as part of the same thread: each one a moment where a visitor's pathway either continued cleanly into the product or quietly stalled. Treating those moments as part of the same pathway logic as the nav redesign — rather than as growth's separate territory — kept the journey continuous instead of segmented.</p>
+
+            <div class="cs-callout cs-callout--dark">
+              <div class="cs-callout__label">Principle</div>
+              <p class="cs-callout__body">The nav doesn't have to do everything. <em>It has to make the next click obvious.</em></p>
+            </div>
+          </section>
+
+          <!-- 09 COLLABORATION -->
+          <section id="collab" class="cs-section">
+            <div class="cs-section__num">09 — Collaboration</div>
+            <h2 class="cs-section__title">A thread held by <em>many hands</em>.</h2>
+            <p class="cs-section__lede">Navigation, IA, and product storytelling sit where brand, product marketing, growth, content, and engineering all have legitimate authority. The job was making sure they were arguing about the same thing.</p>
+
+            <p>None of these initiatives lived inside one team. Brand had a say in how nav looked. Product marketing had a say in how products were positioned. Growth had a say in what the surfaces should produce. Content had a say in voice, length, and structure. Engineering had a say in what was buildable and maintainable. My role across the thread was to keep all of those views in the same conversation — not by smoothing them, but by translating them into a shared vocabulary and a shared option set.</p>
+
+            <div class="cs-twocol">
+              <div>
+                <h4>How we worked</h4>
+                <ul>
+                  <li>Recurring cross-functional working sessions</li>
+                  <li>The same framing — pathways over pages — opening each one</li>
+                  <li>Option-shaping matrices before any decision review</li>
+                  <li>Shared vocabulary across brand, growth, PMM, content, eng</li>
+                  <li>Decisions closed in writing and pinned to the artifact</li>
+                </ul>
+              </div>
+              <div>
+                <h4>How we made decisions</h4>
+                <ul>
+                  <li>Two-to-four real options, scored against the same criteria</li>
+                  <li>Tradeoffs named, not stack-ranked</li>
+                  <li>"Which mental model are we backing?" framing for IA calls</li>
+                  <li>Experiment framing for genuinely new surfaces</li>
+                  <li>Reversible decisions: ship, learn, revisit in 4–6 weeks</li>
+                </ul>
+              </div>
+            </div>
+
+            <dl class="cs-role" style="margin-top:32px;">
+              <div><dt>Brand</dt><dd>Co-owned look of the redesigned nav and visual treatment across surfaces. Paired on dropdowns, sticky behavior, and how brand expression translated into IA decisions.</dd></div>
+              <div><dt>Product marketing</dt><dd>Owned how products and solutions were named, ordered, and positioned. Co-led MRX framing, Programs introduction, and nav hierarchy.</dd></div>
+              <div><dt>Growth</dt><dd>Owned PLG surfaces and the experimentation pattern. Co-designed experiment frames for Programs and other novel surfaces.</dd></div>
+              <div><dt>Content</dt><dd>Owned writing and structure inside long-form content. Co-designed the chapter nav primitive so it served both the reader and the editorial process.</dd></div>
+              <div><dt>Engineering</dt><dd>Owned the implementation surface — global nav build, chapter-nav component, sticky behavior, accessibility. Engineering's read on feasibility shaped which options stayed in the set.</dd></div>
+              <div><dt>Leadership</dt><dd>Owned the calls on cross-functional questions like MRX nav strategy. My job was to land options in their hands — scored, tradeoffs named — so the decisions could close cleanly.</dd></div>
+            </dl>
+
+            <blockquote class="pull" style="margin: 32px 0 0;">
+              "When a new initiative arrived, the question wasn't 'what's the answer?' but 'does this fit the frame we agreed on, and if not, why not?'"
+              <span class="pull__attr">— Working pattern across the thread</span>
+            </blockquote>
+          </section>
+
+          <!-- 10 IMPACT -->
+          <section id="impact" class="cs-section">
+            <div class="cs-section__num">10 — Impact</div>
+            <h2 class="cs-section__title">Better <em>decisions</em>, better <em>paths</em>.</h2>
+            <p class="cs-section__lede">Qualitative impact. The thread didn't produce a single launch you can screenshot — it produced clearer decisions, clearer paths, and a shared frame the org could keep using.</p>
+
+            <div class="cs-impact">
+              <div>
+                <div class="cs-impact__label">For visitors</div>
+                <h3 class="cs-impact__title">A site that wayfinds.</h3>
+                <p class="cs-impact__body">Visitors arriving from search, ads, or campaigns can orient faster — top-level nav reflects what they're trying to do, long-form pages give them progress and chapter access, and the surfaces feel like a connected site instead of a stack of campaigns.</p>
+              </div>
+              <div>
+                <div class="cs-impact__label">For cross-functional decisions</div>
+                <h3 class="cs-impact__title">Options, not arguments.</h3>
+                <p class="cs-impact__body">Option-shaping artifacts changed how the room decided. Brand, growth, product marketing, and engineering could argue tradeoffs against the same criteria — instead of restarting the framing every time.</p>
+              </div>
+              <div>
+                <div class="cs-impact__label">For new product stories</div>
+                <h3 class="cs-impact__title">Less ambiguity about where things live.</h3>
+                <p class="cs-impact__body">MRX and Programs gave the org chances to practice the "where does this live?" question. Both ended up with cleaner, more deliberate placements — and the patterns from those decisions have carried into later product launches.</p>
+              </div>
+              <div>
+                <div class="cs-impact__label">For long-form content</div>
+                <h3 class="cs-impact__title">Pages you can navigate.</h3>
+                <p class="cs-impact__body">Chapter nav became a reusable primitive. Long-form content stopped shipping with bespoke wayfinding; readers got consistent orientation, progress, and accessibility across every guide.</p>
+              </div>
+              <div>
+                <div class="cs-impact__label">For PLG</div>
+                <h3 class="cs-impact__title">Marketing UX, treated as product UX.</h3>
+                <p class="cs-impact__body">The seams where logged-out turns into logged-in were treated as part of the same pathway as the nav and IA work — not as a different team's territory. The journey became continuous instead of segmented.</p>
+              </div>
+              <div>
+                <div class="cs-impact__label">For the team</div>
+                <h3 class="cs-impact__title">A frame the room could repeat.</h3>
+                <p class="cs-impact__body">"Pathways over pages" became something stakeholders could repeat back unprompted. A shared frame is what lets a thread of initiatives feel like one piece of work — and what makes the work survive the next reorg.</p>
+              </div>
+            </div>
+
+            <p style="margin-top:8px;">The honest summary: this work didn't produce a single hero launch. It produced a more navigable site, a better way to decide where new product stories should go, a reusable primitive for long-form content, and a framing the org now uses unprompted. Connective work compounds — when it's done well, you don't see it; you just notice the friction that didn't happen.</p>
+          </section>
+
+          <!-- 11 WHAT I LEARNED -->
+          <section id="learned" class="cs-section">
+            <div class="cs-section__num">11 — What I Learned</div>
+            <h2 class="cs-section__title">Five notes I <em>kept</em>.</h2>
+            <p class="cs-section__lede">Lessons written for the next thread of navigation, IA, and product-storytelling work.</p>
+
+            <ol class="cs-decisions">
+              <li>
+                <span class="cs-decisions__num">L · 01</span>
+                <div>
+                  <h3 class="cs-decisions__title">Marketing UX <em>is</em> product UX.</h3>
+                  <p class="cs-decisions__rationale">The most useful reframing was simple: the logged-out site is part of the product. Visitors learn the product there before they ever sign up. Once that's accepted, nav, IA, and long-form wayfinding stop being "marketing concerns" and start being design surfaces with the same craft bar as anything inside the app.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Keep</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">L · 02</span>
+                <div>
+                  <h3 class="cs-decisions__title"><em>Options</em> move faster than opinions.</h3>
+                  <p class="cs-decisions__rationale">Strong opinions are useful on individual projects; on cross-functional IA work they become walls. A clear option set — same criteria, tradeoffs named — moves the room faster than the strongest advocate could. The deliverable on a hard decision is often the matrix, not the answer.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Keep</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">L · 03</span>
+                <div>
+                  <h3 class="cs-decisions__title">Pick the <em>question</em>, not the answer.</h3>
+                  <p class="cs-decisions__rationale">For MRX, the breakthrough was naming the right question — "do visitors think of this as part of SurveyMonkey or as a sibling brand?" Once the question was the right one, the decision shrank from "which of four patterns?" to "which mental model are we backing?" Reframing the question is the highest-leverage move in IA work.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Keep</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">L · 04</span>
+                <div>
+                  <h3 class="cs-decisions__title">For novel surfaces, frame as <em>experiments</em>.</h3>
+                  <p class="cs-decisions__rationale">Programs taught me that for genuinely new product concepts, the right artifact is a hypothesis, not a final page. Experiment framing converts ambiguity into forward motion and lets behavior — not opinion — settle the shape. It also lets the room ship without committing more than it needs to.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Keep</span>
+              </li>
+              <li>
+                <span class="cs-decisions__num">L · 05</span>
+                <div>
+                  <h3 class="cs-decisions__title">Make <em>connective work</em> visible, or lose it.</h3>
+                  <p class="cs-decisions__rationale">A thread of related initiatives can read as a stack of small projects unless someone writes the connective story explicitly. The frame, the artifact, the option set, the pattern: writing each of them down — and using them in the next project — is what turns the thread into a piece of work.</p>
+                </div>
+                <span class="cs-decisions__verdict cs-decisions__verdict--kept">Keep</span>
+              </li>
+            </ol>
+          </section>
+
+          <!-- Next -->
+          <nav class="cs-next" aria-label="Case study navigation">
+            <a href="work.html">
+              <span class="cs-next__label">← All work</span>
+              <h4 class="cs-next__title">Back to the <em>index</em></h4>
+            </a>
+            <a href="SurveyMonkey Animation Strategy.html">
+              <span class="cs-next__label">Next case · 05 / 06</span>
+              <h4 class="cs-next__title">A Practical <em>Animation Strategy</em> for Marketing Web →</h4>
+            </a>
+          </nav>
+
+        </article>
+      </div>
+    </div>
+
+    <!-- ============ CTA ============ -->
+    <section class="section section--flush">
+      <div class="shell">
+        <div class="cta">
+          <div>
+            <div class="cta__eyebrow">Working together</div>
+            <h2 class="cta__title">Got a nav that needs to <em>wayfind</em>?</h2>
+          </div>
+          <div class="cta__side">
+            <p class="cta__lede">IA audits, navigation system work, and cross-functional option-shaping for product-led marketing surfaces.</p>
+            <div style="display:flex; gap:12px; flex-wrap:wrap;">
+              <a href="contact.html" class="btn btn--accent">Start a conversation
+                <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a href="work.html" class="btn btn--ghost">See more work</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell">
+      <div class="footer__grid">
+        <div class="footer__brand-col">
+          <h2 class="footer__brand" style="font-weight: 500">David <em style="font-weight: 500">Cho</em></h2>
+          <p class="footer__tagline">Designing the systems behind high-performing web experiences.</p>
+        </div>
+        <div class="footer__col"><h4>Site</h4><ul><li><a href="index.html">Index</a></li><li><a href="work.html">Work</a></li><li><a href="about.html">About</a></li><li><a href="resume.html">Resume</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+        <div class="footer__col"><h4>Elsewhere</h4><ul><li><a href="#">LinkedIn ↗</a></li><li><a href="#">Read.cv ↗</a></li><li><a href="#">Are.na ↗</a></li><li><a href="#">Dribbble ↗</a></li></ul></div>
+        <div class="footer__col"><h4>Contact</h4><ul><li><a href="mailto:hi@davidcho.design">hi@davidcho.design</a></li><li><a href="contact.html">Project brief</a></li><li><a href="#">+1 (415) 555&#8209;0118</a></li></ul></div>
+      </div>
+      <div class="footer__bar">
+        <span>© <span data-year></span> &nbsp;David Cho · Toronto</span>
+        <span>Set in Source Serif 4 &amp; Space Grotesk</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/site.js"></script>
+  <script>
+    // TOC current-section highlight via IntersectionObserver
+    (function () {
+      const links = document.querySelectorAll('.cs-toc a[data-toc]');
+      const map = new Map();
+      links.forEach(a => map.set(a.getAttribute('href').slice(1), a));
+      const sections = document.querySelectorAll('.cs-section[id]');
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            links.forEach(a => a.classList.remove('is-current'));
+            const a = map.get(e.target.id);
+            if (a) a.classList.add('is-current');
+          }
+        });
+      }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+      sections.forEach(s => io.observe(s));
+
+      // Smooth-scroll for TOC clicks
+      links.forEach(a => {
+        a.addEventListener('click', (e) => {
+          const id = a.getAttribute('href').slice(1);
+          const target = document.getElementById(id);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            history.replaceState(null, '', '#' + id);
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
