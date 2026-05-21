@@ -594,5 +594,111 @@
   </footer>
 
   <script src="assets/site.js"></script>
+
+  <!-- ============ TWEAKS ============ -->
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+  <div id="tweaks-root"></div>
+  <script type="text/babel">
+
+    const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+      "mood": "Night",
+      "typeVoice": "Serif-led",
+      "accent": "#C8451E"
+    }/*EDITMODE-END*/;
+
+    // ── Palette presets ─────────────────────────────────────────────────────
+    const PALETTES = {
+      Warm: {
+        bg: '#F1ECE2', bg2: '#ECE6D9', surface: '#FAF6EC',
+        ink: '#181513', ink2: '#2E2823', muted: '#6F6557', muted2: '#948A7B',
+        line: '#DDD4C0', line2: '#C9BFA8', accentInk: '#FAF6EC',
+      },
+      Slate: {
+        bg: '#EEF1F7', bg2: '#E5E9F2', surface: '#F7F9FC',
+        ink: '#151C2E', ink2: '#1E2840', muted: '#5A6680', muted2: '#8A96B0',
+        line: '#C8D0E0', line2: '#B4BDCF', accentInk: '#F7F9FC',
+      },
+      Night: {
+        bg: '#151210', bg2: '#1E1916', surface: '#221E1A',
+        ink: '#F1ECE2', ink2: '#DDD4C0', muted: '#948A7B', muted2: '#6F6557',
+        line: '#2E2823', line2: '#3D3530', accentInk: '#F1ECE2',
+      },
+    };
+
+    // ── Type voice presets ──────────────────────────────────────────────────
+    const TYPE_VOICES = {
+      Balanced:    { font: '"Source Serif 4", Georgia, serif',           s3:'28px', s4:'40px', s5:'56px', s6:'80px',  s7:'112px' },
+      'Serif-led': { font: '"Source Serif 4", Georgia, serif',           s3:'32px', s4:'48px', s5:'68px', s6:'96px',  s7:'130px' },
+      'Sans-led':  { font: '"Space Grotesk", system-ui, sans-serif',     s3:'26px', s4:'38px', s5:'52px', s6:'72px',  s7:'100px' },
+    };
+
+    // ── Accent-soft tints per accent × mood ─────────────────────────────────
+    const ACCENT_SOFTS = {
+      '#C8451E': { Warm: '#F1D9CC', Slate: '#FADDD3', Night: '#3D1E16' },
+      '#2A5FD4': { Warm: '#D0DCFA', Slate: '#C8D8FF', Night: '#0F1F4A' },
+      '#1F8A5B': { Warm: '#C9E8D8', Slate: '#C2E8D5', Night: '#0E2E20' },
+      '#7A4FD4': { Warm: '#DDD0FA', Slate: '#D8CEFF', Night: '#1E1040' },
+    };
+
+    function applyTweaks({ mood, typeVoice, accent }) {
+      const root = document.documentElement;
+      const p  = PALETTES[mood]       || PALETTES.Warm;
+      const tv = TYPE_VOICES[typeVoice] || TYPE_VOICES.Balanced;
+      const acc = accent || '#C8451E';
+      const softMap = ACCENT_SOFTS[acc] || ACCENT_SOFTS['#C8451E'];
+      const accentSoft = (softMap && softMap[mood]) || softMap.Warm;
+
+      const vars = {
+        '--bg': p.bg, '--bg-2': p.bg2, '--surface': p.surface,
+        '--ink': p.ink, '--ink-2': p.ink2,
+        '--muted': p.muted, '--muted-2': p.muted2,
+        '--line': p.line, '--line-2': p.line2,
+        '--accent': acc, '--accent-ink': p.accentInk, '--accent-soft': accentSoft,
+        '--font-display': tv.font,
+        '--step-3': tv.s3, '--step-4': tv.s4, '--step-5': tv.s5,
+        '--step-6': tv.s6, '--step-7': tv.s7,
+      };
+      for (const [k, v] of Object.entries(vars)) root.style.setProperty(k, v);
+    }
+
+    // ── App ─────────────────────────────────────────────────────────────────
+    function IndexTweaks() {
+      const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+
+      React.useLayoutEffect(() => { applyTweaks(t); }, []);
+      React.useEffect(() => { applyTweaks(t); }, [t.mood, t.typeVoice, t.accent]);
+
+      return (
+        <TweaksPanel title="Tweaks">
+          <TweakSection label="Mood" />
+          <TweakRadio
+            label="Palette"
+            value={t.mood}
+            options={['Warm', 'Slate', 'Night']}
+            onChange={v => setTweak('mood', v)}
+          />
+          <TweakSection label="Type voice" />
+          <TweakRadio
+            label="Headlines"
+            value={t.typeVoice}
+            options={['Balanced', 'Serif-led', 'Sans-led']}
+            onChange={v => setTweak('typeVoice', v)}
+          />
+          <TweakSection label="Accent" />
+          <TweakColor
+            label="Color"
+            value={t.accent}
+            options={['#C8451E', '#2A5FD4', '#1F8A5B', '#7A4FD4']}
+            onChange={v => setTweak('accent', v)}
+          />
+        </TweaksPanel>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<IndexTweaks />);
+  </script>
 </body>
 </html>
